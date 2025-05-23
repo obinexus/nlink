@@ -1,0 +1,18 @@
+{
+    "files.associations": {
+        "string.h": "c",
+        "stdlib.h": "c",
+        "errno.h": "c",
+        "stdbool.h": "c",
+        "stddef.h": "c",
+        "nexus_core.h": "c",
+        "stdio.h": "c",
+        "time.h": "c",
+        "ctype.h": "c",
+        "functional": "c",
+        "typeinfo": "c",
+        "array": "c",
+        "string_view": "c",
+        "initializer_list": "c"
+    }
+}

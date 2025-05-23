@@ -1,0 +1,135 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "NexusLink Component Metadata",
+    "description": "Schema for NexusLink component metadata files that describe component properties, dependencies, and symbols",
+    "type": "object",
+    "required": ["id", "version", "symbols"],
+    "properties": {
+      "id": {
+        "type": "string",
+        "description": "Unique identifier for the component"
+      },
+      "version": {
+        "type": "string",
+        "description": "Component version (semantic versioning)",
+        "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$"
+      },
+      "description": {
+        "type": "string",
+        "description": "Human-readable description of the component"
+      },
+      "dependencies": {
+        "type": "array",
+        "description": "List of components this component depends on",
+        "items": {
+          "type": "object",
+          "required": ["id"],
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "Component ID of the dependency"
+            },
+            "version_req": {
+              "type": "string",
+              "description": "Version requirement (e.g., '^1.2.3', '>=2.0.0')"
+            },
+            "optional": {
+              "type": "boolean",
+              "description": "Whether this dependency is optional",
+              "default": false
+            }
+          }
+        }
+      },
+      "symbols": {
+        "type": "object",
+        "description": "Symbol declarations for this component",
+        "required": ["exported", "imported"],
+        "properties": {
+          "exported": {
+            "type": "array",
+            "description": "Symbols exported by this component",
+            "items": {
+              "type": "object",
+              "required": ["name"],
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "Symbol name"
+                },
+                "version": {
+                  "type": "string",
+                  "description": "Symbol version"
+                },
+                "type": {
+                  "type": "string",
+                  "description": "Symbol type",
+                  "enum": ["function", "variable", "type", "constant"]
+                }
+              }
+            }
+          },
+          "imported": {
+            "type": "array",
+            "description": "Symbols imported by this component",
+            "items": {
+              "type": "object",
+              "required": ["name"],
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "Symbol name"
+                },
+                "version_req": {
+                  "type": "string",
+                  "description": "Version requirement"
+                },
+                "type": {
+                  "type": "string",
+                  "description": "Symbol type",
+                  "enum": ["function", "variable", "type", "constant"]
+                }
+              }
+            }
+          }
+        }
+      },
+      "resources": {
+        "type": "object",
+        "description": "Resource requirements and metrics",
+        "properties": {
+          "memory_footprint": {
+            "type": "integer",
+            "description": "Estimated memory footprint in bytes"
+          },
+          "avg_load_time_ms": {
+            "type": "number",
+            "description": "Average load time in milliseconds"
+          },
+          "priority": {
+            "type": "integer",
+            "description": "Loading priority (higher = load sooner)",
+            "default": 0
+          }
+        }
+      },
+      "build_info": {
+        "type": "object",
+        "description": "Build-related information",
+        "properties": {
+          "build_date": {
+            "type": "string",
+            "description": "Build date (ISO 8601 format)"
+          },
+          "compiler": {
+            "type": "string",
+            "description": "Compiler used to build the component"
+          },
+          "compiler_flags": {
+            "type": "string",
+            "description": "Compiler flags used"
+          }
+        }
+      }
+    }
+  }

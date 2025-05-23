@@ -1,0 +1,37 @@
+flowchart TD
+    A[Component Request Symbol] --> B{Symbol in Exported Table?}
+    B -->|Yes| C[Get All Available Versions]
+    B -->|No| D{Symbol in Global Table?}
+    D -->|Yes| E[Return Global Symbol]
+    D -->|No| F[Symbol Not Found]
+    
+    C --> G{Multiple Versions?}
+    G -->|No| H[Return Only Version]
+    G -->|Yes| I[Apply Resolution Strategy]
+    
+    I --> J{Direct Dependencies?}
+    J -->|Yes| K[Choose Dependency Version]
+    J -->|No| L{Version Constraints?}
+    
+    L -->|Yes| M[Apply Version Constraints]
+    L -->|No| N[Choose Highest Version]
+    
+    K --> O[Return Resolved Symbol]
+    M --> O
+    N --> O
+    
+    subgraph Resolution Strategy
+        J
+        K
+        L
+        M
+        N
+    end
+    
+    classDef process fill:#f9f,stroke:#333,stroke-width:2px;
+    classDef decision fill:#bbf,stroke:#333,stroke-width:2px;
+    classDef endpoint fill:#bfb,stroke:#333,stroke-width:2px;
+    
+    class A,C,E,F,H,K,M,N,O process;
+    class B,D,G,I,J,L decision;
+    class E,F,O endpoint;

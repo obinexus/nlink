@@ -1,0 +1,233 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://obinexus.com/schemas/nlink/component.json",
+  "title": "NexusLink Component Metadata",
+  "description": "Comprehensive schema for NexusLink component metadata",
+  "type": "object",
+  "required": ["id", "version", "type", "symbols"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the component",
+      "pattern": "^[a-zA-Z0-9_-]+$"
+    },
+    "version": {
+      "type": "string",
+      "description": "Component version (semantic versioning)",
+      "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$"
+    },
+    "type": {
+      "type": "string",
+      "description": "Component type",
+      "enum": ["core", "minimizer", "automaton", "cli", "sps", "mps", "extension"]
+    },
+    "description": {
+      "type": "string",
+      "description": "Human-readable description of the component"
+    },
+    "dependencies": {
+      "type": "array",
+      "description": "List of components this component depends on",
+      "items": {
+        "type": "object",
+        "required": ["id"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Component ID of the dependency"
+          },
+          "version_req": {
+            "type": "string",
+            "description": "Version requirement (e.g., '^1.2.3', '>=2.0.0')"
+          },
+          "optional": {
+            "type": "boolean",
+            "description": "Whether this dependency is optional",
+            "default": false
+          }
+        }
+      }
+    },
+    "symbols": {
+      "type": "object",
+      "description": "Symbol declarations for this component",
+      "required": ["exported", "imported"],
+      "properties": {
+        "exported": {
+          "type": "array",
+          "description": "Symbols exported by this component",
+          "items": {
+            "type": "object",
+            "required": ["name"],
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Symbol name"
+              },
+              "version": {
+                "type": "string",
+                "description": "Symbol version"
+              },
+              "type": {
+                "type": "string",
+                "description": "Symbol type",
+                "enum": ["function", "variable", "type", "constant"]
+              },
+              "description": {
+                "type": "string",
+                "description": "Symbol description"
+              }
+            }
+          }
+        },
+        "imported": {
+          "type": "array",
+          "description": "Symbols imported by this component",
+          "items": {
+            "type": "object",
+            "required": ["name"],
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Symbol name"
+              },
+              "version_req": {
+                "type": "string",
+                "description": "Version requirement"
+              },
+              "type": {
+                "type": "string",
+                "description": "Symbol type",
+                "enum": ["function", "variable", "type", "constant"]
+              },
+              "optional": {
+                "type": "boolean",
+                "description": "Whether this symbol is optional",
+                "default": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "resources": {
+      "type": "object",
+      "description": "Resource requirements and metrics",
+      "properties": {
+        "memory_footprint": {
+          "type": "integer",
+          "description": "Estimated memory footprint in bytes"
+        },
+        "avg_load_time_ms": {
+          "type": "number",
+          "description": "Average load time in milliseconds"
+        },
+        "priority": {
+          "type": "integer",
+          "description": "Loading priority (higher = load sooner)",
+          "default": 0
+        }
+      }
+    },
+    "build_info": {
+      "type": "object",
+      "description": "Build-related information",
+      "properties": {
+        "build_date": {
+          "type": "string",
+          "description": "Build date (ISO 8601 format)"
+        },
+        "compiler": {
+          "type": "string",
+          "description": "Compiler used to build the component"
+        },
+        "compiler_flags": {
+          "type": "string",
+          "description": "Compiler flags used"
+        }
+      }
+    },
+    "pipeline_config": {
+      "type": "object",
+      "description": "Configuration for pipeline components (SPS/MPS)",
+      "properties": {
+        "system_type": {
+          "type": "string",
+          "enum": ["sps", "mps"],
+          "description": "Pipeline system type"
+        },
+        "input_formats": {
+          "type": "array",
+          "description": "Supported input formats",
+          "items": {
+            "type": "string"
+          }
+        },
+        "output_formats": {
+          "type": "array",
+          "description": "Supported output formats",
+          "items": {
+            "type": "string"
+          }
+        },
+        "max_iterations": {
+          "type": "integer",
+          "description": "Maximum iterations for MPS",
+          "minimum": 1
+        },
+        "supports_parallelism": {
+          "type": "boolean",
+          "description": "Whether the component supports parallel execution"
+        },
+        "execution_mode": {
+          "type": "string",
+          "enum": ["blocking", "non_blocking"],
+          "description": "Execution mode"
+        }
+      }
+    },
+    "cli_config": {
+      "type": "object",
+      "description": "Configuration for CLI components",
+      "properties": {
+        "commands": {
+          "type": "array",
+          "description": "Commands provided by this component",
+          "items": {
+            "type": "object",
+            "required": ["name", "description"],
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Command name"
+              },
+              "short_name": {
+                "type": "string",
+                "description": "Short name/alias for the command"
+              },
+              "description": {
+                "type": "string",
+                "description": "Command description"
+              },
+              "usage": {
+                "type": "string",
+                "description": "Command usage example"
+              },
+              "patterns": {
+                "type": "array",
+                "description": "Command patterns for regex matching",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "minimal_mode_enabled": {
+          "type": "boolean",
+          "description": "Whether minimal mode is supported"
+        }
+      }
+    }
+  }
+}

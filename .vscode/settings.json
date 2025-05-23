@@ -1,0 +1,22 @@
+{
+    "files.associations": {
+        "nexus_metadata.h": "c",
+        "nexus_lazy.h": "c",
+        "nexus_symbols.h": "c",
+<<<<<<< HEAD
+<<<<<<< HEAD
+        "nexus_versioned_symbols.h": "c"
+=======
+=======
+>>>>>>> dev
+        "nexus_lazy_versioned.h": "c",
+        "nexus_json.h": "c",
+        "nexus_semver.h": "c",
+        "nexus_versioned_symbols.h": "c",
+        "nexus_enhanced_metadata.h": "c"
+<<<<<<< HEAD
+>>>>>>> dev
+=======
+>>>>>>> dev
+    }
+}
