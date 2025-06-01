@@ -1,0 +1,7 @@
+[project]
+name = single_pass_demo
+version = 1.0.0
+entry_point = src/main.c
+
+[build]
+pass_mode = single
