@@ -1,0 +1,108 @@
+;
+    :AST;
+  }
+  
+  partition "Concurrent Processing" {
+    fork
+      :Phase 1: AST Minimization\n(okpala_minimizer);
+    fork again
+      :Phase 2: Isomorphic Reduction\n(Unicode normalization);
+    end fork
+    :Thread synchronization barrier;
+  }
+  
+else (no)
+  :Multi-Pass Mode Required;
+  
+  if (nlink.txt exists?) then (no)
+    :Error: Multi-component requires nlink.txt;
+    stop
+  else (yes)
+    :Parse root nlink.txt coordination;
+  endif
+  
+  :Iterate subcomponent folders;
+  
+  repeat
+    :Process subfolder;
+    if (Subfolder nlink.txt exists?) then (yes)
+      :Parse isolated symbol table;
+      :Resolve versioned imports;
+    else (no)
+      :Use default linkage sequence;
+    endif
+    
+    :Execute DFA minimization per component;
+    
+  repeat while (More subcomponents?)
+  
+  :Coordinate multi-pass pipeline;
+endif
+
+partition "Feature Toggle Processing" {
+  if (Feature flags active?) then (yes)
+    if (Type-1 grammar detected?) then (yes)
+      :Activate --experimental-mode;
+      :Disable DFA minimization;
+      :Enable arbitration logic;
+      :Serialize execution for determinism;
+    else (no)
+      :Maintain parallel worker pools;
+      :Enforce DFA determinism;
+    endif
+  else (no)
+    :Standard DFA minimization;
+  endif
+}
+
+partition "Symbol Resolution & Validation" {
+  :Strip unused symbols;
+  :Validate version constraints;
+  if (Symbol conflicts detected?) then (yes)
+    if (Semver compatibility possible?) then (yes)
+      :Auto-resolve using semver rules;
+    else (no)
+      :Error: Unresolvable symbol conflict;
+      stop
+    endif
+  else (no)
+    :Symbol resolution complete;
+  endif
+}
+
+partition "Output Generation" {
+  :Generate minimized automaton;
+  :Apply isomorphic reduction;
+  :Output linked binary/library;
+}
+
+:Build complete;
+stop
+
+@enduml;
+    :PARSER;
+    :@startuml
+title NexusLink Linking Process: pkg.nlink & nlink.txt Architecture
+
+start
+:Scan root directory;
+:Parse pkg.nlink manifest;
+
+if (pkg.nlink valid?) then (no)
+  :Error: Malformed pkg.nlink;
+  stop
+else (yes)
+  :Extract global constraints;
+  :Configure threading pools;
+  :Set entry point (main.c);
+endif
+
+:Count component folders;
+
+if (Single component folder?) then (yes)
+  :Single-Pass Mode Activated;
+  :Ignore nlink.txt if present;
+  
+  partition "Linear DFA Chain" {
+    :TOKENIZER;
+    :
