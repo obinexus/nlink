@@ -1,0 +1,62 @@
+// example.nlink - NexusLink manifest example
+// Demonstrates pattern matching features
+
+// Component identity and versioning
+component "pattern_example" {
+    version: "1.0.0",
+    description: "Pattern matching example",
+    author: "NexusLink System"
+}
+
+// Source resolution using wildcard patterns
+sources {
+    include: [
+        "src/**/*.c",          // All C source files in src and subdirectories
+        "!src/**/*_test.c"     // Exclude test files
+    ],
+    headers: [
+        "include/**/*.h"       // All header files
+    ]
+}
+
+// Dependency resolution
+dependencies {
+    require: [
+        "core >= 1.0.0",
+        "pattern"
+    ]
+}
+
+// Build configuration
+build {
+    // Output targets
+    targets: [
+        {type: "static", extension: ".a"},
+        {type: "shared", extension: ".so"}
+    ],
+    
+    // Build pipeline
+    pipeline: [
+        {stage: "preprocess", options: {macros: ["DEBUG=1"]}},
+        {stage: "compile", options: {optimize: true, warnings: "all"}},
+        {stage: "link", options: {strip: false}}
+    ]
+}
+
+// Pattern transformation
+pattern_transforms {
+    // Transform source files based on patterns
+    transforms: [
+        // Apply to all header files
+        {
+            pattern: "**/*.h",
+            transform: "add_header_guard"
+        },
+        
+        // Apply to all implementation files
+        {
+            pattern: "**/*.c",
+            transform: "optimize_includes"
+        }
+    ]
+}

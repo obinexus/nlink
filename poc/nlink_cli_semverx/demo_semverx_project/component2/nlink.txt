@@ -1,0 +1,20 @@
+[component]
+name = experimental_ai_component
+version = 2.0.0-alpha.3
+parent_component = enhanced_system
+
+[semverx]
+range_state = experimental
+compatible_range = 2.0.0-alpha.x
+swappable_with = ["2.0.0-alpha.1", "2.0.0-alpha.2", "2.0.0-alpha.4"]
+exclusions = ["stable.*", "legacy.*"]
+hot_swap_enabled = false
+runtime_validation = permissive
+requires_opt_in = true
+
+[compilation]
+optimization_level = 0
+max_compile_time = 120
+parallel_allowed = false
+requires_semverx_validation = true
+experimental_features = ["ai_acceleration", "neural_optimization"]

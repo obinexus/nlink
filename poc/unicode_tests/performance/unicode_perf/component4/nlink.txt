@@ -1,0 +1,8 @@
+[component]
+name = perf_component4
+version = 1.0.0
+
+[compilation]
+optimization_level = 2
+max_compile_time = 60
+parallel_allowed = true

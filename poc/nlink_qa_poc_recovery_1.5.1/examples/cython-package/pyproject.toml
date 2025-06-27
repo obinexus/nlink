@@ -1,0 +1,79 @@
+[build-system]
+requires = ["setuptools>=64.0.0", "cython>=3.0.0", "numpy>=1.21.0", "wheel>=0.37.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "nlink-cython-marshal"
+dynamic = ["version"]
+description = "NexusLink Zero-Overhead Marshalling - Cython Implementation"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [
+    {name = "OBINexus Engineering Team", email = "engineering@obinexus.com"},
+    {name = "Nnamdi Michael Okpala", email = "nnamdi@obinexus.com"}
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9", 
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: System :: Distributed Computing",
+    "Topic :: Scientific/Engineering :: Mathematics"
+]
+requires-python = ">=3.8"
+dependencies = [
+    "numpy>=1.21.0",
+    "typing-extensions>=4.0.0;python_version<'3.10'"
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+    "black>=22.0.0",
+    "mypy>=1.0.0",
+    "cython-lint>=0.12.0"
+]
+test = [
+    "pytest>=7.0.0",
+    "numpy-testing>=1.0.0",
+    "hypothesis>=6.0.0"
+]
+
+[project.urls]
+Homepage = "https://github.com/obinexus/nlink-poc"
+Documentation = "https://docs.obinexus.com/nlink"
+Repository = "https://github.com/obinexus/nlink-poc.git"
+"Bug Tracker" = "https://github.com/obinexus/nlink-poc/issues"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+zip-safe = false
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["nlink_marshal*"]
+
+[tool.setuptools.dynamic]
+version = {attr = "nlink_marshal.__version__"}
+
+# Cython configuration
+[tool.cython]
+language_level = "3str"
+boundscheck = false
+wraparound = false
+initializedcheck = false
+cdivision = true
+embedsignature = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests", "src"]
+python_files = ["test_*.py", "*_test.py"]
+addopts = ["--verbose"]

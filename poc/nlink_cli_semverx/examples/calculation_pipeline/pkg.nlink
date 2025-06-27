@@ -1,0 +1,20 @@
+[project]
+name = mathematical_calculation_pipeline
+version = 1.0.0
+entry_point = calculation_orchestrator
+
+[build]
+pass_mode = multi
+experimental_mode = true
+semverx_enabled = true
+
+[semverx]
+range_state = stable
+registry_mode = centralized
+validation_level = strict
+shared_registry_path = ./shared_orchestration/calculation_registry.nlink
+hot_swap_enabled = true
+
+[threading]
+worker_count = 4
+queue_depth = 64
