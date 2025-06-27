@@ -1,8 +1,0 @@
-[component]
-name = core_component
-version = 1.5.0
-
-[compilation]
-optimization_level = 2
-max_compile_time = 120
-parallel_allowed = true
