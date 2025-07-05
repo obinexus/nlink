@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<nlink-project xmlns="http://obinexus.com/nlink/schema/v1" version="1.0">
+  <metadata>
+    <name>nexuslink</name>
+    <version>1.0.0</version>
+    <description>OBINexus NexusLink QA POC System</description>
+    <author>OBINexus Engineering Team</author>
+  </metadata>
+  
+  <build>
+    <source-dir>src</source-dir>
+    <build-dir>build</build-dir>
+    <output>
+      <bin-dir>bin</bin-dir>
+      <lib-dir>lib</lib-dir>
+      <obj-dir>obj</obj-dir>
+    </output>
+    <compiler>
+      <type>gcc</type>
+      <flags>-Wall -Wextra -std=c99</flags>
+      <includes>
+        <include>./include</include>
+      </includes>
+    </compiler>
+  </build>
+  
+  <features>
+    <feature name="etps" enabled="true"/>
+    <feature name="semverx" enabled="true"/>
+    <feature name="mpsystem" enabled="true"/>
+    <feature name="spsystem" enabled="true"/>
+  </features>
+  
+  <telemetry>
+    <etps-enabled>true</etps-enabled>
+    <guid-tracking>true</guid-tracking>
+    <event-buffer-size>1000</event-buffer-size>
+    <semverx-validation>true</semverx-validation>
+  </telemetry> </nlink-project>
