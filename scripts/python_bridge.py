@@ -13,7 +13,6 @@ from datetime import datetime
 from typing import Dict, List, Optional
 import uuid
 import hashlib
-import math
 
 class NLinkPOCBridge:
     """Python bridge for NexusLink proof of concept systems"""
@@ -71,24 +70,21 @@ class NLinkPOCBridge:
         return result
     
     def _calculate_shannon_entropy(self, data: bytes) -> float:
-        """Calculate Shannon entropy for data validation (FIXED)"""
+        """Calculate Shannon entropy for data validation"""
         if not data:
             return 0.0
         
-        # Count byte frequencies
         frequency = {}
         for byte in data:
             frequency[byte] = frequency.get(byte, 0) + 1
         
-        # Calculate entropy using proper formula
         entropy = 0.0
         data_len = len(data)
         
         for count in frequency.values():
             if count > 0:
                 p = count / data_len
-                # Use log2 for entropy in bits
-                entropy -= p * math.log2(p)
+                entropy -= p * (p.bit_length() - 1)
         
         return entropy
     

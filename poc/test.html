@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NexusLink POC Test</title>
+    <link rel="stylesheet" href="test.css">
+</head>
+<body>
+    <div class="nlink-poc-container">
+        <h1>NexusLink ETPS Telemetry POC</h1>
+        <div id="etps-output" class="etps-telemetry-display">
+            <pre>Initializing ETPS telemetry...</pre>
+        </div>
+    </div>
+    <script src="test.js"></script>
+    <script>
+        // Display telemetry in UI
+        document.addEventListener('DOMContentLoaded', () => {
+            const output = document.getElementById('etps-output');
+            const telemetry = nlinkETPS();
+            output.innerHTML = `<pre>${JSON.stringify(telemetry, null, 2)}</pre>`;
+        });
+    </script>
+</body>
+</html>
