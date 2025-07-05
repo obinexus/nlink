@@ -1,0 +1,36 @@
+# Build outputs
+build/
+lib/
+bin/
+*.o
+*.a
+*.so
+
+# POC artifacts
+poc/venv/
+poc/__pycache__/
+*.pyc
+*.pyo
+
+# Logs
+logs/
+*.log
+nlink_etps.log
+nlink_etps_poc.log
+
+# Spec outputs
+spec/unit/*_spec
+spec/integration/*_spec
+spec/system/*_spec
+spec/performance/*_spec
+!spec/**/*_spec.c
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
