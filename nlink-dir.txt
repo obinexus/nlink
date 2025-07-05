@@ -1,0 +1,225 @@
+.
+├── bin
+├── build
+│   ├── debug
+│   │   └── obj
+│   └── release
+│       └── obj
+├── cmake
+│   ├── CompilerFlags.cmake
+│   ├── Features.cmake
+│   ├── Installation.cmake
+│   ├── NexusLinkConfig.cmake
+│   └── Testing.cmake
+├── CMakeLists.txt
+├── docs
+│   ├── api
+│   ├── architecture
+│   ├── guides
+│   └── NLINK_STANDARD_SPEC.md
+├── examples
+├── include
+│   └── nlink
+│       ├── bindings
+│       ├── cli
+│       │   ├── cli.h
+│       │   ├── commands
+│       │   │   ├── command.h
+│       │   │   ├── command_params.h
+│       │   │   ├── command_registration.h
+│       │   │   ├── command_registry.h
+│       │   │   ├── command_router.h
+│       │   │   ├── load.h
+│       │   │   ├── minimal.h
+│       │   │   ├── minimize.h
+│       │   │   ├── pipeline.h
+│       │   │   ├── version.h
+│       │   │   └── version_utils.h
+│       │   ├── parse.h
+│       │   └── regex_matcher.h
+│       └── core
+│           ├── etps
+│           │   ├── epts_telemtry.h
+│           │   ├── epts_telemtry.h.old
+│           │   ├── semverx_etps.h
+│           │   ├── telemetry.h
+│           │   ├── telemetry.h.backup
+│           │   └── telemetry.h.old
+│           ├── minimizer
+│           │   ├── automaton.h
+│           │   ├── CMakeLists.txt
+│           │   ├── minimizer.c
+│           │   ├── nexus_automaton.c
+│           │   ├── nexus_automaton.h
+│           │   ├── nexus_minimizer.h
+│           │   ├── okpala_ast.c
+│           │   ├── okpala_ast.h
+│           │   ├── okpala_automaton.c
+│           │   ├── okpala_automaton.h
+│           │   ├── okpala_automaton_minimzer.c
+│           │   └── okpala_minimizer.h
+│           ├── mpsystem
+│           │   ├── mps_config.h
+│           │   ├── mps_dependency.h
+│           │   ├── mps_lifecycle.h
+│           │   ├── mps_pipeline.h
+│           │   └── mps_stream.h
+│           ├── parser
+│           │   ├── parser.h
+│           │   ├── parser_interface.h
+│           │   └── semverx_parser.h
+│           ├── pipeline
+│           │   ├── nlink_pipeline.h
+│           │   ├── pipeline_detect.h
+│           │   ├── pipeline_pass.h
+│           │   └── pipeline_stage.h
+│           ├── schema
+│           ├── semverx
+│           │   ├── cli
+│           │   │   └── parser_interface.h
+│           │   ├── core
+│           │   │   ├── config.h
+│           │   │   ├── error_codes.h
+│           │   │   └── types.h
+│           │   ├── lazy_versioned.h
+│           │   ├── nexus_lazy_versioned.h
+│           │   ├── nexus_missing.h
+│           │   ├── nexus_version.h
+│           │   ├── nlink.h
+│           │   ├── nlink_semverx.h
+│           │   ├── semver.h
+│           │   ├── semverx
+│           │   │   ├── compatibility.h
+│           │   │   └── range_state.h
+│           │   ├── semverx_parser.c
+│           │   ├── semverx_parser.h
+│           │   └── versioned_symbols.h
+│           ├── spsystem
+│           │   ├── sps_config.h
+│           │   ├── sps_dependency.h
+│           │   ├── sps_lifecycle.h
+│           │   ├── sps_pipeline.h
+│           │   └── sps_stream.h
+│           ├── symbols
+│           │   ├── nexus_symbols.h
+│           │   ├── nexus_versioned_symbols.h
+│           │   ├── registry.h
+│           │   └── symbols.h
+│           └── tatit
+│               ├── abstraction.h
+│               ├── aggregation.h
+│               ├── composition.h
+│               ├── identity.h
+│               ├── tactic.h
+│               ├── transformation.h
+│               └── traversal.h
+├── lib
+├── Makefile
+├── migration_20250705_192134.log
+├── nlink-dir.txt
+├── scripts
+│   ├── build
+│   ├── migration
+│   └── qa
+├── src
+│   ├── cli
+│   │   └── commands
+│   ├── CMakeLists.txt
+│   ├── core
+│   │   ├── cli
+│   │   │   ├── cli.c
+│   │   │   ├── CMakeLists.txt
+│   │   │   ├── command.c
+│   │   │   ├── command_params.c
+│   │   │   ├── command_registration.c
+│   │   │   ├── command_registry.c
+│   │   │   ├── command_router.c
+│   │   │   ├── commands
+│   │   │   │   ├── CMakeLists.txt
+│   │   │   │   ├── load.c
+│   │   │   │   ├── minimal.c
+│   │   │   │   ├── minimize.c
+│   │   │   │   ├── pipeline.c
+│   │   │   │   ├── README.md
+│   │   │   │   ├── version.c
+│   │   │   │   └── version_utils.c
+│   │   │   ├── main.c
+│   │   │   └── parse.c
+│   │   ├── etps
+│   │   │   ├── telemetry.c
+│   │   │   ├── telemetry.c.backup
+│   │   │   ├── telemetry.c.old
+│   │   │   ├── telemetry.c.pre_null_fix
+│   │   │   └── telemetry.c.warnings_backup
+│   │   ├── minimizer
+│   │   ├── mpsystem
+│   │   │   ├── CMakeLists.txt
+│   │   │   ├── mps_config.c
+│   │   │   ├── mps_dependency.c
+│   │   │   ├── mps_lifecycle.c
+│   │   │   ├── mps_pipeline.c
+│   │   │   └── mps_stream.c
+│   │   ├── parser
+│   │   │   ├── CMakeLists.txt
+│   │   │   ├── parse.c
+│   │   │   ├── parser.c
+│   │   │   ├── parser.h
+│   │   │   └── parser_interface.c
+│   │   ├── pipeline
+│   │   │   ├── CMakeLists.txt
+│   │   │   ├── nlink_pipeline.c
+│   │   │   ├── pipeline_detector.c
+│   │   │   ├── pipeline_pass.c
+│   │   │   └── pipeline_stage.c
+│   │   ├── schema
+│   │   │   ├── CMakeLists.txt
+│   │   │   └── nlink_schema.json
+│   │   ├── semverx
+│   │   │   ├── CMakeLists.txt
+│   │   │   ├── lazy_versioned.c
+│   │   │   ├── missing_functions.c
+│   │   │   ├── nexus_semver.c
+│   │   │   ├── nexus_version.c
+│   │   │   └── semver.c
+│   │   ├── spsystem
+│   │   │   ├── CMakeLists.txt
+│   │   │   ├── sps_config.c
+│   │   │   ├── sps_dependency.c
+│   │   │   ├── sps_lifecycle.c
+│   │   │   ├── sps_pipeline.c
+│   │   │   └── sps_stream.c
+│   │   ├── symbols
+│   │   │   ├── CMakeLists.txt
+│   │   │   ├── cold_symbol.c
+│   │   │   ├── nexus_symbols.c
+│   │   │   ├── symbols.c
+│   │   │   └── versioned_symbols.c
+│   │   └── tatit
+│   │       ├── abstraction.c
+│   │       ├── aggregation.c
+│   │       ├── CMakeLists.txt
+│   │       ├── composition.c
+│   │       ├── identity.c
+│   │       ├── tactic.c
+│   │       ├── transformation.c
+│   │       └── traversal.c
+│   └── main.c
+└── test
+    ├── CMakeLists.txt
+    ├── integration
+    ├── qa_validator.c
+    └── unit
+        ├── bindings
+        ├── cli
+        ├── etps
+        ├── minimizer
+        ├── mpsystem
+        ├── parser
+        ├── pipeline
+        ├── schema
+        ├── semverx
+        ├── spsystem
+        ├── symbols
+        └── tatit
+
+68 directories, 155 files
