@@ -68,8 +68,43 @@ prod: CFLAGS += -DNLINK_ENV=prod -DSHANNON_PERFORMANCE_MODE=1
 .DEFAULT_GOAL := release
 
 # Phony targets
-.PHONY: all debug release clean test features qa-test
+.PHONY: all debug release clean test features qa-test poc spec spec-run poc-setup
 
+# Python POC setup
+poc-setup:
+	@echo "Setting up Python POC environment..."
+	@mkdir -p poc
+	@cp scripts/python_bridge.py poc/
+	@chmod +x poc/python_bridge.py
+	@echo "Creating test assets..."
+	@cp scripts/test_assets/* poc/ 2>/dev/null || true
+
+# Run POC tests
+poc: poc-setup
+	@echo "Running POC integration..."
+	@python3 poc/python_bridge.py
+
+# Build spec framework
+spec:
+	@echo "Building QA specification framework..."
+	@$(MAKE) -C spec all
+
+# Run all specs
+spec-run: spec
+	@echo "Executing QA specifications..."
+	@$(MAKE) -C spec run
+
+# Combined POC and spec validation
+qa-validate: poc spec-run
+	@echo "✅ QA validation complete"
+
+# ETPS telemetry test with config
+etps-config-test: $(BIN_DIR)/nlink
+	@echo "Testing ETPS with configuration..."
+	@LD_LIBRARY_PATH=$(LIB_DIR) $(BIN_DIR)/nlink --etps-test --config config/nlink.conf --json
+	
+# Main targets
+# Default target to build both debug and release versions
 all: debug release
 
 debug: $(BIN_DEBUG)
