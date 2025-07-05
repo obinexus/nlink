@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://obinexus.com/nlink/schema/v1"
+           xmlns:nlink="http://obinexus.com/nlink/schema/v1"
+           elementFormDefault="qualified">
+
+  <!-- Root element -->
+  <xs:element name="nlink-project" type="nlink:ProjectType"/>
+
+  <!-- Project configuration -->
+  <xs:complexType name="ProjectType">
+    <xs:sequence>
+      <xs:element name="metadata" type="nlink:MetadataType"/>
+      <xs:element name="build" type="nlink:BuildType"/>
+      <xs:element name="features" type="nlink:FeaturesType"/>
+      <xs:element name="telemetry" type="nlink:TelemetryType" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute name="version" type="xs:string" use="required"/>
+  </xs:complexType>
+
+  <!-- Metadata configuration -->
+  <xs:complexType name="MetadataType">
+    <xs:sequence>
+      <xs:element name="name" type="xs:string"/>
+      <xs:element name="version" type="xs:string"/>
+      <xs:element name="description" type="xs:string" minOccurs="0"/>
+      <xs:element name="author" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- Build configuration -->
+  <xs:complexType name="BuildType">
+    <xs:sequence>
+      <xs:element name="source-dir" type="xs:string" default="src"/>
+      <xs:element name="build-dir" type="xs:string" default="build"/>
+      <xs:element name="output" type="nlink:OutputType"/>
+      <xs:element name="compiler" type="nlink:CompilerType"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- Output structure -->
+  <xs:complexType name="OutputType">
+    <xs:sequence>
+      <xs:element name="bin-dir" type="xs:string" default="bin"/>
+      <xs:element name="lib-dir" type="xs:string" default="lib"/>
+      <xs:element name="obj-dir" type="xs:string" default="obj"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- Telemetry configuration -->
+  <xs:complexType name="TelemetryType">
+    <xs:sequence>
+      <xs:element name="etps-enabled" type="xs:boolean" default="true"/>
+      <xs:element name="guid-tracking" type="xs:boolean" default="true"/>
+      <xs:element name="event-buffer-size" type="xs:integer" default="1000"/>
+      <xs:element name="semverx-validation" type="xs:boolean" default="true"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

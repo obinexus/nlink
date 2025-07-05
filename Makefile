@@ -14,7 +14,11 @@ CFLAGS_RELEASE := $(CFLAGS_COMMON) -O3 -DNDEBUG -ffunction-sections -fdata-secti
 
 # Directories
 SRC_DIR := src
-INC_DIR := include
+# Include directories - Updated for nlink structure
+INCLUDES = -I./include
+# Ensure ETPS headers are found
+CFLAGS += $(INCLUDES)
+
 BUILD_DIR := build
 BUILD_DEBUG := $(BUILD_DIR)/debug
 BUILD_RELEASE := $(BUILD_DIR)/release
