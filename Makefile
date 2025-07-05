@@ -44,6 +44,26 @@ LIB_RELEASE := $(BUILD_RELEASE)/lib/nlink.so
 LIB_STATIC_RELEASE := $(BUILD_RELEASE)/lib/nlink.a
 BIN_RELEASE := $(BUILD_RELEASE)/bin/nlink
 
+
+# Crypto module additions to Makefile
+CRYPTO_SOURCES = \
+    src/core/crypto/shannon_entropy.c \
+    src/core/crypto/env_config.c
+
+CRYPTO_HEADERS = \
+    include/nlink/core/crypto/shannon_entropy.h \
+    include/nlink/core/config/env_config.h
+
+# Add to NLINK_SOURCES in Features.cmake
+NLINK_SOURCES += $(CRYPTO_SOURCES)
+
+# Crypto-specific flags
+CRYPTO_FLAGS = -DSHANNON_ENTROPY_ENABLED=1
+
+# Environment-specific builds
+dev: CFLAGS += -DNLINK_ENV=dev -DSHANNON_STRICT_MODE=1
+prod: CFLAGS += -DNLINK_ENV=prod -DSHANNON_PERFORMANCE_MODE=1
+
 # Default target
 .DEFAULT_GOAL := release
 
@@ -59,6 +79,7 @@ release: $(BIN_RELEASE)
 $(BUILD_DEBUG)/obj/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS_DEBUG) -fPIC -c $< -o $@
+
 
 $(LIB_DEBUG): $(filter-out $(BUILD_DEBUG)/obj/main.o,$(OBJECTS_DEBUG))
 	@mkdir -p $(dir $@)
