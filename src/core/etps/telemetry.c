@@ -16,7 +16,7 @@
 #include <errno.h>
 #include <stdarg.h>
 
-#include "nlink/core/etps/telemetry.h"
+#include "nlink/core/etps/etps_telemetry.h"
 
 // =============================================================================
 // Global ETPS State
