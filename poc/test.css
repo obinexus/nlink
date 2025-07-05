@@ -1,0 +1,21 @@
+/* NexusLink POC CSS Test */
+:root {
+    --nlink-primary: #007acc;
+    --nlink-telemetry: #28a745;
+    --etps-error: #dc3545;
+}
+
+.nlink-poc-container {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    background: var(--nlink-primary);
+}
+
+.etps-telemetry-display {
+    font-family: 'Courier New', monospace;
+    background: #1e1e1e;
+    color: var(--nlink-telemetry);
+    padding: 0.5rem;
+    border-radius: 4px;
+}
