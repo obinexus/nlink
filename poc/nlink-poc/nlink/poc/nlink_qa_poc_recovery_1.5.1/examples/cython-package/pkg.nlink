@@ -1,0 +1,37 @@
+[component]
+name = "nlink_data_marshal_cython"
+version = "1.1.0"
+parent_component = "nlink_qa_poc"
+resolution_root = "../../pkg.nlink"
+
+[build_process_spec]
+build_system = "pip"
+spec_file = "setup.py"
+version_handling = "strict"
+artifact_target = "*.so"
+override_policy = "language_specific"
+build_toolchain = "native"
+validation_profile = "strict"
+
+[semverx]
+range_state = "stable"
+compatible_range = "^1.1.0"
+hot_swap_enabled = true
+runtime_validation = "strict"
+
+[build_artifacts]
+artifact_type = "shared_object"
+artifact_pattern = "*.so"
+artifact_path = "build/lib"
+
+[marshalling]
+enable_zero_overhead = true
+marshal_interface_version = "1.0.0"
+topology_aware = true
+cryptographic_invariants = true
+
+[qa_validation]
+requires_unit_tests = true
+requires_integration_tests = true
+performance_benchmarks = true
+memory_leak_tests = true

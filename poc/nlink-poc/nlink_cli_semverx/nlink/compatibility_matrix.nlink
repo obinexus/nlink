@@ -1,0 +1,26 @@
+[compatibility_matrix]
+matrix_version = 1.0.0
+validation_rules = strict
+
+[stable_ranges]
+allowed = ["1.0.x", "1.1.x", "1.2.x"]
+swap_policy = allow_minor_upgrades
+backward_compatibility = true
+
+[experimental_ranges]  
+allowed = ["2.0.x-alpha", "2.0.x-beta", "2.0.x-rc"]
+swap_policy = explicit_opt_in
+backward_compatibility = false
+requires_validation = true
+
+[legacy_ranges]
+allowed = ["0.x.x"]
+swap_policy = deprecated_access_only
+backward_compatibility = legacy_mode
+migration_required = true
+
+[cross_range_policies]
+stable_to_experimental = forbidden
+experimental_to_stable = validation_required
+legacy_to_stable = migration_required
+stable_to_legacy = forbidden

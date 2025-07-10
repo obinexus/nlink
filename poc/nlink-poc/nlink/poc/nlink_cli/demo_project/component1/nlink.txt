@@ -1,0 +1,8 @@
+[component]
+name = utility_component
+version = 2.1.0
+
+[compilation]
+optimization_level = 3
+max_compile_time = 90
+parallel_allowed = true
