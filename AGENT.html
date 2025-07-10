@@ -1,0 +1,1833 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>AGENT.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="nexuslink-codex-agent-waterfall-qa-prompt-file">NexusLink Codex Agent Waterfall QA Prompt File</h1>
+<h2 id="overview">Overview</h2>
+<p>This agent prompt document instructs Codex on building <code>nlink.exe</code> from modular <code>.c/.h</code> source trees using semantic intent recognition, AST validation, waterfall QA methodology, and state machine minimization. Each section represents a task in a waterfall system with formal soundness proofs.</p>
+<p><strong>Critical Context</strong>: You are working on the OBINexus NexusLink project—a build orchestration system that enforces zero false-positive eliminations through formal QA quadrant validation.</p>
+<h2 id="%F0%9F%9A%80-complete-build-flow-example">🚀 Complete Build Flow Example</h2>
+<h3 id="full-command-line-invocation">Full Command Line Invocation:</h3>
+<pre class="hljs"><code><div><span class="hljs-comment"># Standard build (beta channel for development)</span>
+nlink.exe -S . -B build/ --channel beta
+
+<span class="hljs-comment"># Alpha channel for production</span>
+nlink.exe -S . -B build/ --channel alpha --production
+
+<span class="hljs-comment"># With custom manifest and validation</span>
+nlink.exe -S src/ -B out/ --manifest custom.nlink.in --qa-validate
+
+<span class="hljs-comment"># Minimal production build</span>
+nlink.exe -S . -B release/ --channel alpha -DMINIMAL_BUILD=ON
+</div></code></pre>
+<h3 id="build-flow-sequence">Build Flow Sequence:</h3>
+<pre class="hljs"><code><div>1. Read pkg.nlink.in (or --manifest override)
+   ↓
+2. Apply whitelist/blacklist filters:
+   - Include: **/*.c, **/*.h, **/nlink.txt
+   - Exclude: **/tmp/*, **/*.log, patterns from blacklist
+   ↓
+3. Evaluate scripting conditionals based on channel:
+   - Beta: Enable all features
+   - Alpha: Production features only
+   ↓
+4. Generate pkg.nlink.in.xml (validated)
+   ↓
+5. Process filtered module nlink.txt files
+   ↓
+6. Build expression transformation graph:
+   - tokenizer/lexer/statement.c → expression.c
+   - Apply statement filtering (remove debug in alpha)
+   ↓
+7. Apply state machine minimization
+   ↓
+8. Run waterfall QA validation:
+   - Ensure Beta APIs not exposed in Alpha
+   ↓
+9. Generate channel-specific outputs:
+   - build/bin/nlink.exe (tagged with channel)
+   - build/lib/libnlink-{channel}.so
+   - build/cache/ (whitelisted artifacts only)
+</div></code></pre>
+<h3 id="channel-isolation-example">Channel Isolation Example:</h3>
+<pre class="hljs"><code><div><span class="hljs-comment">// In tokenizer/advanced.c</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">ifdef</span> BETA_BUILD</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">experimental_tokenizer_api</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-comment">// Only available in beta channel</span>
+}
+<span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span></span>
+
+<span class="hljs-comment">// In parser/core.c  </span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">stable_parser_api</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-comment">// Available in both beta and alpha</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">ifdef</span> ALPHA_BUILD</span>
+    <span class="hljs-comment">// Strict validation in production</span>
+    validate_input_strictly(input);
+<span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span></span>
+}
+</div></code></pre>
+<h3 id="module-resolution-with-filtering">Module Resolution with Filtering:</h3>
+<pre class="hljs"><code><div>Given source tree:
+src/
+  tokenizer/
+    lexer/
+      statement.c     ✓ (whitelisted: **/*.c)
+      test_lexer.c    ✗ (blacklisted: **/test_*)
+      debug.log       ✗ (blacklisted: **/*.log)
+    nlink.txt         ✓ (whitelisted: **/nlink.txt)
+  tmp/
+    work.c            ✗ (blacklisted: **/tmp/*)
+
+After filtering:
+- Process: tokenizer/lexer/statement.c
+- Process: tokenizer/nlink.txt
+- Skip: Everything else
+</div></code></pre>
+<h3 id="statement-%E2%86%92-expression-problem-analysis">Statement → Expression Problem Analysis:</h3>
+<pre class="hljs"><code><div><span class="hljs-comment">// Example: Detecting feature duplication in statement handling</span>
+<span class="hljs-comment">// Check nlink_qa_poc/src/ for existing patterns:</span>
+
+<span class="hljs-comment">// BAD: Reimplementing existing logic</span>
+<span class="hljs-keyword">if</span> (token_type == TOKEN_IF) {
+    <span class="hljs-comment">// This might already exist in nlink_cli/lexer/</span>
+    handle_if_statement();  <span class="hljs-comment">// ❌ Check for duplication first!</span>
+}
+
+<span class="hljs-comment">// GOOD: Reuse existing implementation</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"nlink_cli/lexer/statement_handler.h"</span></span>
+<span class="hljs-keyword">if</span> (token_type == TOKEN_IF) {
+    <span class="hljs-comment">// Reuse from existing POC</span>
+    nlink_handle_statement(token_type);  <span class="hljs-comment">// ✓ No duplication</span>
+}
+</div></code></pre>
+<h3 id="quality-assurance-code-inspection">Quality Assurance Code Inspection:</h3>
+<pre class="hljs"><code><div>For each .c/.h file pair:
+1. Identify decision points (if/else/switch)
+2. Map to QA quadrants:
+   
+   // In parser.c
+   if (validate_syntax(input)) {      // Decision point
+       process_ast(input);            // TP: Valid input processed
+   } else {
+       report_error(input);           // TN: Invalid input rejected
+   }
+   
+3. Ask critical questions:
+   - Can valid input be rejected? (FN risk)
+   - Can invalid input be accepted? (FP risk)
+   - Are all edge cases covered?
+   
+4. Check POC implementations:
+   - nlink_qa_poc/test/unit/
+   - nlink_qa_poc/test/integration/
+   - Look for similar test patterns
+</div></code></pre>
+<h3 id="featureexpression-mapping-verification">Feature/Expression Mapping Verification:</h3>
+<pre class="hljs"><code><div>Before implementing any expression transformation:
+
+1. Check existing mappings in POC folders:
+   find nlink*/ -name "*.c" -exec grep -l "expression" {} \;
+   
+2. Verify transformation patterns:
+   - statement.c → expression.c already exists?
+   - Transformation rules already defined?
+   - QA validation already implemented?
+   
+3. Document transformation intent:
+   // INTENT: Transform imperative to functional
+   // EXISTING: Check nlink_enhanced/transforms/
+   // REUSE: Expression evaluator from nlink_lazy/
+   
+4. Apply QA heuristics to transformations:
+   - Input statement correctly parsed? (TP)
+   - Invalid statement rejected? (TN)
+   - Valid statement missed? (FN)
+   - Invalid statement accepted? (FP)
+</div></code></pre>
+<h3 id="codex-duplication-prevention-workflow">Codex Duplication Prevention Workflow:</h3>
+<pre class="hljs"><code><div><span class="hljs-attr">on_feature_request:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">"Check POC implementations"</span>
+    <span class="hljs-attr">steps:</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-attr">search:</span> <span class="hljs-string">"grep -r 'feature_keyword' nlink*/"</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-attr">analyze:</span> <span class="hljs-string">"Read matching files for implementation"</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-attr">compare:</span> <span class="hljs-string">"Check if functionality exists"</span>
+      
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">"Analyze existing QA patterns"</span>
+    <span class="hljs-attr">steps:</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-attr">locate:</span> <span class="hljs-string">"Find test files in nlink_qa_poc/"</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-attr">extract:</span> <span class="hljs-string">"Identify TP/TN/FP/FN patterns"</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-attr">reuse:</span> <span class="hljs-string">"Apply existing QA heuristics"</span>
+      
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">"Decision matrix"</span>
+    <span class="hljs-attr">conditions:</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-attr">if:</span> <span class="hljs-string">"Feature exists in POC"</span>
+        <span class="hljs-attr">then:</span> <span class="hljs-string">"Extend/refactor existing code"</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-attr">elif:</span> <span class="hljs-string">"Similar pattern exists"</span>
+        <span class="hljs-attr">then:</span> <span class="hljs-string">"Adapt pattern to new use case"</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-attr">else:</span> <span class="hljs-string">"Implement with QA validation"</span>
+</div></code></pre>
+<p><strong>Remember</strong>: Every line of new code should be checked against existing POC implementations. The poc/ folder contains battle-tested patterns that should be reused, not reimplemented.</p>
+<h2 id="%F0%9F%93%81-existing-poc-inventory">📁 Existing POC Inventory</h2>
+<h3 id="critical-check-these-before-any-implementation">Critical: Check These Before Any Implementation</h3>
+<p>| Project | Purpose | Check For |
+|### 🔬 Real Example: Feature Implementation with POC Check</p>
+<h4 id="scenario-implementing-a-new-parser-feature">Scenario: Implementing a new parser feature</h4>
+<pre class="hljs"><code><div><span class="hljs-comment"># Step 1: Check if parser logic exists</span>
+$ grep -r <span class="hljs-string">"parse_expression"</span> nlink*/
+nlink_cli/src/parser.c:142: int parse_expression(token_t* token)
+nlink_enhanced/parser/expr.c:89: result = parse_expression_tree(ast);
+nlink_qa_poc/<span class="hljs-built_in">test</span>/unit/test_parser.c:23: test_parse_expression();
+
+<span class="hljs-comment"># Step 2: Examine existing implementation</span>
+$ cat nlink_cli/src/parser.c | grep -A 20 <span class="hljs-string">"parse_expression"</span>
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-comment">// Found in nlink_cli/src/parser.c:</span>
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">parse_expression</span><span class="hljs-params">(<span class="hljs-keyword">token_t</span>* token)</span> </span>{
+    <span class="hljs-keyword">if</span> (token-&gt;type == TOKEN_NUMBER) {      <span class="hljs-comment">// TP: Valid number parsed</span>
+        <span class="hljs-keyword">return</span> parse_number(token);         
+    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (token-&gt;type == TOKEN_ID) {   <span class="hljs-comment">// TP: Valid identifier parsed</span>
+        <span class="hljs-keyword">return</span> parse_identifier(token);
+    } <span class="hljs-keyword">else</span> {                                <span class="hljs-comment">// TN: Invalid token rejected</span>
+        <span class="hljs-keyword">return</span> PARSE_ERROR;
+    }
+}
+
+<span class="hljs-comment">// Step 3: Instead of reimplementing, REUSE:</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"nlink_cli/src/parser.h"</span></span>
+
+<span class="hljs-comment">// Step 4: Extend with QA validation:</span>
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">enhanced_parse_expression</span><span class="hljs-params">(<span class="hljs-keyword">token_t</span>* token)</span> </span>{
+    <span class="hljs-comment">// QA: Check preconditions (prevent FP)</span>
+    <span class="hljs-keyword">if</span> (!token || !token-&gt;data) {
+        log_qa_event(<span class="hljs-string">"NULL token"</span>, QA_FALSE_POSITIVE_PREVENTED);
+        <span class="hljs-keyword">return</span> PARSE_ERROR;
+    }
+    
+    <span class="hljs-comment">// Reuse existing, tested implementation</span>
+    <span class="hljs-keyword">int</span> result = parse_expression(token);
+    
+    <span class="hljs-comment">// QA: Validate postconditions</span>
+    <span class="hljs-keyword">if</span> (result == PARSE_SUCCESS) {
+        validate_expression_tree();  <span class="hljs-comment">// Prevent FN</span>
+    }
+    
+    <span class="hljs-keyword">return</span> result;
+}
+</div></code></pre>
+<h3 id="qa-decision-tree-for-code-reuse">QA Decision Tree for Code Reuse:</h3>
+<pre class="hljs"><code><div><span class="hljs-attr">Feature_Request:</span> <span class="hljs-string">"Parse expression with validation"</span>
+<span class="hljs-string">│</span>
+<span class="hljs-string">├─</span> <span class="hljs-attr">Check_POC_Folders:</span>
+<span class="hljs-string">│</span>  <span class="hljs-string">├─</span> <span class="hljs-string">Found</span> <span class="hljs-string">in</span> <span class="hljs-string">nlink_cli/?</span> <span class="hljs-string">→</span> <span class="hljs-literal">YES</span>
+<span class="hljs-string">│</span>  <span class="hljs-string">│</span>  <span class="hljs-string">└─</span> <span class="hljs-attr">Action:</span> <span class="hljs-string">REUSE</span> <span class="hljs-string">and</span> <span class="hljs-string">EXTEND</span>
+<span class="hljs-string">│</span>  <span class="hljs-string">│</span>
+<span class="hljs-string">│</span>  <span class="hljs-string">└─</span> <span class="hljs-string">Not</span> <span class="hljs-string">found?</span> <span class="hljs-string">→</span> <span class="hljs-literal">NO</span>
+<span class="hljs-string">│</span>     <span class="hljs-string">└─</span> <span class="hljs-attr">Check_Similar_Patterns:</span>
+<span class="hljs-string">│</span>        <span class="hljs-string">├─</span> <span class="hljs-string">Found</span> <span class="hljs-string">similar?</span> <span class="hljs-string">→</span> <span class="hljs-literal">YES</span>
+<span class="hljs-string">│</span>        <span class="hljs-string">│</span>  <span class="hljs-string">└─</span> <span class="hljs-attr">Action:</span> <span class="hljs-string">ADAPT</span> <span class="hljs-string">pattern</span>
+<span class="hljs-string">│</span>        <span class="hljs-string">└─</span> <span class="hljs-string">Nothing</span> <span class="hljs-string">similar?</span> <span class="hljs-string">→</span> <span class="hljs-literal">NO</span>
+<span class="hljs-string">│</span>           <span class="hljs-string">└─</span> <span class="hljs-attr">Action:</span> <span class="hljs-string">NEW</span> <span class="hljs-string">implementation</span> <span class="hljs-string">with</span> <span class="hljs-string">QA</span>
+
+<span class="hljs-attr">QA_Validation_Required:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">Every if:</span> <span class="hljs-string">"What if condition is true?"</span> <span class="hljs-string">→</span> <span class="hljs-string">TP</span> <span class="hljs-string">or</span> <span class="hljs-string">FN?</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">Every else:</span> <span class="hljs-string">"What if condition is false?"</span> <span class="hljs-string">→</span> <span class="hljs-string">TN</span> <span class="hljs-string">or</span> <span class="hljs-string">FP?</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">Every function:</span> <span class="hljs-string">"Check poc/ for existing implementation"</span>
+</div></code></pre>
+<h2 id="%E2%9A%A1-statement-%E2%86%92-expression-transformation-verification">⚡ Statement → Expression Transformation Verification</h2>
+<h3 id="before-implementing-any-transformation">Before Implementing ANY Transformation:</h3>
+<pre class="hljs"><code><div><span class="hljs-comment"># 1. Check for existing statement handlers</span>
+find nlink*/ -path <span class="hljs-string">"*/lexer/*"</span> -name <span class="hljs-string">"statement.c"</span> -o -name <span class="hljs-string">"*statement*"</span>
+
+<span class="hljs-comment"># 2. Check for existing expression evaluators  </span>
+find nlink*/ -name <span class="hljs-string">"*expression*"</span> -o -name <span class="hljs-string">"*expr*"</span>
+
+<span class="hljs-comment"># 3. Look for transformation patterns</span>
+grep -r <span class="hljs-string">"statement.*expression"</span> nlink*/
+grep -r <span class="hljs-string">"transform"</span> nlink_enhanced/
+</div></code></pre>
+<h3 id="example-if-statement-to-conditional-expression">Example: If-Statement to Conditional Expression</h3>
+<pre class="hljs"><code><div><span class="hljs-comment">// CHECK FIRST: Does this already exist?</span>
+<span class="hljs-comment">// nlink_enhanced/transforms/stmt_to_expr.c might have:</span>
+
+<span class="hljs-comment">// Statement form (imperative):</span>
+<span class="hljs-keyword">if</span> (x &gt; <span class="hljs-number">0</span>) {
+    result = positive_value;
+} <span class="hljs-keyword">else</span> {
+    result = negative_value;
+}
+
+<span class="hljs-comment">// Expression form (functional):</span>
+result = (x &gt; <span class="hljs-number">0</span>) ? positive_value : negative_value;
+
+<span class="hljs-comment">// QA Analysis Required:</span>
+<span class="hljs-comment">// - TP: Correct transformation preserves semantics</span>
+<span class="hljs-comment">// - TN: Invalid statement correctly rejected</span>
+<span class="hljs-comment">// - FP: Wrong transformation changes behavior [CRITICAL]</span>
+<span class="hljs-comment">// - FN: Valid transformation opportunity missed</span>
+</div></code></pre>
+<h3 id="transformation-qa-checklist">Transformation QA Checklist:</h3>
+<pre class="hljs"><code><div>□ Check nlink_lazy/ for deferred evaluation patterns
+□ Check nlink_enhanced/ for optimization transforms  
+□ Check nlink_simplified/ for basic implementations
+□ Verify semantic equivalence (no FP transformations)
+□ Test edge cases from nlink_qa_poc/test/
+□ Document why transformation is safe
+</div></code></pre>
+<h3 id="code-quality-enforcement">Code Quality Enforcement:</h3>
+<pre class="hljs"><code><div><span class="hljs-comment">// For EVERY new function, add QA markers:</span>
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">transform_statement_to_expression</span><span class="hljs-params">(<span class="hljs-keyword">ast_node_t</span>* stmt)</span> </span>{
+    <span class="hljs-comment">// QA_CHECK: Does nlink_enhanced already have this?</span>
+    <span class="hljs-comment">// REUSE_FROM: nlink_enhanced/transforms/ast_transform.c</span>
+    
+    <span class="hljs-keyword">if</span> (!stmt) {
+        <span class="hljs-comment">// QA_QUADRANT: TN - Correctly reject null input</span>
+        <span class="hljs-keyword">return</span> TRANSFORM_ERROR;
+    }
+    
+    <span class="hljs-keyword">if</span> (stmt-&gt;type == AST_IF_STATEMENT) {
+        <span class="hljs-comment">// QA_QUADRANT: TP - Valid transformation case</span>
+        <span class="hljs-comment">// CHECK_POC: nlink_lazy/expr_eval.c line 234</span>
+        <span class="hljs-keyword">return</span> transform_if_to_conditional(stmt);
+    }
+    
+    <span class="hljs-comment">// QA_QUADRANT: TN - Correctly reject non-transformable</span>
+    <span class="hljs-keyword">return</span> TRANSFORM_NOT_APPLICABLE;
+}
+</div></code></pre>
+<p><strong>Final Rule</strong>: No code without POC check. No branch without QA analysis. No feature without duplication verification.</p>
+<h2 id="%F0%9F%8C%90-task-8-glob-pattern-support--path-resolution">🌐 Task 8: Glob Pattern Support &amp; Path Resolution</h2>
+<h3 id="cli-path-pattern-handling-like-cmake">CLI Path Pattern Handling (Like CMake)</h3>
+<p>The <code>nlink.exe</code> CLI must support flexible glob patterns for source discovery and build orchestration:</p>
+<h3 id="supported-glob-patterns">Supported Glob Patterns:</h3>
+<pre class="hljs"><code><div><span class="hljs-comment"># Basic patterns</span>
+nlink -S .                    <span class="hljs-comment"># Current directory</span>
+nlink -S src/                 <span class="hljs-comment"># Specific directory</span>
+nlink -S **/*.c              <span class="hljs-comment"># All C files recursively</span>
+nlink -S **/tokenizer/*.c    <span class="hljs-comment"># All C files in any tokenizer directory</span>
+nlink -S src/**/main.c       <span class="hljs-comment"># Find all main.c files under src/</span>
+
+<span class="hljs-comment"># Complex patterns (enhanced build processing)</span>
+nlink -S <span class="hljs-string">"src/**/*.{c,h}"</span>    <span class="hljs-comment"># All C and H files</span>
+nlink -S <span class="hljs-string">"**/cli/main.c"</span>     <span class="hljs-comment"># Entry point discovery</span>
+nlink -S <span class="hljs-string">"**/{tokenizer,parser}/*.c"</span>  <span class="hljs-comment"># Multiple module patterns</span>
+
+<span class="hljs-comment"># Feature-based patterns</span>
+nlink -S . --feature-glob <span class="hljs-string">"feature_*/**/*.c"</span>
+nlink -S . --exclude-glob <span class="hljs-string">"**/test_*.c"</span>
+</div></code></pre>
+<h3 id="path-resolution-in-pkgnlinkin">Path Resolution in pkg.nlink.in:</h3>
+<pre class="hljs"><code><div><span class="hljs-comment"># Glob-based source discovery</span>
+glob_sources(TOKENIZER_SOURCES
+    src/tokenizer/**/*.c
+    src/tokenizer/lexer/*.c
+    !src/tokenizer/test_*.c    <span class="hljs-comment"># Exclude test files</span>
+)
+
+glob_headers(TOKENIZER_HEADERS  
+    <span class="hljs-keyword">include</span>/tokenizer/**/*.h
+    !<span class="hljs-keyword">include</span>/tokenizer/internal/*.h  <span class="hljs-comment"># Exclude internal headers</span>
+)
+
+<span class="hljs-comment"># Feature intention with base cli/main.c</span>
+declare_entry_points()
+    primary(cli/main.c)              <span class="hljs-comment"># Base entry point</span>
+    feature(tools/nlink_tool.c)      <span class="hljs-comment"># Additional tools</span>
+    glob(cli/*_main.c)               <span class="hljs-comment"># Discover all CLI variants</span>
+enddeclare()
+
+<span class="hljs-comment"># Complex build pattern matching</span>
+<span class="hljs-keyword">if</span>(ENABLE_ALL_MODULES)
+    glob_sources(ALL_SOURCES
+        src/**/*.c                   <span class="hljs-comment"># All source files</span>
+        !src/**/deprecated/*.c       <span class="hljs-comment"># Except deprecated</span>
+        !src/**/experimental/*.c     <span class="hljs-comment"># Except experimental (unless beta)</span>
+    )
+<span class="hljs-keyword">endif</span>()
+</div></code></pre>
+<h3 id="agent-instructions-for-glob-processing">Agent Instructions for Glob Processing:</h3>
+<pre class="hljs"><code><div>1. Parse glob patterns using POSIX glob() or custom matcher:
+   - Support ** for recursive directory matching
+   - Support * for single-level wildcards
+   - Support ? for single character matching
+   - Support [...] for character classes
+   - Support {...} for alternation
+   
+2. Implement exclusion patterns (! prefix):
+   - Process includes first
+   - Apply exclusions to filter results
+   - Maintain order of operations
+   
+3. Path normalization:
+   - Convert all paths to canonical form
+   - Resolve .. and . components
+   - Handle both / and \ separators
+   
+4. Feature-aware globbing:
+   - Tag files by feature based on path
+   - Apply channel restrictions to glob results
+   - Respect module boundaries
+</div></code></pre>
+<h3 id="cli-command-structure-with-globs">CLI Command Structure with Globs:</h3>
+<pre class="hljs"><code><div><span class="hljs-comment"># Source specification with enhanced patterns</span>
+nlink -S &lt;glob-pattern&gt; [options]
+
+<span class="hljs-comment"># Examples:</span>
+nlink -S <span class="hljs-string">"**/*.c"</span> -B build/                    <span class="hljs-comment"># All C files</span>
+nlink -S <span class="hljs-string">"src/**/*.c"</span> --exclude <span class="hljs-string">"**/test_*"</span>    <span class="hljs-comment"># Exclude tests</span>
+nlink -S . --<span class="hljs-built_in">source</span>-glob <span class="hljs-string">"**/*.c"</span> --header-glob <span class="hljs-string">"**/*.h"</span>
+
+<span class="hljs-comment"># Multiple source patterns</span>
+nlink -S src/ -S lib/ -S tools/               <span class="hljs-comment"># Multiple roots</span>
+nlink -S <span class="hljs-string">"src/**/*.c;lib/**/*.c"</span>              <span class="hljs-comment"># Semicolon-separated</span>
+
+<span class="hljs-comment"># Feature-based selection</span>
+nlink -S . --feature tokenizer --feature parser
+<span class="hljs-comment"># Equivalent to: -S "**/tokenizer/**/*.[ch]" -S "**/parser/**/*.[ch]"</span>
+</div></code></pre>
+<h3 id="glob-resolution-algorithm">Glob Resolution Algorithm:</h3>
+<pre class="hljs"><code><div><span class="hljs-comment">// Pseudo-code for glob resolution in nlink</span>
+<span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> {</span>
+    <span class="hljs-keyword">char</span>** patterns;          <span class="hljs-comment">// Array of glob patterns</span>
+    <span class="hljs-keyword">char</span>** exclusions;        <span class="hljs-comment">// Array of exclusion patterns</span>
+    <span class="hljs-keyword">bool</span> recursive;           <span class="hljs-comment">// Support ** patterns</span>
+    <span class="hljs-keyword">bool</span> case_sensitive;      <span class="hljs-comment">// Platform-specific</span>
+} <span class="hljs-keyword">glob_config_t</span>;
+
+<span class="hljs-comment">// Resolution process</span>
+<span class="hljs-function"><span class="hljs-keyword">list_t</span>* <span class="hljs-title">resolve_glob_patterns</span><span class="hljs-params">(<span class="hljs-keyword">glob_config_t</span>* <span class="hljs-built_in">config</span>)</span> </span>{
+    <span class="hljs-keyword">list_t</span>* files = list_create();
+    
+    <span class="hljs-comment">// Phase 1: Expand inclusion patterns</span>
+    <span class="hljs-keyword">for</span> (pattern in <span class="hljs-built_in">config</span>-&gt;patterns) {
+        <span class="hljs-keyword">if</span> (has_double_star(pattern)) {
+            expand_recursive(pattern, files);
+        } <span class="hljs-keyword">else</span> {
+            expand_simple_glob(pattern, files);
+        }
+    }
+    
+    <span class="hljs-comment">// Phase 2: Apply exclusions</span>
+    <span class="hljs-keyword">for</span> (exclusion in <span class="hljs-built_in">config</span>-&gt;exclusions) {
+        filter_matching(files, exclusion);
+    }
+    
+    <span class="hljs-comment">// Phase 3: Normalize and deduplicate</span>
+    normalize_paths(files);
+    remove_duplicates(files);
+    
+    <span class="hljs-keyword">return</span> files;
+}
+</div></code></pre>
+<h3 id="integration-with-build-system">Integration with Build System:</h3>
+<pre class="hljs"><code><div><span class="hljs-comment"># In pkg.nlink.in - using glob patterns</span>
+configure_sources()
+    <span class="hljs-comment"># Base patterns</span>
+    base_glob(<span class="hljs-string">"src/**/*.c"</span>)
+    
+    <span class="hljs-comment"># Module-specific patterns</span>
+    module_glob(tokenizer <span class="hljs-string">"src/tokenizer/**/*.[ch]"</span>)
+    module_glob(parser <span class="hljs-string">"src/parser/**/*.[ch]"</span>)
+    module_glob(cli <span class="hljs-string">"src/cli/**/*.[ch]"</span>)
+    
+    <span class="hljs-comment"># Conditional patterns</span>
+    <span class="hljs-keyword">if</span>(INCLUDE_EXAMPLES)
+        add_glob(<span class="hljs-string">"examples/**/*.c"</span>)
+    <span class="hljs-keyword">endif</span>()
+    
+    <span class="hljs-comment"># Always exclude</span>
+    exclude_glob(<span class="hljs-string">"**/*.tmp"</span>)
+    exclude_glob(<span class="hljs-string">"**/build/**"</span>)
+    exclude_glob(<span class="hljs-string">"**/.git/**"</span>)
+endconfigure()
+</div></code></pre>
+<h3 id="path-pattern-best-practices">Path Pattern Best Practices:</h3>
+<pre class="hljs"><code><div>1. Always use forward slashes in patterns (cross-platform)
+2. Quote patterns containing spaces or special chars
+3. Use ** sparingly (performance impact)
+4. Prefer specific patterns over broad ones
+5. Document exclusion reasons in comments
+6. Test patterns with --dry-run flag
+
+# Debugging glob patterns
+nlink -S "**/*.c" --dry-run --verbose
+# Shows: Files that would be included without building
+</div></code></pre>
+<p>This glob support ensures that <code>nlink.exe</code> can handle complex build scenarios with flexible source discovery, similar to CMake but with enhanced pattern matching for the statement→expression transformation pipeline.</p>
+<h3 id="unlocked-command-enhancement">Unlocked Command Enhancement:</h3>
+<p>Unlike rigid build systems, <code>nlink.exe</code> commands are <strong>not locked</strong> but can be enhanced through:</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># Base command structure (unlocked)</span>
+nlink -S &lt;<span class="hljs-built_in">source</span>&gt; -B &lt;build&gt; [enhancements...]
+
+<span class="hljs-comment"># Enhancement examples:</span>
+nlink -S **/*.c \
+    --enhance-with <span class="hljs-string">"custom_transform.nlink"</span> \
+    --plugin <span class="hljs-string">"optimization_pass.so"</span> \
+    --override-pattern <span class="hljs-string">"src/special/**/*.c"</span> \
+    --custom-glob-engine <span class="hljs-string">"pcre2"</span>
+
+<span class="hljs-comment"># Feature intention with cli/main.c as base</span>
+nlink -S . \
+    --entry cli/main.c \
+    --feature-origin <span class="hljs-string">"src/features/"</span> \
+    --feature-intent <span class="hljs-string">"experimental:tokenizer,stable:parser"</span>
+
+<span class="hljs-comment"># Complex build with multiple intentions</span>
+nlink -S src/**/*.c \
+    --base-entry cli/main.c \
+    --alt-entry <span class="hljs-string">"tools/tool_main.c"</span> \
+    --feature-glob <span class="hljs-string">"feature_*/**/*.c"</span> \
+    --intent-map <span class="hljs-string">"intent.yaml"</span>
+</div></code></pre>
+<h3 id="feature-intention--origin-mapping">Feature Intention &amp; Origin Mapping:</h3>
+<pre class="hljs"><code><div><span class="hljs-comment"># intent.yaml - Feature intention configuration</span>
+<span class="hljs-attr">base:</span>
+    <span class="hljs-attr">entry:</span> <span class="hljs-string">cli/main.c</span>
+    <span class="hljs-attr">stability:</span> <span class="hljs-string">stable</span>
+    
+<span class="hljs-attr">features:</span>
+    <span class="hljs-attr">tokenizer:</span>
+        <span class="hljs-attr">origin:</span> <span class="hljs-string">src/tokenizer/</span>
+        <span class="hljs-attr">intent:</span> <span class="hljs-string">transform_statements</span>
+        <span class="hljs-attr">glob:</span> <span class="hljs-string">"tokenizer/**/*.[ch]"</span>
+        <span class="hljs-attr">channel:</span> <span class="hljs-string">beta</span>
+        
+    <span class="hljs-attr">parser:</span>
+        <span class="hljs-attr">origin:</span> <span class="hljs-string">src/parser/</span>
+        <span class="hljs-attr">intent:</span> <span class="hljs-string">build_ast</span>
+        <span class="hljs-attr">glob:</span> <span class="hljs-string">"parser/**/*.[ch]"</span>
+        <span class="hljs-attr">channel:</span> <span class="hljs-string">alpha</span>
+        
+    <span class="hljs-attr">experimental:</span>
+        <span class="hljs-attr">origin:</span> <span class="hljs-string">src/experimental/</span>
+        <span class="hljs-attr">intent:</span> <span class="hljs-string">research_features</span>
+        <span class="hljs-attr">glob:</span> <span class="hljs-string">"experimental/**/*.[ch]"</span>
+        <span class="hljs-attr">channel:</span> <span class="hljs-string">beta</span>
+        <span class="hljs-attr">exclude:</span> <span class="hljs-literal">true</span>  <span class="hljs-comment"># Not in alpha builds</span>
+</div></code></pre>
+<h3 id="glob-cli-usage-in-build-process">Glob CLI Usage in Build Process:</h3>
+<pre class="hljs"><code><div><span class="hljs-comment"># Check what files would be included (POC verification)</span>
+nlink -S <span class="hljs-string">"**/*.c"</span> --list-files --check-poc
+
+<span class="hljs-comment"># Output shows POC matches:</span>
+<span class="hljs-comment"># src/tokenizer/lexer.c [EXISTS in nlink_cli/lexer.c]</span>
+<span class="hljs-comment"># src/parser/ast.c [NEW]</span>
+<span class="hljs-comment"># src/cli/main.c [BASE ENTRY]</span>
+
+<span class="hljs-comment"># Enhanced glob with feature detection</span>
+nlink -S . --detect-features --glob-enhance
+
+<span class="hljs-comment"># Automatically detects:</span>
+<span class="hljs-comment"># - Feature modules by directory structure</span>
+<span class="hljs-comment"># - Entry points by main() detection</span>
+<span class="hljs-comment"># - Test files by naming patterns</span>
+<span class="hljs-comment"># - POC duplicates by similarity analysis</span>
+</div></code></pre>
+<h3 id="command-enhancement-api">Command Enhancement API:</h3>
+<pre class="hljs"><code><div><span class="hljs-comment">// Commands can be enhanced at runtime</span>
+<span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> {</span>
+    <span class="hljs-keyword">glob_handler_t</span> custom_glob;      <span class="hljs-comment">// Custom glob engine</span>
+    <span class="hljs-keyword">transform_fn_t</span> pre_transform;    <span class="hljs-comment">// Pre-processing</span>
+    <span class="hljs-keyword">validate_fn_t</span> qa_validator;      <span class="hljs-comment">// QA enforcement</span>
+    <span class="hljs-keyword">pattern_fn_t</span> pattern_enhancer;   <span class="hljs-comment">// Pattern expansion</span>
+} <span class="hljs-keyword">command_enhancer_t</span>;
+
+<span class="hljs-comment">// Register enhancement</span>
+nlink_register_enhancement(<span class="hljs-string">"my_enhance"</span>, enhancer);
+
+<span class="hljs-comment">// Use in CLI</span>
+<span class="hljs-comment">// nlink -S . --enhance my_enhance</span>
+</div></code></pre>
+<p>This ensures the CLI remains flexible and can be enhanced for complex build scenarios without being locked into rigid patterns.</p>
+<p>---------|---------|-----------|
+| <code>nlink_cli/</code> | CLI interface &amp; configuration parser | Command parsing, config handling |
+| <code>nlink_cli_semverx/</code> | Semantic versioning implementation | Version parsing, compatibility checks |
+| <code>nlink_enhanced/</code> | Enhanced features &amp; optimizations | Advanced algorithms, performance code |
+| <code>nlink_lazy/</code> | Lazy evaluation patterns | Deferred computation, memoization |
+| <code>nlink_qa_poc/</code> | Quality assurance framework | Test patterns, validation logic |
+| <code>nlink_symbols/</code> | Symbol table management | Symbol resolution, versioning |
+| <code>nlink_simplified/</code> | Simplified/minimal implementation | Core algorithms, basic patterns |</p>
+<h3 id="poc-code-reuse-matrix">POC Code Reuse Matrix:</h3>
+<pre class="hljs"><code><div>Feature Request → POC to Check → Reusable Components
+
+Configuration parsing → nlink_cli/ → config.c, parser_interface.c
+Version handling → nlink_cli_semverx/ → semver.c, version_compare.c
+Symbol management → nlink_symbols/ → symbol_table.c, resolution.c
+QA validation → nlink_qa_poc/ → test frameworks, quadrant analysis
+Performance opt → nlink_enhanced/ → optimization patterns
+Lazy loading → nlink_lazy/ → deferred evaluation logic
+</div></code></pre>
+<h3 id="pre-implementation-checklist">Pre-Implementation Checklist:</h3>
+<pre class="hljs"><code><div><span class="hljs-comment"># Before writing ANY new code, run these checks:</span>
+
+<span class="hljs-comment"># 1. Search for existing implementations</span>
+find . -name <span class="hljs-string">"*.c"</span> -o -name <span class="hljs-string">"*.h"</span> | xargs grep -l <span class="hljs-string">"your_feature"</span>
+
+<span class="hljs-comment"># 2. Check POC test coverage</span>
+find nlink_qa_poc/<span class="hljs-built_in">test</span> -name <span class="hljs-string">"*.c"</span> | xargs grep <span class="hljs-string">"test_pattern"</span>
+
+<span class="hljs-comment"># 3. Look for similar algorithms</span>
+grep -r <span class="hljs-string">"algorithm_name"</span> nlink_enhanced/ nlink_simplified/
+
+<span class="hljs-comment"># 4. Verify no duplicate symbols</span>
+find . -name <span class="hljs-string">"*.c"</span> | xargs grep <span class="hljs-string">"function_name"</span>
+</div></code></pre>
+<hr>
+<h2 id="%F0%9F%93%9D-task-7-whitelistblacklist-manifest-layer">📝 Task 7: Whitelist/Blacklist Manifest Layer</h2>
+<h3 id="build-artifact-control-similar-to-gitignore">Build Artifact Control (Similar to .gitignore):</h3>
+<p>The manifest layer supports whitelist/blacklist patterns for controlling what gets built, cached, and included in final outputs.</p>
+<h3 id="in-pkgnlinkin">In pkg.nlink.in:</h3>
+<pre class="hljs"><code><div><span class="hljs-comment"># Whitelist: Explicitly include for caching</span>
+configure_whitelist()
+    <span class="hljs-comment"># Source patterns to always process</span>
+    pattern(<span class="hljs-string">"**/*.c"</span>)           <span class="hljs-comment"># All C source files</span>
+    pattern(<span class="hljs-string">"**/*.h"</span>)           <span class="hljs-comment"># All headers</span>
+    pattern(<span class="hljs-string">"**/nlink.txt"</span>)     <span class="hljs-comment"># All module configs</span>
+    pattern(<span class="hljs-string">"**/*.nlink"</span>)       <span class="hljs-comment"># All sub-configs</span>
+    
+    <span class="hljs-comment"># Cache generation rules</span>
+    cache_artifacts(<span class="hljs-string">"**/*.o"</span>)    <span class="hljs-comment"># Object files</span>
+    cache_artifacts(<span class="hljs-string">"**/*.a"</span>)    <span class="hljs-comment"># Static libraries</span>
+endconfigure()
+
+<span class="hljs-comment"># Blacklist: Exclude from build/output</span>
+configure_blacklist()
+    <span class="hljs-comment"># Temporary/generated files (like .gitignore)</span>
+    pattern(<span class="hljs-string">"**/tmp/*"</span>)
+    pattern(<span class="hljs-string">"**/*.tmp"</span>)
+    pattern(<span class="hljs-string">"**/*~"</span>)            <span class="hljs-comment"># Editor backups</span>
+    pattern(<span class="hljs-string">"**/*.swp"</span>)         <span class="hljs-comment"># Vim swap files</span>
+    
+    <span class="hljs-comment"># Build artifacts to exclude</span>
+    pattern(<span class="hljs-string">"**/test_*"</span>)        <span class="hljs-comment"># Test executables</span>
+    pattern(<span class="hljs-string">"**/debug_*"</span>)       <span class="hljs-comment"># Debug builds</span>
+    pattern(<span class="hljs-string">"**/*.log"</span>)         <span class="hljs-comment"># Log files</span>
+    
+    <span class="hljs-comment"># Conditional exclusions</span>
+    <span class="hljs-keyword">if</span>(MINIMAL_BUILD)
+        pattern(<span class="hljs-string">"**/examples/*"</span>)
+        pattern(<span class="hljs-string">"**/benchmarks/*"</span>)
+    <span class="hljs-keyword">endif</span>()
+    
+    <span class="hljs-comment"># Macro-based exclusions</span>
+    <span class="hljs-keyword">if</span>(<span class="hljs-keyword">NOT</span> ENABLE_DEPRECATED)
+        pattern(<span class="hljs-string">"**/deprecated/*"</span>)
+        macro_exclude(DEPRECATED_API)
+    <span class="hljs-keyword">endif</span>()
+endconfigure()
+
+<span class="hljs-comment"># Expression-based intent</span>
+declare_build_intents()
+    <span class="hljs-comment"># Specify where outputs go</span>
+    intent(EXECUTABLES → <span class="hljs-string">"${BUILD_DIR}/bin/*.exe"</span>)
+    intent(LIBRARIES → <span class="hljs-string">"${BUILD_DIR}/lib/*.{so,a}"</span>)
+    intent(OBJECTS → <span class="hljs-string">"${BUILD_DIR}/obj/**/*.o"</span>)
+    
+    <span class="hljs-comment"># Source organization intent</span>
+    intent(CORE_MODULES → <span class="hljs-string">"src/core/**/"</span>)
+    intent(FEATURE_MODULES → <span class="hljs-string">"src/features/**/"</span>)
+    intent(THIRD_PARTY → <span class="hljs-string">"external/**/"</span>)
+endeclare()
+</div></code></pre>
+<h3 id="path-resolution-for-pkgnlinkin">Path Resolution for pkg.nlink.in:</h3>
+<pre class="hljs"><code><div><span class="hljs-comment"># Specify manifest search paths</span>
+<span class="hljs-keyword">set</span>(NLINK_SEARCH_PATHS
+    <span class="hljs-string">"${CMAKE_CURRENT_SOURCE_DIR}/pkg.nlink.in"</span>
+    <span class="hljs-string">"${CMAKE_CURRENT_SOURCE_DIR}/config/pkg.nlink.in"</span>
+    <span class="hljs-string">"${PROJECT_ROOT}/pkg.nlink.in"</span>
+)
+
+<span class="hljs-comment"># Build output structure</span>
+configure_build_layout()
+    <span class="hljs-comment"># Final structure:</span>
+    <span class="hljs-comment"># build/</span>
+    <span class="hljs-comment">#   ├── bin/         # *.exe executables</span>
+    <span class="hljs-comment">#   ├── lib/         # *.so, *.a libraries  </span>
+    <span class="hljs-comment">#   ├── obj/         # *.o object files</span>
+    <span class="hljs-comment">#   ├── include/     # Exported headers</span>
+    <span class="hljs-comment">#   └── cache/       # Build cache</span>
+    
+    <span class="hljs-keyword">set</span>(BUILD_ROOT <span class="hljs-string">"${PROJECT_BINARY_DIR}"</span>)
+    <span class="hljs-keyword">set</span>(INSTALL_PREFIX <span class="hljs-string">"${BUILD_ROOT}/install"</span>)
+endconfigure()
+</div></code></pre>
+<h3 id="statementmacro-exclusion">Statement/Macro Exclusion:</h3>
+<pre class="hljs"><code><div><span class="hljs-comment"># Exclude code blocks via macros</span>
+macro_blacklist()
+    <span class="hljs-comment"># Exclude experimental features in alpha</span>
+    <span class="hljs-keyword">if</span>(CHANNEL <span class="hljs-keyword">STREQUAL</span> <span class="hljs-string">"alpha"</span>)
+        define(EXCLUDE_EXPERIMENTAL)
+    <span class="hljs-keyword">endif</span>()
+    
+    <span class="hljs-comment"># In source code:</span>
+    <span class="hljs-comment"># #ifndef EXCLUDE_EXPERIMENTAL</span>
+    <span class="hljs-comment">#     void experimental_feature() { ... }</span>
+    <span class="hljs-comment"># #endif</span>
+<span class="hljs-keyword">endmacro</span>()
+
+<span class="hljs-comment"># Statement-level exclusion</span>
+statement_filter()
+    <span class="hljs-comment"># Remove debug statements in production</span>
+    <span class="hljs-keyword">if</span>(PRODUCTION_BUILD)
+        remove_statements(<span class="hljs-string">"assert(*)"</span>)
+        remove_statements(<span class="hljs-string">"debug_print(*)"</span>)
+        remove_statements(<span class="hljs-string">"TRACE_*"</span>)
+    <span class="hljs-keyword">endif</span>()
+endstatement()
+</div></code></pre>
+<h3 id="agent-instructions">Agent Instructions:</h3>
+<pre class="hljs"><code><div>1. Parse whitelist/blacklist from pkg.nlink.in:
+   - Apply patterns in order (blacklist overrides whitelist)
+   - Respect conditional blocks based on build config
+   
+2. Filter source tree:
+   - Include only whitelisted patterns
+   - Exclude all blacklisted patterns
+   - Apply macro-based filtering
+   
+3. Process build intents:
+   - Map source patterns to output destinations
+   - Organize by intent (executables, libraries, etc.)
+   
+4. Generate filtered build graph:
+   - Only include non-blacklisted sources
+   - Apply statement-level filtering
+   - Respect macro exclusions
+   
+5. Cache management:
+   - Cache whitelisted artifacts
+   - Never cache blacklisted patterns
+   - Implement cache invalidation rules
+</div></code></pre>
+<hr>
+<h2 id="%F0%9F%94%A7-task-1-manifest-extraction--scripting-layer">🔧 Task 1: Manifest Extraction &amp; Scripting Layer</h2>
+<p><strong>Input:</strong> <code>pkg.nlink.in</code> (scripting manifest)<br>
+<strong>Schema:</strong> <code>nlink.schema.xml</code><br>
+<strong>Output:</strong> <code>pkg.nlink.in.xml</code> → <code>pkg.nlink</code></p>
+<p>The <code>pkg.nlink.in</code> is a CMake-like scripting manifest that controls all inputs across the <code>nlink/</code> root domain. It uses an extended scripting syntax for semantic configuration:</p>
+<h3 id="pkgnlinkin-scripting-syntax">pkg.nlink.in Scripting Syntax:</h3>
+<pre class="hljs"><code><div><span class="hljs-comment"># Project declaration</span>
+<span class="hljs-keyword">project</span>(NexusLink VERSION <span class="hljs-number">1.0</span>.<span class="hljs-number">0</span>)
+
+<span class="hljs-comment"># Global configuration</span>
+<span class="hljs-keyword">set</span>(BUILD_CHANNELS <span class="hljs-string">"experimental;stable"</span>)
+<span class="hljs-keyword">set</span>(DEFAULT_SCOPE <span class="hljs-string">"protected"</span>)
+
+<span class="hljs-comment"># Conditional module inclusion</span>
+<span class="hljs-keyword">if</span>(ENABLE_CRYPTO)
+    add_module(crypto SCOPE protected)
+    <span class="hljs-keyword">set</span>(SHANNON_ENTROPY_MIN <span class="hljs-number">7.0</span>)
+<span class="hljs-keyword">endif</span>()
+
+<span class="hljs-comment"># Expression mappings</span>
+declare_expressions()
+    map(statement → expression)
+    map(imperative → declarative)
+    map(procedure → <span class="hljs-keyword">function</span>)
+enddeclare()
+
+<span class="hljs-comment"># semverx configuration</span>
+configure_semverx()
+    channel(experimental VERSION_SUFFIX <span class="hljs-string">"-alpha"</span>)
+    channel(stable LOCK_COMPATIBILITY <span class="hljs-keyword">true</span>)
+    <span class="hljs-keyword">if</span>(PRODUCTION_BUILD)
+        enforce_compatibility(STRICT)
+    <span class="hljs-keyword">endif</span>()
+endconfigure()
+
+<span class="hljs-comment"># Build output configuration</span>
+configure_output()
+    binary_dir(<span class="hljs-variable">${BUILD_DIR}</span>/bin)
+    library_dir(<span class="hljs-variable">${BUILD_DIR}</span>/lib)
+    object_dir(<span class="hljs-variable">${BUILD_DIR}</span>/obj)
+    
+    <span class="hljs-keyword">if</span>(MINIMAL_BUILD)
+        strip_symbols(AGGRESSIVE)
+        optimize_size(MAXIMUM)
+    <span class="hljs-keyword">endif</span>()
+endconfigure()
+</div></code></pre>
+<h3 id="processing-pipeline">Processing Pipeline:</h3>
+<ol>
+<li><strong>pkg.nlink.in</strong> → Scripting source with conditionals</li>
+<li><strong>pkg.nlink.in.xml</strong> → Resolved XML manifest after script evaluation</li>
+<li><strong>pkg.nlink</strong> → Final flattened build configuration</li>
+</ol>
+<h3 id="agent-instructions">Agent Instructions:</h3>
+<pre class="hljs"><code><div>1. Parse pkg.nlink.in using extended CMake-like parser:
+   - Evaluate all conditionals based on environment
+   - Resolve variable substitutions
+   - Process nested function calls
+   
+2. Transform to XML intermediate format:
+   - Convert script directives to XML elements
+   - Preserve evaluation context as attributes
+   - Validate against nlink.schema.xml
+   
+3. Generate final pkg.nlink:
+   - Flatten all resolved configurations
+   - Compute module dependency graph
+   - Apply semverx version locking
+   
+4. Process all *.nlink files in source tree:
+   - Each follows same scripting syntax
+   - Inherit from parent configurations
+   - Override with local settings
+   
+5. Validate semantic consistency:
+   - No channel cross-contamination
+   - All exports properly scoped
+   - Version compatibility enforced
+</div></code></pre>
+<p><strong>Validation Checkpoint</strong>: Ensure zero schema violations and complete channel separation.</p>
+<hr>
+<h2 id="%F0%9F%93%A6-task-2-module-parsing-with-expression-intent">📦 Task 2: Module Parsing with Expression Intent</h2>
+<p><strong>Detailed Module Structure:</strong></p>
+<pre class="hljs"><code><div>src/
+├── tokenizer/
+│   ├── lexer/
+│   │   ├── statement.c    → expression.c  [Expression mapping]
+│   │   ├── scanner.c      → tokens.c
+│   │   └── buffer.c       → stream.c
+│   ├── include/
+│   │   └── tokenizer.h
+│   └── nlink.txt          → Module configuration
+├── parser/
+│   ├── ast.c
+│   ├── include/parser.h
+│   └── nlink.txt
+├── cli/
+│   ├── main.c             → Entry point for nlink.exe
+│   ├── commands/*.c
+│   └── nlink.txt
+└── common/
+    ├── utils.c
+    └── nlink.txt
+</div></code></pre>
+<h3 id="expression-layer-mapping">Expression Layer Mapping:</h3>
+<ul>
+<li><strong>Statement → Expression</strong>: Transform imperative to declarative</li>
+<li><strong>Example</strong>: <code>statement.c</code> (if/while/for) → <code>expression.c</code> (true|false evaluation)</li>
+<li><strong>Module Intent</strong>: Derived from nlink.txt declarations</li>
+<li><strong>Build Graph</strong>: Source → Expression → Compilation Unit</li>
+</ul>
+<h3 id="nlinktxt-extended-syntax-cmake-like">nlink.txt Extended Syntax (CMake-like):</h3>
+<pre class="hljs"><code><div><span class="hljs-comment"># Module configuration with scripting</span>
+<span class="hljs-keyword">if</span>(FEATURE_ADVANCED_LEXER)
+    add_source(lexer/advanced.c)
+    add_expression(lexer/statement.c → expression.c)
+<span class="hljs-keyword">endif</span>()
+
+declare_module(tokenizer)
+    scope(public)
+    version(<span class="hljs-number">1.0</span>.<span class="hljs-number">0</span>)
+    
+    <span class="hljs-keyword">if</span>(BUILD_TYPE <span class="hljs-keyword">STREQUAL</span> <span class="hljs-string">"Debug"</span>)
+        <span class="hljs-keyword">add_definitions</span>(-DDEBUG_LEXER)
+    <span class="hljs-keyword">endif</span>()
+    
+    exports(
+        tokenize → public
+        lex_init → protected
+        internal_state → private
+    )
+enddeclare()
+</div></code></pre>
+<h3 id="cli-command-structure">CLI Command Structure:</h3>
+<pre class="hljs"><code><div><span class="hljs-comment"># Basic invocation</span>
+nlink.exe -S . -B build/
+
+<span class="hljs-comment"># With manifest override</span>
+nlink.exe -S . -B build/ --manifest pkg.nlink.in
+
+<span class="hljs-comment"># Options:</span>
+<span class="hljs-comment"># -S &lt;path&gt;    Source directory (default: .)</span>
+<span class="hljs-comment"># -B &lt;path&gt;    Build directory (default: build/)</span>
+<span class="hljs-comment"># --manifest   Override manifest file</span>
+<span class="hljs-comment"># --validate   Run QA validation only</span>
+</div></code></pre>
+<h3 id="agent-instructions">Agent Instructions:</h3>
+<pre class="hljs"><code><div>For each module directory:
+1. Parse nlink.txt using CMake-like syntax parser:
+   - Handle if()/endif() conditionals
+   - Process declare_module() blocks
+   - Evaluate expressions based on build config
+   
+2. Map expression transformations:
+   - Identify statement.c → expression.c patterns
+   - Build transformation graph
+   - Validate expression completeness
+   
+3. Process nested structures (e.g., tokenizer/lexer/):
+   - Recursively parse subdirectories
+   - Maintain hierarchy in symbol table
+   - Resolve relative includes
+   
+4. Link implementations with declarations:
+   - Match *.c files with corresponding *.h
+   - Verify expression mappings exist
+   - Tag symbols with proper scope
+   
+5. Build consolidated module graph:
+   - cli/main.c as primary entry point
+   - Resolve inter-module dependencies
+   - Generate build order based on deps
+</div></code></pre>
+<p><strong>Critical</strong>: The expression layer must maintain semantic equivalence during transformation.</p>
+<hr>
+<h2 id="%F0%9F%A7%A0-task-3-ast-optimization--state-machine-minimization">🧠 Task 3: AST Optimization &amp; State Machine Minimization</h2>
+<p>Based on state machine minimization principles from the OBINexus methodology:</p>
+<h3 id="minimization-algorithm">Minimization Algorithm:</h3>
+<pre class="hljs"><code><div>1. Build complete AST from parsed modules
+2. Apply state machine minimization:
+   - Identify all reachable states from entry points
+   - Mark unreachable states for elimination
+   - Validate transition integrity
+3. Compute minimal symbol set preserving functionality
+4. Generate optimized AST with dead code eliminated
+</div></code></pre>
+<h3 id="agent-instructions">Agent Instructions:</h3>
+<pre class="hljs"><code><div>1. Construct compiler graph from all modules
+2. Perform reachability analysis from main() and exported symbols
+3. Apply AST transformations:
+   - Node reduction (eliminate unreachable)
+   - Path optimization (minimize state checks)
+   - Memory efficiency (reduce allocations)
+4. Preserve all symbols marked as "protected" regardless of reachability
+</div></code></pre>
+<hr>
+<h2 id="%E2%9A%99%EF%B8%8F-task-4-waterfall-qa-with-formal-soundness">⚙️ Task 4: Waterfall QA with Formal Soundness</h2>
+<p><strong>Command:</strong> <code>nlink.exe --qa-validate</code></p>
+<h3 id="qa-quadrant-validation-zero-fp-tolerance">QA Quadrant Validation (Zero FP Tolerance):</h3>
+<pre class="hljs"><code><div>True Positive (TP):  Correctly eliminated dead code ✓
+True Negative (TN):  Correctly retained live code ✓
+False Positive (FP): Incorrectly eliminated live code ✗ [CRITICAL ERROR]
+False Negative (FN): Incorrectly retained dead code [OPTIMIZATION MISS]
+</div></code></pre>
+<h3 id="agent-instructions">Agent Instructions:</h3>
+<pre class="hljs"><code><div>1. Execute minimization on test corpus
+2. For each elimination decision:
+   - Classify into TP/TN/FP/FN quadrant
+   - Log decision rationale with symbol graph proof
+3. ABORT if any FP detected (zero tolerance policy)
+4. Generate quadrant report with metrics:
+   - FP rate: MUST be 0.0%
+   - TP rate: Target ≥ 95.0%
+   - FN rate: Maximum 5.0%
+5. Run 3 verification iterations for soundness
+</div></code></pre>
+<p><strong>Formal Proof Required</strong>: Each elimination must include reachability proof from entry points.</p>
+<hr>
+<h2 id="%E2%9C%85-task-5-build-output-with-crypto-validation">✅ Task 5: Build Output with Crypto Validation</h2>
+<h3 id="output-structure">Output Structure:</h3>
+<pre class="hljs"><code><div>build/
+  bin/        → Executables (crypto-signed)
+  lib/        → Libraries (version-locked)
+  obj/        → Object files (cached)
+</div></code></pre>
+<h3 id="agent-instructions">Agent Instructions:</h3>
+<pre class="hljs"><code><div>For each output artifact:
+1. Verify module passed QA (check quadrant report)
+2. Validate against pkg.nlink manifest declarations
+3. Apply .nlinkignore exclusions
+4. Compute Shannon entropy for crypto validation:
+   - Minimum entropy threshold: 7.0 bits
+   - Chi-square test for distribution
+5. Generate metadata:
+   - Version info (semverx format)
+   - Build reproducibility hash
+   - Symbol export table
+</div></code></pre>
+<hr>
+<h2 id="%F0%9F%94%90-task-6-semantic-versioning--dual-channel-architecture">🔐 Task 6: Semantic Versioning &amp; Dual-Channel Architecture</h2>
+<h3 id="primary-channel-model">Primary Channel Model:</h3>
+<pre class="hljs"><code><div>Beta Channel:  New features, experimental APIs, developer testing
+Alpha Channel: Production-ready, stable APIs, customer deployments
+</div></code></pre>
+<h3 id="semverx-extended-format">semverx Extended Format:</h3>
+<pre class="hljs"><code><div>major.minor.patch-channel.build+metadata
+Examples:
+  Beta:  1.0.0-beta.42+sha256.abc123    (feature development)
+  Alpha: 1.0.0-alpha.1+sha256.def456    (production release)
+</div></code></pre>
+<h3 id="channel-usage-flow">Channel Usage Flow:</h3>
+<pre class="hljs"><code><div>Developer Workflow:
+  1. Develop in Beta → Test features
+  2. Promote to Alpha → Production use
+  3. Never expose Beta APIs in Alpha builds
+
+Similar to Git:
+  Beta  = feature branches
+  Alpha = main/production branch
+</div></code></pre>
+<h3 id="channel-configuration-in-pkgnlinkin">Channel Configuration in pkg.nlink.in:</h3>
+<pre class="hljs"><code><div><span class="hljs-comment"># Channel definitions (extensible)</span>
+define_channels()
+    channel(beta
+        PURPOSE <span class="hljs-string">"New feature development"</span>
+        STABILITY <span class="hljs-string">"experimental"</span>
+        FLAGS <span class="hljs-string">"-DBETA_BUILD -DENABLE_EXPERIMENTAL"</span>
+    )
+    
+    channel(alpha  
+        PURPOSE <span class="hljs-string">"Production deployments"</span>
+        STABILITY <span class="hljs-string">"stable"</span>
+        FLAGS <span class="hljs-string">"-DALPHA_BUILD -DSTRICT_COMPATIBILITY"</span>
+    )
+    
+    <span class="hljs-comment"># Schema allows adding custom channels</span>
+    channel(canary
+        PURPOSE <span class="hljs-string">"Early access testing"</span>
+        STABILITY <span class="hljs-string">"unstable"</span>
+        FLAGS <span class="hljs-string">"-DCANARY_BUILD"</span>
+    )
+enddefine()
+
+<span class="hljs-comment"># Channel-specific rules</span>
+<span class="hljs-keyword">if</span>(CHANNEL <span class="hljs-keyword">STREQUAL</span> <span class="hljs-string">"beta"</span>)
+    enable_all_features()
+    <span class="hljs-keyword">set</span>(DEPRECATION_WARNINGS <span class="hljs-keyword">OFF</span>)
+<span class="hljs-keyword">elseif</span>(CHANNEL <span class="hljs-keyword">STREQUAL</span> <span class="hljs-string">"alpha"</span>)
+    enable_stable_features_only()
+    <span class="hljs-keyword">set</span>(STRICT_API_CHECKING <span class="hljs-keyword">ON</span>)
+    <span class="hljs-keyword">set</span>(DEPRECATION_WARNINGS ERROR)
+<span class="hljs-keyword">endif</span>()
+</div></code></pre>
+<h3 id="agent-instructions">Agent Instructions:</h3>
+<pre class="hljs"><code><div>1. Parse version from pkg.nlink.in.xml:
+   - Extract channel identifier
+   - Determine feature set based on channel
+   
+2. Apply channel-specific compilation:
+   - Beta: All features enabled, relaxed checking
+   - Alpha: Stable features only, strict validation
+   - Custom: As defined in schema
+   
+3. Enforce channel isolation:
+   - Beta symbols NEVER exposed to Alpha
+   - Use #ifdef guards for channel-specific code
+   - Generate separate symbol tables per channel
+   
+4. Version metadata generation:
+   - Embed channel in all outputs
+   - Include build timestamp
+   - Add reproducibility hash
+</div></code></pre>
+<hr>
+<h2 id="%E2%98%A0%EF%B8%8F-failsafe--error-recovery">☠️ Failsafe &amp; Error Recovery</h2>
+<h3 id="on-qa-failure">On QA Failure:</h3>
+<pre class="hljs"><code><div>1. Immediately halt build process
+2. Rollback to last known good state
+3. Generate detailed failure report:
+   - Offending symbol(s)
+   - Elimination decision graph
+   - Quadrant classification
+4. Write to pkg.nlink.error.log with:
+   - Timestamp
+   - Build configuration
+   - Full symbol dependency trace
+5. Exit with non-zero status code
+</div></code></pre>
+<h3 id="on-manifest-violation">On Manifest Violation:</h3>
+<pre class="hljs"><code><div>1. Log schema validation errors
+2. Highlight conflicting directives
+3. Suggest resolution based on intent patterns
+4. Require manual intervention
+</div></code></pre>
+<hr>
+<h2 id="%F0%9F%97%83%EF%B8%8F-agent-todo-checklist">🗃️ Agent TODO Checklist</h2>
+<p><strong>Phase 1: Preparation</strong></p>
+<ul>
+<li><input type="checkbox" id="checkbox0"><label for="checkbox0">Validate </label><code>pkg.nlink.in</code> exists and is readable</li>
+<li><input type="checkbox" id="checkbox1"><label for="checkbox1">Load </label><code>nlink.schema.xml</code> for validation</li>
+<li><input type="checkbox" id="checkbox2"><label for="checkbox2">Check for </label><code>.nlinkignore</code> in project root</li>
+<li><input type="checkbox" id="checkbox3"><label for="checkbox3">Initialize ETPS telemetry for build tracking</label></li>
+</ul>
+<p><strong>Phase 2: Parsing</strong></p>
+<ul>
+<li><input type="checkbox" id="checkbox4"><label for="checkbox4">Parse </label><code>pkg.nlink.in</code> → generate <code>pkg.nlink.in.xml</code></li>
+<li><input type="checkbox" id="checkbox5"><label for="checkbox5">Validate XML against schema (zero violations)</label></li>
+<li><input type="checkbox" id="checkbox6"><label for="checkbox6">Transform XML → </label><code>pkg.nlink</code> manifest</li>
+<li><input type="checkbox" id="checkbox7"><label for="checkbox7">Parse all module </label><code>nlink.txt</code> files</li>
+<li><input type="checkbox" id="checkbox8"><label for="checkbox8">Build complete symbol inventory</label></li>
+</ul>
+<p><strong>Phase 3: Analysis</strong></p>
+<ul>
+<li><input type="checkbox" id="checkbox9"><label for="checkbox9">Construct compiler graph from sources</label></li>
+<li><input type="checkbox" id="checkbox10"><label for="checkbox10">Link </label><code>.c/.h</code> pairs by expression intent</li>
+<li><input type="checkbox" id="checkbox11"><label for="checkbox11">Apply state machine minimization</label></li>
+<li><input type="checkbox" id="checkbox12"><label for="checkbox12">Compute reachability from entry points</label></li>
+<li><input type="checkbox" id="checkbox13"><label for="checkbox13">Generate elimination candidate set</label></li>
+</ul>
+<p><strong>Phase 4: Validation</strong></p>
+<ul>
+<li><input type="checkbox" id="checkbox14"><label for="checkbox14">Run waterfall QA with quadrant classification</label></li>
+<li><input type="checkbox" id="checkbox15"><label for="checkbox15">Verify FP rate = 0.0% (abort if violated)</label></li>
+<li><input type="checkbox" id="checkbox16"><label for="checkbox16">Generate formal proofs for eliminations</label></li>
+<li><input type="checkbox" id="checkbox17"><label for="checkbox17">Compute Shannon entropy for crypto modules</label></li>
+<li><input type="checkbox" id="checkbox18"><label for="checkbox18">Validate chi-square distribution</label></li>
+</ul>
+<p><strong>Phase 5: Build</strong></p>
+<ul>
+<li><input type="checkbox" id="checkbox19"><label for="checkbox19">Generate optimized binaries to </label><code>build/bin</code></li>
+<li><input type="checkbox" id="checkbox20"><label for="checkbox20">Create version-locked libraries in </label><code>build/lib</code></li>
+<li><input type="checkbox" id="checkbox21"><label for="checkbox21">Apply channel-based exposure rules</label></li>
+<li><input type="checkbox" id="checkbox22"><label for="checkbox22">Sign artifacts with build metadata</label></li>
+<li><input type="checkbox" id="checkbox23"><label for="checkbox23">Generate minimization report</label></li>
+</ul>
+<p><strong>Phase 6: Verification</strong></p>
+<ul>
+<li><input type="checkbox" id="checkbox24"><label for="checkbox24">Re-run QA validation on outputs</label></li>
+<li><input type="checkbox" id="checkbox25"><label for="checkbox25">Verify symbol preservation</label></li>
+<li><input type="checkbox" id="checkbox26"><label for="checkbox26">Check binary size reduction (≥40% target)</label></li>
+<li><input type="checkbox" id="checkbox27"><label for="checkbox27">Validate metadata integrity</label></li>
+<li><input type="checkbox" id="checkbox28"><label for="checkbox28">Generate final build attestation</label></li>
+</ul>
+<hr>
+<h2 id="%F0%9F%93%8B-critical-reminders">📋 Critical Reminders</h2>
+<ol>
+<li><strong>Zero False Positives</strong>: Any FP immediately fails the build. No exceptions.</li>
+<li><strong>Intent Over Inference</strong>: Never guess module intent—only use explicit configuration.</li>
+<li><strong>Channel Isolation</strong>: Alpha features must NEVER leak to stable builds.</li>
+<li><strong>Formal Proofs</strong>: Every elimination requires a reachability proof.</li>
+<li><strong>Crypto Validation</strong>: All security modules require entropy validation.</li>
+</ol>
+<h2 id="example-module-configuration-hierarchy">Example Module Configuration Hierarchy</h2>
+<h3 id="root-pkgnlinkin">Root <code>pkg.nlink.in</code>:</h3>
+<pre class="hljs"><code><div><span class="hljs-comment"># Global project configuration</span>
+<span class="hljs-keyword">project</span>(NexusLink VERSION <span class="hljs-number">1.0</span>.<span class="hljs-number">0</span>)
+<span class="hljs-keyword">set</span>(DEFAULT_SCOPE protected)
+<span class="hljs-keyword">set</span>(ENABLE_CRYPTO <span class="hljs-keyword">ON</span>)
+
+<span class="hljs-comment"># Global expression mappings</span>
+declare_global_expressions()
+    pattern(statement.c → expression.c)
+    pattern(imperative.c → functional.c)
+enddeclare()
+</div></code></pre>
+<h3 id="srctokenizernlinktxt"><code>src/tokenizer/nlink.txt</code>:</h3>
+<pre class="hljs"><code><div>inherit_from(../../pkg.nlink.in)
+
+declare_module(tokenizer)
+    scope(public)  <span class="hljs-comment"># Override default</span>
+    version(<span class="hljs-number">1.0</span>.<span class="hljs-number">0</span>)
+    
+    <span class="hljs-comment"># Tokenizer-specific expressions</span>
+    add_expression(lexer/statement.c → expression.c)
+    add_expression(lexer/scanner.c → tokens.c)
+    
+    <span class="hljs-keyword">if</span>(FEATURE_UNICODE)
+        add_source(lexer/unicode.c)
+        add_expression(lexer/unicode.c → utf8_expr.c)
+    <span class="hljs-keyword">endif</span>()
+    
+    exports(
+        tokenize → public
+        lex_init → protected
+        lex_state → private
+    )
+enddeclare()
+</div></code></pre>
+<h3 id="srctokenizerlexerlexernlink"><code>src/tokenizer/lexer/lexer.nlink</code>:</h3>
+<pre class="hljs"><code><div><span class="hljs-comment"># Nested configuration for lexer submodule</span>
+inherit_from(../nlink.txt)
+
+configure_lexer()
+    buffer_size(<span class="hljs-number">8192</span>)
+    
+    <span class="hljs-keyword">if</span>(DEBUG_BUILD)
+        enable_tracing(<span class="hljs-keyword">ON</span>)
+        <span class="hljs-keyword">add_definitions</span>(-DLEXER_DEBUG)
+    <span class="hljs-keyword">endif</span>()
+    
+    <span class="hljs-comment"># Local expression overrides</span>
+    override_expression(statement.c → stmt_expr.c)
+endconfigure()
+</div></code></pre>
+<h3 id="srcclinlinktxt"><code>src/cli/nlink.txt</code>:</h3>
+<pre class="hljs"><code><div>inherit_from(../../pkg.nlink.in)
+
+declare_module(cli)
+    scope(public)
+    version(<span class="hljs-number">1.0</span>.<span class="hljs-number">0</span>)
+    entry_point(main.c)  <span class="hljs-comment"># Marks cli/main.c as program entry</span>
+    
+    dependencies(
+        tokenizer VERSION <span class="hljs-string">"^1.0.0"</span>
+        parser VERSION <span class="hljs-string">"~1.0.0"</span>
+        common VERSION <span class="hljs-string">"&gt;=0.9.0"</span>
+    )
+    
+    exports(
+        main → public
+        parse_args → protected
+        internal_state → private
+    )
+enddeclare()
+</div></code></pre>
+<h3 id="inheritance-resolution">Inheritance Resolution:</h3>
+<pre class="hljs"><code><div>1. Start with pkg.nlink.in globals
+2. Apply module-level nlink.txt overrides
+3. Apply submodule *.nlink local settings
+4. Resolve conflicts: Most specific wins
+5. Validate no circular dependencies
+</div></code></pre>
+<hr>
+<h2 id="performance-targets">Performance Targets</h2>
+<pre class="hljs"><code><div><span class="hljs-section">[optimization.targets]</span>
+<span class="hljs-attr">size_reduction</span> = <span class="hljs-string">"≥40%"</span>        <span class="hljs-comment"># Minimum binary size reduction</span>
+<span class="hljs-attr">fp_rate</span> = <span class="hljs-number">0.0</span>                  <span class="hljs-comment"># Zero false positives</span>
+<span class="hljs-attr">tp_rate</span> = <span class="hljs-number">95.0</span>                 <span class="hljs-comment"># True positive target</span>
+<span class="hljs-attr">build_time</span> = <span class="hljs-string">"≤5min"</span>           <span class="hljs-comment"># Maximum build duration</span>
+<span class="hljs-attr">memory_overhead</span> = <span class="hljs-string">"≤100MB"</span>     <span class="hljs-comment"># Peak memory usage</span>
+</div></code></pre>
+<hr>
+<h2 id="%F0%9F%94%AC-formal-soundness-proofs">🔬 Formal Soundness Proofs</h2>
+<h3 id="required-proofs-for-each-build">Required Proofs for Each Build:</h3>
+<h4 id="1-reachability-proof">1. Reachability Proof:</h4>
+<pre class="hljs"><code><div>For each eliminated symbol S:
+  PROVE: ∄ path from entry_points to S
+  
+  Where entry_points = {
+    cli/main.c:main(),
+    ∀ exported symbols in *.nlink,
+    ∀ symbols marked scope(public)
+  }
+</div></code></pre>
+<h4 id="2-expression-equivalence-proof">2. Expression Equivalence Proof:</h4>
+<pre class="hljs"><code><div>For each transformation T: source.c → expression.c
+  PROVE: semantic(source) ≡ semantic(expression)
+  
+  Verification:
+  - Same input → same output
+  - No side effects introduced
+  - Complexity O(n) preserved or improved
+</div></code></pre>
+<h4 id="3-channel-isolation-proof">3. Channel Isolation Proof:</h4>
+<pre class="hljs"><code><div>For channels C₁, C₂ where C₁ ≠ C₂:
+  PROVE: symbols(C₁) ∩ symbols(C₂) = ∅
+  
+  Specifically:
+  - experimental ∩ stable = ∅
+  - alpha ∩ production = ∅
+</div></code></pre>
+<h3 id="qa-validation-report-format">QA Validation Report Format:</h3>
+<pre class="hljs"><code><div>{
+  <span class="hljs-attr">"build_id"</span>: <span class="hljs-string">"2025-01-25-001"</span>,
+  <span class="hljs-attr">"quadrant_analysis"</span>: {
+    <span class="hljs-attr">"true_positive"</span>: <span class="hljs-number">4523</span>,
+    <span class="hljs-attr">"true_negative"</span>: <span class="hljs-number">8901</span>,
+    <span class="hljs-attr">"false_positive"</span>: <span class="hljs-number">0</span>,
+    <span class="hljs-attr">"false_negative"</span>: <span class="hljs-number">127</span>
+  },
+  <span class="hljs-attr">"soundness_proofs"</span>: {
+    <span class="hljs-attr">"reachability"</span>: <span class="hljs-string">"VERIFIED"</span>,
+    <span class="hljs-attr">"expression_equivalence"</span>: <span class="hljs-string">"VERIFIED"</span>,
+    <span class="hljs-attr">"channel_isolation"</span>: <span class="hljs-string">"VERIFIED"</span>
+  },
+  <span class="hljs-attr">"optimization_metrics"</span>: {
+    <span class="hljs-attr">"size_reduction"</span>: <span class="hljs-string">"47.3%"</span>,
+    <span class="hljs-attr">"symbols_eliminated"</span>: <span class="hljs-number">4523</span>,
+    <span class="hljs-attr">"symbols_retained"</span>: <span class="hljs-number">8901</span>
+  },
+  <span class="hljs-attr">"crypto_validation"</span>: {
+    <span class="hljs-attr">"shannon_entropy"</span>: <span class="hljs-number">7.82</span>,
+    <span class="hljs-attr">"chi_square"</span>: <span class="hljs-number">245.7</span>,
+    <span class="hljs-attr">"distribution"</span>: <span class="hljs-string">"UNIFORM"</span>
+  }
+}
+</div></code></pre>
+<h3 id="agent-final-checklist">Agent Final Checklist:</h3>
+<pre class="hljs"><code><div>Before marking build as successful:
+□ All FP = 0 (mandatory)
+□ All formal proofs verified
+□ Size reduction ≥ 40%
+□ Crypto modules pass entropy validation
+□ No channel cross-contamination
+□ All exported symbols preserved
+□ Build reproducibility hash generated
+□ Signed attestation created
+</div></code></pre>
+<hr>
+<h2 id="%F0%9F%8E%AF-summary">🎯 Summary</h2>
+<p>This document defines the complete waterfall QA process for building <code>nlink.exe</code> with:</p>
+<ol>
+<li>
+<p><strong>Feature duplication prevention</strong>:</p>
+<ul>
+<li>MANDATORY poc/ folder inspection before any implementation</li>
+<li>Existing code reuse from 7+ POC projects</li>
+<li>Systematic duplication detection workflow</li>
+</ul>
+</li>
+<li>
+<p><strong>Quality assurance heuristics</strong>:</p>
+<ul>
+<li>Every if/else branch analyzed for TP/TN/FP/FN</li>
+<li>Statement → Expression mappings verified</li>
+<li>Existing QA patterns from nlink_qa_poc/ reused</li>
+</ul>
+</li>
+<li>
+<p><strong>Dual-channel architecture</strong>:</p>
+<ul>
+<li><strong>Beta channel</strong> for feature development and testing</li>
+<li><strong>Alpha channel</strong> for production deployments</li>
+<li>Schema supports adding custom channels</li>
+</ul>
+</li>
+<li>
+<p><strong>Whitelist/Blacklist manifest layer</strong>:</p>
+<ul>
+<li>Like <code>.gitignore</code> but for build artifacts</li>
+<li>Pattern-based inclusion/exclusion</li>
+<li>Macro and statement-level filtering</li>
+</ul>
+</li>
+<li>
+<p><strong>CMake-like scripting</strong> for configuration (pkg.nlink.in, *.nlink)</p>
+</li>
+<li>
+<p><strong>Expression transformation</strong> with duplication checks</p>
+</li>
+<li>
+<p><strong>State machine minimization</strong> with formal soundness proofs</p>
+</li>
+<li>
+<p><strong>Zero false-positive</strong> elimination through quadrant analysis</p>
+</li>
+<li>
+<p><strong>Channel isolation</strong> ensuring Beta features never leak to Alpha builds</p>
+</li>
+</ol>
+<h3 id="critical-workflow-for-every-feature">Critical Workflow for Every Feature:</h3>
+<pre class="hljs"><code><div>1. CHECK existing POC implementations
+2. ANALYZE if/else branches for QA quadrants
+3. REUSE proven patterns from poc/ folders
+4. VALIDATE no duplication before coding
+5. APPLY TP/TN/FP/FN heuristics to all decisions
+</div></code></pre>
+<h3 id="ifelse-branch-qa-mapping">If/Else Branch QA Mapping:</h3>
+<pre class="hljs"><code><div><span class="hljs-comment">// Every decision point must be analyzed:</span>
+<span class="hljs-keyword">if</span> (should_compile_module()) {        <span class="hljs-comment">// Decision point</span>
+    compile_module();                 <span class="hljs-comment">// TP if correct module compiled</span>
+                                     <span class="hljs-comment">// FN if needed module skipped</span>
+} <span class="hljs-keyword">else</span> {
+    skip_module();                   <span class="hljs-comment">// TN if correctly skipped</span>
+                                     <span class="hljs-comment">// FP if needed module skipped</span>
+}
+<span class="hljs-comment">// Document: Why is this decision correct?</span>
+<span class="hljs-comment">// Check: Does nlink_qa_poc/ have similar logic?</span>
+</div></code></pre>
+<p>The build system enforces mathematical soundness at every step, ensuring that optimization never compromises correctness, experimental features remain isolated from production code, and NO CODE IS DUPLICATED.</p>
+<p><strong>Remember</strong>:</p>
+<ul>
+<li>Check poc/ BEFORE coding anything new</li>
+<li>Every if/else needs TP/TN/FP/FN analysis</li>
+<li>Beta is for developers (all features, relaxed checks)</li>
+<li>Alpha is for customers (stable only, strict validation)</li>
+<li>Every elimination must be provably safe</li>
+<li>When in doubt, check existing POC code first</li>
+</ul>
+<hr>
+<p><strong>Document Status</strong>: Production Ready<br>
+<strong>Authored by</strong>: OBINexus Architecture Team<br>
+<strong>Methodology</strong>: Soundness-First Development with State Machine Minimization<br>
+<strong>Compliance</strong>: NexusLink Standard v1.0.0 (RATIFIED)</p>
+<hr>
+<h2 id="%F0%9F%94%A7-troubleshooting-common-build-errors">🔧 Troubleshooting Common Build Errors</h2>
+<h3 id="missing-type-definitions">Missing Type Definitions:</h3>
+<p>If encountering errors like <code>unknown type name 'etps_context_t'</code>:</p>
+<pre class="hljs"><code><div><span class="hljs-comment">// Add to include/nlink/core/types.h:</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdbool.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdint.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stddef.h&gt;</span></span>
+
+<span class="hljs-comment">// Forward declarations</span>
+<span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">etps_context</span> <span class="hljs-title">etps_context_t</span>;</span>
+<span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">semverx_component</span> <span class="hljs-title">semverx_component_t</span>;</span>
+<span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">semverx_range_state</span> <span class="hljs-title">semverx_range_state_t</span>;</span>
+<span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">etps_semverx_event</span> <span class="hljs-title">etps_semverx_event_t</span>;</span>
+<span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">compatibility_result</span> <span class="hljs-title">compatibility_result_t</span>;</span>
+<span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">hotswap_result</span> <span class="hljs-title">hotswap_result_t</span>;</span>
+
+<span class="hljs-comment">// Ensure all headers include base types first:</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"nlink/core/types.h"</span></span>
+</div></code></pre>
+<h3 id="header-include-order">Header Include Order:</h3>
+<pre class="hljs"><code><div><span class="hljs-comment">// Correct include order for telemetry.h:</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdbool.h&gt;                    // System headers first</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdint.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"nlink/core/types.h"</span>           <span class="hljs-comment">// Base types</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"nlink/core/etps/etps_types.h"</span> <span class="hljs-comment">// Module types</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"nlink/core/etps/telemetry.h"</span>  <span class="hljs-comment">// Finally, the header</span></span>
+</div></code></pre>
+<h3 id="before-adding-new-types">Before Adding New Types:</h3>
+<pre class="hljs"><code><div><span class="hljs-comment"># Check if type already exists in POC:</span>
+grep -r <span class="hljs-string">"typedef.*context_t"</span> nlink*/include/
+grep -r <span class="hljs-string">"struct.*context"</span> nlink*/src/
+
+<span class="hljs-comment"># Reuse existing type definitions when possible</span>
+</div></code></pre>
+<p>This ensures all type dependencies are resolved before use AND prevents duplicate type definitions across POC projects.</p>
+<hr>
+<h2 id="%F0%9F%94%A7-troubleshooting-common-build-errors">🔧 Troubleshooting Common Build Errors</h2>
+<h3 id="missing-type-definitions">Missing Type Definitions:</h3>
+<p>If encountering errors like <code>unknown type name 'etps_context_t'</code>:</p>
+<pre class="hljs"><code><div><span class="hljs-comment">// Add to include/nlink/core/types.h:</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdbool.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdint.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stddef.h&gt;</span></span>
+
+<span class="hljs-comment">// Forward declarations</span>
+<span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">etps_context</span> <span class="hljs-title">etps_context_t</span>;</span>
+<span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">semverx_component</span> <span class="hljs-title">semverx_component_t</span>;</span>
+<span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">semverx_range_state</span> <span class="hljs-title">semverx_range_state_t</span>;</span>
+<span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">etps_semverx_event</span> <span class="hljs-title">etps_semverx_event_t</span>;</span>
+<span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">compatibility_result</span> <span class="hljs-title">compatibility_result_t</span>;</span>
+<span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">hotswap_result</span> <span class="hljs-title">hotswap_result_t</span>;</span>
+
+<span class="hljs-comment">// Ensure all headers include base types first:</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"nlink/core/types.h"</span></span>
+</div></code></pre>
+<h3 id="header-include-order">Header Include Order:</h3>
+<pre class="hljs"><code><div><span class="hljs-comment">// Correct include order for telemetry.h:</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdbool.h&gt;                    // System headers first</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdint.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"nlink/core/types.h"</span>           <span class="hljs-comment">// Base types</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"nlink/core/etps/etps_types.h"</span> <span class="hljs-comment">// Module types</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"nlink/core/etps/telemetry.h"</span>  <span class="hljs-comment">// Finally, the header</span></span>
+</div></code></pre>
+<p>This ensures all type dependencies are resolved before use.</p>
+<h2 id="glob-pattern-support-in-nlink-cli"><strong>Glob Pattern Support in nlink CLI</strong></h2>
+<h3 id="command-line-invocation-with-patterns"><strong>Command Line Invocation with Patterns:</strong></h3>
+<pre class="hljs"><code><div><span class="hljs-comment"># Standard source directory specification</span>
+nlink.exe -S . -B build/
+
+<span class="hljs-comment"># With glob patterns (whitelist/blacklist applied)</span>
+nlink.exe -S src/ -B build/ --channel beta
+
+<span class="hljs-comment"># Pattern-based source selection happens through pkg.nlink.in</span>
+</div></code></pre>
+<h3 id="whitelistblacklist-pattern-system"><strong>Whitelist/Blacklist Pattern System:</strong></h3>
+<p>The <code>pkg.nlink.in</code> manifest supports glob wildcards for filtering:</p>
+<pre class="hljs"><code><div>configure_whitelist()
+    <span class="hljs-comment"># Source patterns to always process</span>
+    pattern(<span class="hljs-string">"**/*.c"</span>)           <span class="hljs-comment"># All C source files</span>
+    pattern(<span class="hljs-string">"**/*.h"</span>)           <span class="hljs-comment"># All headers</span>
+    pattern(<span class="hljs-string">"**/nlink.txt"</span>)     <span class="hljs-comment"># All module configs</span>
+    pattern(<span class="hljs-string">"**/*.nlink"</span>)       <span class="hljs-comment"># All sub-configs</span>
+endconfigure()
+
+configure_blacklist()
+    <span class="hljs-comment"># Exclude patterns</span>
+    pattern(<span class="hljs-string">"**/tmp/*"</span>)         <span class="hljs-comment"># Temporary directories</span>
+    pattern(<span class="hljs-string">"**/test_*"</span>)        <span class="hljs-comment"># Test files</span>
+    pattern(<span class="hljs-string">"**/*.log"</span>)         <span class="hljs-comment"># Log files</span>
+endconfigure()
+</div></code></pre>
+<h3 id="cli-pattern-processing-flow"><strong>CLI Pattern Processing Flow:</strong></h3>
+<ol>
+<li><strong>Source Directory (-S)</strong>: Specifies the root directory for pattern matching</li>
+<li><strong>Pattern Application</strong>: Whitelist/blacklist patterns filter the source tree</li>
+<li><strong>Module Resolution</strong>: The filtered files are processed for build</li>
+</ol>
+<h3 id="pattern-matching-in-cli"><strong>Pattern Matching in CLI:</strong></h3>
+<p>The <code>command_registry.c</code> shows pattern detection:</p>
+<pre class="hljs"><code><div><span class="hljs-comment">// Check if the pattern is a glob pattern</span>
+<span class="hljs-keyword">if</span> (<span class="hljs-built_in">strchr</span>(pattern, <span class="hljs-string">'*'</span>) || <span class="hljs-built_in">strchr</span>(pattern, <span class="hljs-string">'?'</span>)) {
+    flags |= NLINK_PATTERN_FLAG_GLOB;
+} <span class="hljs-keyword">else</span> {
+    <span class="hljs-comment">// Otherwise use regex</span>
+    flags |= NLINK_PATTERN_FLAG_REGEX;
+}
+</div></code></pre>
+<h3 id="entry-point-handling-climainc"><strong>Entry Point Handling (cli/main.c):</strong></h3>
+<p>The CLI entry point (<code>cli/main.c</code>) is always included as the primary entry point for <code>nlink.exe</code>. The build system ensures:</p>
+<pre class="hljs"><code><div>declare_module(cli)
+    scope(public)
+    version(<span class="hljs-number">1.0</span>.<span class="hljs-number">0</span>)
+    entry_point(main.c)  <span class="hljs-comment"># Marks cli/main.c as program entry</span>
+</div></code></pre>
+<h3 id="feature-intention-with-glob-patterns"><strong>Feature Intention with Glob Patterns:</strong></h3>
+<p>When using glob patterns, the system:</p>
+<ul>
+<li>Applies whitelist patterns first (include matching files)</li>
+<li>Then applies blacklist patterns (exclude specific files)</li>
+<li>Ensures <code>cli/main.c</code> remains as the entry point</li>
+<li>Processes expression transformations (e.g., <code>statement.c → expression.c</code>)</li>
+</ul>
+<h3 id="example-pattern-reduction"><strong>Example Pattern Reduction:</strong></h3>
+<pre class="hljs"><code><div>Given: nlink -S src/ with patterns **/*.c
+Result after filtering:
+- src/cli/main.c          ✓ (entry point, always included)
+- src/tokenizer/*.c       ✓ (matches pattern)
+- src/parser/*.c          ✓ (matches pattern)
+- src/test_*.c            ✗ (blacklisted by **/test_*)
+- src/tmp/work.c          ✗ (blacklisted by **/tmp/*)
+</div></code></pre>
+
+</body>
+</html>

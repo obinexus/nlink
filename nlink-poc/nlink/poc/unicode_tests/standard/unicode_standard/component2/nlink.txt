@@ -1,8 +1,0 @@
-[component]
-name = test_component2
-version = 1.0.0
-
-[compilation]
-optimization_level = 3
-max_compile_time = 90
-parallel_allowed = true
