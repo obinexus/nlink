@@ -5,12 +5,14 @@
  * Copyright © 2025 OBINexus Computing
  */
 
- #include <nlink/cli/commands/version.h"
- #include <nlink/core/common/nexus_core.h"
+ #include <nlink/cli/commands/version.h>
+ #include <nlink/core/common/nexus_core.h>
  #include <stdio.h>
  #include <stdlib.h>
  #include <string.h>
  #include <stdbool.h>
+ #include <stdbool.h>
+ 
  
  /* Version information */
  #define NEXUSLINK_VERSION "1.0.0"

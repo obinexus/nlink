@@ -5,8 +5,8 @@
  * Copyright © 2025 OBINexus Computing
  */
 
- #include <nlink/cli/commands/minimal.h"
-
+ #include <nlink/cli/commands/minimal.h>
+ #include <stdbool.h>
  
  // Forward declaration of load command execute function
  extern int load_command_execute(NexusContext* ctx, int argc, char** argv);
