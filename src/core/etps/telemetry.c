@@ -12,12 +12,12 @@ static bool g_etps_initialized = false;
 
 etps_result_t etps_initialize(void) {
     g_etps_initialized = true;
-    return ETPS_ERROR_SUCCESS;
+    return ETPS_SUCCESS;
 }
 
 etps_result_t etps_shutdown(void) {
     g_etps_initialized = false;
-    return ETPS_ERROR_SUCCESS;
+    return ETPS_SUCCESS;
 }
 
 etps_result_t etps_create_context(etps_context_t **ctx) {
@@ -29,31 +29,31 @@ etps_result_t etps_create_context(etps_context_t **ctx) {
     (*ctx)->magic_marker = 0x45545053; // "ETPS"
     (*ctx)->initialized = true;
     
-    return ETPS_ERROR_SUCCESS;
+    return ETPS_SUCCESS;
 }
 
 etps_result_t etps_destroy_context(etps_context_t *ctx) {
     if (!ctx) return ETPS_ERROR_INVALID_PARAMETER;
     
     free(ctx);
-    return ETPS_ERROR_SUCCESS;
+    return ETPS_SUCCESS;
 }
 
 etps_result_t etps_configure_telemetry(etps_context_t *ctx, const char *config) {
     if (!ctx || !config) return ETPS_ERROR_INVALID_PARAMETER;
-    return ETPS_ERROR_SUCCESS;
+    return ETPS_SUCCESS;
 }
 
 etps_result_t etps_start_telemetry_session(etps_context_t *ctx) {
     if (!ctx) return ETPS_ERROR_INVALID_PARAMETER;
     ctx->telemetry_sessions++;
-    return ETPS_ERROR_SUCCESS;
+    return ETPS_SUCCESS;
 }
 
 etps_result_t etps_stop_telemetry_session(etps_context_t *ctx) {
     if (!ctx) return ETPS_ERROR_INVALID_PARAMETER;
     if (ctx->telemetry_sessions > 0) ctx->telemetry_sessions--;
-    return ETPS_ERROR_SUCCESS;
+    return ETPS_SUCCESS;
 }
 
 hotswap_result_t etps_hotswap_prepare(etps_context_t *ctx) {
