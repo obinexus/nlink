@@ -6,7 +6,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
-
+#include <stdb
+ool.h>
 // Constitutional module initialization
 static bool g_COMMAND_REGISTRATION_initialized = false;
 

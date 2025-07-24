@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <nlink/core/etps/etps_telemetry.h>
+#include <stdbool.h>
 
 static void print_version(void) {
     printf("nlink v3.7.0 - OBINexus Constitutional Build Coordination Framework\n");

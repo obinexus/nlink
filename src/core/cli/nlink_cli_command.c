@@ -7,10 +7,10 @@
  * Copyright © 2025 OBINexus Computing
  */
 
- #include <nlink/cli/command.h"
+ #include <nlink/cli/command.h>
  #include <stdlib.h>
  #include <string.h>
- 
+ #include <stdbool.h>
  /**
   * @brief Create a new command
   * 

@@ -8,9 +8,10 @@
  * Copyright © 2025 OBINexus Computing
  */
 
-#include <nlink/cli/command_params.h"
+#include <nlink/cli/command_params.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdbool.h>
 
 /**
  * @brief Create a new command parameter list

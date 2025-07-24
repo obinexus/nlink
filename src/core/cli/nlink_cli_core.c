@@ -23,6 +23,8 @@
  #include <stdio.h>
  #include <stdlib.h>
  
+ #include <stdbool.h>
+ 
  // Global command router for pattern-based routing
  static NlinkCommandRouter* g_command_router = NULL;
  
