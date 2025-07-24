@@ -1,3 +1,8 @@
+// nlink/core/semverx/nexus_missing.h
+// OBINexus Constitutional Header Guard: OBINEXUS_NLINK_CORE_SEMVERX_NEXUS_MISSING_H
+#ifndef OBINEXUS_NLINK_CORE_SEMVERX_NEXUS_MISSING_H
+#define OBINEXUS_NLINK_CORE_SEMVERX_NEXUS_MISSING_H
+
 /**
  * @file nexus_missing.h
  * @brief Declarations for functions referenced but not defined
@@ -64,3 +69,4 @@
  #endif
  
  #endif /* NLINK_MISSING_H */
+#endif // OBINEXUS_NLINK_CORE_SEMVERX_NEXUS_MISSING_H

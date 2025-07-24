@@ -14,7 +14,7 @@
 
 // Sinphases validation framework integration
 #define SINPHASES_VERSION_COMPLIANCE 0.5f
-#define ETPS_TELEMETRY_TEST_PASSED 0x4E4C494E4B  // "NLINK" in hex
+#define ETPS_TELEMETRY_TEST_PASSED 0x4E4C494EU  // "NLINK" in hex
 
 // OBINexus consciousness-critical validation metrics
 typedef struct {

@@ -1,3 +1,8 @@
+// nlink/core/semverx/semverx/compatibility.h
+// OBINexus Constitutional Header Guard: OBINEXUS_NLINK_CORE_SEMVERX_SEMVERX_COMPATIBILITY_H
+#ifndef OBINEXUS_NLINK_CORE_SEMVERX_SEMVERX_COMPATIBILITY_H
+#define OBINEXUS_NLINK_CORE_SEMVERX_SEMVERX_COMPATIBILITY_H
+
 /**
  * @file compatibility.h
  * @brief SemVerX Compatibility Matrix (Stub Implementation)
@@ -5,8 +10,6 @@
  * @version 1.5.0
  */
 
-#ifndef NLINK_SEMVERX_SEMVERX_COMPATIBILITY_H
-#define NLINK_SEMVERX_SEMVERX_COMPATIBILITY_H
 
 #include "nlink_semverx/semverx/range_state.h"
 
@@ -14,4 +17,5 @@
 int semverx_validate_compatibility(const semverx_component_metadata_t *comp1,
                                   const semverx_component_metadata_t *comp2);
 
-#endif /* NLINK_SEMVERX_SEMVERX_COMPATIBILITY_H */
+
+#endif // OBINEXUS_NLINK_CORE_SEMVERX_SEMVERX_COMPATIBILITY_H

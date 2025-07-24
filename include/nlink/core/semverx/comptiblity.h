@@ -1,11 +1,14 @@
+// nlink/core/semverx/comptiblity.h
+// OBINexus Constitutional Header Guard: OBINEXUS_NLINK_CORE_SEMVERX_COMPTIBLITY_H
+#ifndef OBINEXUS_NLINK_CORE_SEMVERX_COMPTIBLITY_H
+#define OBINEXUS_NLINK_CORE_SEMVERX_COMPTIBLITY_H
+
 // include/nlink/core/semverx/compatibility.h
 // OBINexus SemVerX Compatibility Boundary Management Architecture
 // Constitutional Logic Gate Implementation with Entropy-Adaptive Security
 // Author: OBINexus Distributed Systems Architecture Team
 // Revision: 3.7 - Fractal Modularity Governance Structure
 
-#ifndef OBINEXUS_NLINK_SEMVERX_COMPATIBILITY_H
-#define OBINEXUS_NLINK_SEMVERX_COMPATIBILITY_H
 
 #include <stdint.h>
 #include <stdbool.h>
@@ -167,7 +170,6 @@ static inline bool _internal_boundary_validation(
 }
 #endif
 
-#endif // OBINEXUS_NLINK_SEMVERX_COMPATIBILITY_H
 
 // Architectural Documentation: Implementation Governance
 /*
@@ -194,3 +196,5 @@ static inline bool _internal_boundary_validation(
  * - Smart contract arbitration framework integration maintained
  * - Polymorphic coordination protocols preserve systemic integrity
  */
+
+#endif // OBINEXUS_NLINK_CORE_SEMVERX_COMPTIBLITY_H

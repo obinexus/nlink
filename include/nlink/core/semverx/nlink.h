@@ -1,3 +1,8 @@
+// nlink/core/semverx/nlink.h
+// OBINexus Constitutional Header Guard: OBINEXUS_NLINK_CORE_SEMVERX_NLINK_H
+#ifndef OBINEXUS_NLINK_CORE_SEMVERX_NLINK_H
+#define OBINEXUS_NLINK_CORE_SEMVERX_NLINK_H
+
 /**
  * @file nlink.h
  * @brief Main header for the NexusLink library
@@ -165,3 +170,4 @@
  #endif
  
  #endif /* NLINK_H */
+#endif // OBINEXUS_NLINK_CORE_SEMVERX_NLINK_H

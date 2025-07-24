@@ -1,3 +1,8 @@
+// nlink/cli/commands/command_registry.h
+// OBINexus Constitutional Header Guard: OBINEXUS_NLINK_CLI_COMMANDS_COMMAND_REGISTRY_H
+#ifndef OBINEXUS_NLINK_CLI_COMMANDS_COMMAND_REGISTRY_H
+#define OBINEXUS_NLINK_CLI_COMMANDS_COMMAND_REGISTRY_H
+
 /**
  * @file command_registry.h
  * @brief CLI-specific command registry for NexusLink CLI
@@ -168,3 +173,4 @@ NexusResult nlink_command_router_register_with_params(
  #endif
  
  #endif /* NLINK_CLI_COMMAND_REGISTRY_H */
+#endif // OBINEXUS_NLINK_CLI_COMMANDS_COMMAND_REGISTRY_H

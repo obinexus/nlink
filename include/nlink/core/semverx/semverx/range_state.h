@@ -1,3 +1,8 @@
+// nlink/core/semverx/semverx/range_state.h
+// OBINexus Constitutional Header Guard: OBINEXUS_NLINK_CORE_SEMVERX_SEMVERX_RANGE_STATE_H
+#ifndef OBINEXUS_NLINK_CORE_SEMVERX_SEMVERX_RANGE_STATE_H
+#define OBINEXUS_NLINK_CORE_SEMVERX_SEMVERX_RANGE_STATE_H
+
 /**
  * @file range_state.h
  * @brief SemVerX Range State Definitions (Stub Implementation)
@@ -8,8 +13,6 @@
  * Full SemVerX implementation will be added in Phase 2.
  */
 
-#ifndef NLINK_SEMVERX_SEMVERX_RANGE_STATE_H
-#define NLINK_SEMVERX_SEMVERX_RANGE_STATE_H
 
 // SemVerX range state enumeration (placeholder)
 typedef enum {
@@ -26,4 +29,5 @@ typedef struct semverx_component_metadata semverx_component_metadata_t;
 semverx_range_state_t semverx_parse_range_state(const char *state_str);
 const char* semverx_range_state_to_string(semverx_range_state_t state);
 
-#endif /* NLINK_SEMVERX_SEMVERX_RANGE_STATE_H */
+
+#endif // OBINEXUS_NLINK_CORE_SEMVERX_SEMVERX_RANGE_STATE_H

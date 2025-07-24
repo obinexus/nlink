@@ -1,0 +1,13 @@
+# Emergency Makefile for immediate building
+CC := gcc
+CFLAGS := -Wall -Wextra -std=c11 -Iinclude/nlink/core
+LDFLAGS := 
+
+# Simple build target
+etps_test: examples/etps_test.c src/core/etps/telemetry.c
+	$(CC) $(CFLAGS) -o etps_test examples/etps_test.c src/core/etps/telemetry.c $(LDFLAGS)
+
+clean:
+	rm -f etps_test
+
+.PHONY: clean

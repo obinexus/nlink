@@ -1,3 +1,8 @@
+// nlink/core/symbols/nexus_versioned_symbols.h
+// OBINexus Constitutional Header Guard: OBINEXUS_NLINK_CORE_SYMBOLS_NEXUS_VERSIONED_SYMBOLS_H
+#ifndef OBINEXUS_NLINK_CORE_SYMBOLS_NEXUS_VERSIONED_SYMBOLS_H
+#define OBINEXUS_NLINK_CORE_SYMBOLS_NEXUS_VERSIONED_SYMBOLS_H
+
 // include/nexus_versioned_symbols.h
 // Version-aware symbol management for NexusLink
 // Author: Nnamdi Michael Okpala
@@ -135,4 +140,5 @@ void versioned_symbol_table_free(VersionedSymbolTable* table);
 // Free a versioned symbol registry
 void nexus_versioned_registry_free(VersionedSymbolRegistry* registry);
 
-#endif // NEXUS_VERSIONED_SYMBOLS_H
+
+#endif // OBINEXUS_NLINK_CORE_SYMBOLS_NEXUS_VERSIONED_SYMBOLS_H

@@ -1,3 +1,8 @@
+// nlink/core/semverx/core/config.h
+// OBINexus Constitutional Header Guard: OBINEXUS_NLINK_CORE_SEMVERX_CORE_CONFIG_H
+#ifndef OBINEXUS_NLINK_CORE_SEMVERX_CORE_CONFIG_H
+#define OBINEXUS_NLINK_CORE_SEMVERX_CORE_CONFIG_H
+
 /**
  * @file config.h
  * @brief Configuration system for NexusLink SemVerX
@@ -5,8 +10,6 @@
  * @version 1.5.0
  */
 
-#ifndef NLINK_SEMVERX_CORE_CONFIG_H
-#define NLINK_SEMVERX_CORE_CONFIG_H
 
 #include "nlink_semverx/core/types.h"
 
@@ -30,4 +33,5 @@ nlink_config_result_t nlink_config_init(void);
 nlink_config_result_t nlink_parse_pkg_config(const char *path, nlink_pkg_config_t *config);
 void nlink_config_destroy(void);
 
-#endif /* NLINK_SEMVERX_CORE_CONFIG_H */
+
+#endif // OBINEXUS_NLINK_CORE_SEMVERX_CORE_CONFIG_H

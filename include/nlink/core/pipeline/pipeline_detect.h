@@ -1,3 +1,8 @@
+// nlink/core/pipeline/pipeline_detect.h
+// OBINexus Constitutional Header Guard: OBINEXUS_NLINK_CORE_PIPELINE_PIPELINE_DETECT_H
+#ifndef OBINEXUS_NLINK_CORE_PIPELINE_PIPELINE_DETECT_H
+#define OBINEXUS_NLINK_CORE_PIPELINE_PIPELINE_DETECT_H
+
 /**
  * @file pipeline_detector.h
  * @brief Pipeline type detection and optimization system for NexusLink
@@ -122,3 +127,4 @@
  #endif
  
  #endif /* NLINK_CORE_PIPELINE_DETECTOR_H */
+#endif // OBINEXUS_NLINK_CORE_PIPELINE_PIPELINE_DETECT_H

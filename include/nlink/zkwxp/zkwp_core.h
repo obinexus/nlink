@@ -1,3 +1,8 @@
+// nlink/zkwxp/zkwp_core.h
+// OBINexus Constitutional Header Guard: OBINEXUS_NLINK_ZKWXP_ZKWP_CORE_H
+#ifndef OBINEXUS_NLINK_ZKWXP_ZKWP_CORE_H
+#define OBINEXUS_NLINK_ZKWXP_ZKWP_CORE_H
+
 /*
  * NexusLink Zero-Knowledge Weighted XOR Proofs Core
  * OBINexus Standard Compliant
@@ -6,8 +11,6 @@
  * integrated with kernel scheduler audit log analysis.
  */
 
-#ifndef NLINK_ZKWXP_CORE_H
-#define NLINK_ZKWXP_CORE_H
 
 #include <stdint.h>
 #include <stdbool.h>
@@ -235,4 +238,5 @@ void zkwxp_dsl_free(void* bytecode);
 }
 #endif
 
-#endif /* NLINK_ZKWXP_CORE_H */
+
+#endif // OBINEXUS_NLINK_ZKWXP_ZKWP_CORE_H

@@ -1,3 +1,8 @@
+// nlink/core/semverx/nexus_lazy_versioned.h
+// OBINexus Constitutional Header Guard: OBINEXUS_NLINK_CORE_SEMVERX_NEXUS_LAZY_VERSIONED_H
+#ifndef OBINEXUS_NLINK_CORE_SEMVERX_NEXUS_LAZY_VERSIONED_H
+#define OBINEXUS_NLINK_CORE_SEMVERX_NEXUS_LAZY_VERSIONED_H
+
 #ifndef NEXUS_LAZY_VERSIONED_H
 #define NEXUS_LAZY_VERSIONED_H
 
@@ -57,4 +62,5 @@ void nexus_track_symbol_usage_versioned(
 	const char* using_component
 );
 
-#endif // NEXUS_LAZY_VERSIONED_H
+
+#endif // OBINEXUS_NLINK_CORE_SEMVERX_NEXUS_LAZY_VERSIONED_H

@@ -1,0 +1,364 @@
+backup/
+├── constitutional_backup_20250724_234141
+│   ├── include_original
+│   │   └── nlink
+│   │       ├── cli
+│   │       │   ├── cli.h
+│   │       │   ├── commands
+│   │       │   │   ├── command.h
+│   │       │   │   ├── command_params.h
+│   │       │   │   ├── command_registration.h
+│   │       │   │   ├── command_registry.h
+│   │       │   │   ├── command_router.h
+│   │       │   │   ├── load.h
+│   │       │   │   ├── minimal.h
+│   │       │   │   ├── minimize.h
+│   │       │   │   ├── pipeline.h
+│   │       │   │   ├── version.h
+│   │       │   │   └── version_utils.h
+│   │       │   ├── parse.h
+│   │       │   └── regex_matcher.h
+│   │       ├── core
+│   │       │   ├── config
+│   │       │   │   └── env_config.h
+│   │       │   ├── crypto
+│   │       │   │   └── shannon_entropy.h
+│   │       │   ├── etps
+│   │       │   │   ├── epts_telemtry.h.old
+│   │       │   │   ├── etps_telemetry.h
+│   │       │   │   ├── etps_telemetry.h.constitutional_backup_20250724_233746
+│   │       │   │   ├── etps_telemetry.h.emergency_backup_20250724_234042
+│   │       │   │   ├── private
+│   │       │   │   ├── protected
+│   │       │   │   ├── public
+│   │       │   │   ├── semverx_etps.h
+│   │       │   │   ├── telemetry.h
+│   │       │   │   └── telemetry.h.old
+│   │       │   ├── minimizer
+│   │       │   │   ├── automaton.h
+│   │       │   │   ├── CMakeLists.txt
+│   │       │   │   ├── minimizer.c
+│   │       │   │   ├── nexus_automaton.c
+│   │       │   │   ├── nexus_automaton.h
+│   │       │   │   ├── nexus_minimizer.h
+│   │       │   │   ├── okpala_ast.c
+│   │       │   │   ├── okpala_ast.h
+│   │       │   │   ├── okpala_automaton.c
+│   │       │   │   ├── okpala_automaton.h
+│   │       │   │   ├── okpala_automaton_minimzer.c
+│   │       │   │   └── okpala_minimizer.h
+│   │       │   ├── mpsystem
+│   │       │   │   ├── mps_config.h
+│   │       │   │   ├── mps_dependency.h
+│   │       │   │   ├── mps_lifecycle.h
+│   │       │   │   ├── mps_pipeline.h
+│   │       │   │   └── mps_stream.h
+│   │       │   ├── parser
+│   │       │   │   ├── parser.h
+│   │       │   │   ├── parser_interface.h
+│   │       │   │   └── semverx_parser.h
+│   │       │   ├── pipeline
+│   │       │   │   ├── nlink_pipeline.h
+│   │       │   │   ├── pipeline_detect.h
+│   │       │   │   ├── pipeline_pass.h
+│   │       │   │   └── pipeline_stage.h
+│   │       │   ├── semverx
+│   │       │   │   ├── cli
+│   │       │   │   │   └── parser_interface.h
+│   │       │   │   ├── compatibility.h
+│   │       │   │   ├── comptiblity.h
+│   │       │   │   ├── core
+│   │       │   │   │   ├── config.h
+│   │       │   │   │   ├── error_codes.h
+│   │       │   │   │   └── types.h
+│   │       │   │   ├── lazy_versioned.h
+│   │       │   │   ├── nexus_lazy_versioned.h
+│   │       │   │   ├── nexus_missing.h
+│   │       │   │   ├── nexus_version.h
+│   │       │   │   ├── nlink.h
+│   │       │   │   ├── nlink_semverx.h
+│   │       │   │   ├── private
+│   │       │   │   ├── protected
+│   │       │   │   ├── semver.h
+│   │       │   │   ├── semverx
+│   │       │   │   │   ├── compatibility.h
+│   │       │   │   │   └── range_state.h
+│   │       │   │   ├── semverx_parser.c
+│   │       │   │   ├── semverx_parser.h
+│   │       │   │   └── versioned_symbols.h
+│   │       │   ├── spsystem
+│   │       │   │   ├── sps_config.h
+│   │       │   │   ├── sps_dependency.h
+│   │       │   │   ├── sps_lifecycle.h
+│   │       │   │   ├── sps_pipeline.h
+│   │       │   │   └── sps_stream.h
+│   │       │   ├── symbols
+│   │       │   │   ├── nexus_symbols.h
+│   │       │   │   ├── nexus_versioned_symbols.h
+│   │       │   │   ├── registry.h
+│   │       │   │   └── symbols.h
+│   │       │   └── tatit
+│   │       │       ├── abstraction.h
+│   │       │       ├── aggregation.h
+│   │       │       ├── composition.h
+│   │       │       ├── identity.h
+│   │       │       ├── tactic.h
+│   │       │       ├── transformation.h
+│   │       │       └── traversal.h
+│   │       └── zkwxp
+│   │           └── zkwp_core.h
+│   └── src_original
+│       ├── cli
+│       │   └── commands
+│       ├── CMakeFiles
+│       ├── CMakeLists.txt
+│       ├── core
+│       │   ├── cli
+│       │   │   ├── cli.c
+│       │   │   ├── CMakeLists.txt
+│       │   │   ├── command.c
+│       │   │   ├── command_params.c
+│       │   │   ├── command_registration.c
+│       │   │   ├── command_registry.c
+│       │   │   ├── command_router.c
+│       │   │   ├── commands
+│       │   │   │   ├── CMakeLists.txt
+│       │   │   │   ├── load.c
+│       │   │   │   ├── minimal.c
+│       │   │   │   ├── minimize.c
+│       │   │   │   ├── pipeline.c
+│       │   │   │   ├── README.md
+│       │   │   │   ├── version.c
+│       │   │   │   └── version_utils.c
+│       │   │   ├── main.c
+│       │   │   └── parse.c
+│       │   ├── config
+│       │   │   ├── config_manager.c
+│       │   │   └── config_parser.c
+│       │   ├── crypto
+│       │   │   └── shannon_entropy.c
+│       │   ├── etps
+│       │   │   ├── private
+│       │   │   ├── protected
+│       │   │   ├── public
+│       │   │   ├── telemetry.c
+│       │   │   ├── telemetry.c.constitutional_backup_20250724_233746
+│       │   │   ├── telemetry.c.emergency_backup_20250724_234042
+│       │   │   ├── telemetry.c.old
+│       │   │   ├── telemetry.c.pre_null_fix
+│       │   │   ├── telemetry.c.warnings_backup
+│       │   │   └── telemetry_minimal.c
+│       │   ├── marshal
+│       │   │   └── marshal.c
+│       │   ├── mpsystem
+│       │   │   ├── CMakeLists.txt
+│       │   │   ├── mps_config.c
+│       │   │   ├── mps_dependency.c
+│       │   │   ├── mps_lifecycle.c
+│       │   │   ├── mps_pipeline.c
+│       │   │   └── mps_stream.c
+│       │   ├── parser
+│       │   │   ├── CMakeFiles
+│       │   │   ├── CMakeLists.txt
+│       │   │   ├── parse.c
+│       │   │   ├── parser.c
+│       │   │   ├── parser.h
+│       │   │   └── parser_interface.c
+│       │   ├── pipeline
+│       │   │   ├── CMakeLists.txt
+│       │   │   ├── nlink_pipeline.c
+│       │   │   ├── pipeline_detector.c
+│       │   │   ├── pipeline_pass.c
+│       │   │   └── pipeline_stage.c
+│       │   ├── schema
+│       │   │   ├── CMakeLists.txt
+│       │   │   └── nlink_schema.json
+│       │   ├── semverx
+│       │   │   ├── CMakeFiles
+│       │   │   ├── CMakeLists.txt
+│       │   │   ├── core
+│       │   │   ├── lazy_versioned.c
+│       │   │   ├── missing_functions.c
+│       │   │   ├── nexus_semver.c
+│       │   │   ├── nexus_version.c
+│       │   │   ├── private
+│       │   │   ├── protected
+│       │   │   └── semver.c
+│       │   ├── spsystem
+│       │   │   ├── CMakeLists.txt
+│       │   │   ├── sps_config.c
+│       │   │   ├── sps_dependency.c
+│       │   │   ├── sps_lifecycle.c
+│       │   │   ├── sps_pipeline.c
+│       │   │   └── sps_stream.c
+│       │   ├── symbols
+│       │   │   ├── CMakeLists.txt
+│       │   │   ├── cold_symbol.c
+│       │   │   ├── nexus_symbols.c
+│       │   │   ├── symbols.c
+│       │   │   └── versioned_symbols.c
+│       │   ├── tatit
+│       │   │   ├── abstraction.c
+│       │   │   ├── aggregation.c
+│       │   │   ├── CMakeLists.txt
+│       │   │   ├── composition.c
+│       │   │   ├── identity.c
+│       │   │   ├── tactic.c
+│       │   │   ├── transformation.c
+│       │   │   └── traversal.c
+│       │   └── tatit - Shortcut.lnk
+│       ├── main.c
+│       └── zkwxp
+│           ├── build_zkp.sh
+│           ├── Makefile
+│           ├── README.md
+│           ├── validate_zkp.sh
+│           ├── zkwxp_core.c
+│           └── zkwxp_dsl.c
+├── include
+│   └── nlink
+│       ├── cli
+│       │   ├── cli.h.backup
+│       │   ├── commands
+│       │   │   ├── command.h.backup
+│       │   │   ├── command_params.h.backup
+│       │   │   ├── command_registration.h.backup
+│       │   │   ├── command_registry.h.backup
+│       │   │   ├── command_router.h.backup
+│       │   │   ├── load.h.backup
+│       │   │   ├── minimal.h.backup
+│       │   │   ├── minimize.h.backup
+│       │   │   ├── pipeline.h.backup
+│       │   │   ├── version.h.backup
+│       │   │   └── version_utils.h.backup
+│       │   ├── parse.h.backup
+│       │   └── regex_matcher.h.backup
+│       └── core
+│           ├── etps
+│           │   ├── epts_telemtry.h.backup
+│           │   ├── semverx_etps.h.backup
+│           │   └── telemetry.h.backup
+│           ├── minimizer
+│           │   ├── automaton.h.backup
+│           │   ├── nexus_automaton.h.backup
+│           │   ├── nexus_minimizer.h.backup
+│           │   ├── okpala_ast.h.backup
+│           │   ├── okpala_automaton.h.backup
+│           │   └── okpala_minimizer.h.backup
+│           ├── mpsystem
+│           │   ├── mps_config.h.backup
+│           │   ├── mps_dependency.h.backup
+│           │   ├── mps_lifecycle.h.backup
+│           │   ├── mps_pipeline.h.backup
+│           │   └── mps_stream.h.backup
+│           ├── parser
+│           │   ├── parser.h.backup
+│           │   ├── parser_interface.h.backup
+│           │   └── semverx_parser.h.backup
+│           ├── pipeline
+│           │   ├── nlink_pipeline.h.backup
+│           │   ├── pipeline_detect.h.backup
+│           │   ├── pipeline_pass.h.backup
+│           │   └── pipeline_stage.h.backup
+│           ├── semverx
+│           │   ├── cli
+│           │   │   └── parser_interface.h.backup
+│           │   ├── core
+│           │   │   ├── config.h.backup
+│           │   │   ├── error_codes.h.backup
+│           │   │   └── types.h.backup
+│           │   ├── lazy_versioned.h.backup
+│           │   ├── nexus_lazy_versioned.h.backup
+│           │   ├── nexus_missing.h.backup
+│           │   ├── nexus_version.h.backup
+│           │   ├── nlink.h.backup
+│           │   ├── nlink_semverx.h.backup
+│           │   ├── semver.h.backup
+│           │   ├── semverx
+│           │   │   ├── compatibility.h.backup
+│           │   │   └── range_state.h.backup
+│           │   ├── semverx_parser.h.backup
+│           │   └── versioned_symbols.h.backup
+│           ├── spsystem
+│           │   ├── sps_config.h.backup
+│           │   ├── sps_dependency.h.backup
+│           │   ├── sps_lifecycle.h.backup
+│           │   ├── sps_pipeline.h.backup
+│           │   └── sps_stream.h.backup
+│           ├── symbols
+│           │   ├── nexus_symbols.h.backup
+│           │   ├── nexus_versioned_symbols.h.backup
+│           │   ├── registry.h.backup
+│           │   └── symbols.h.backup
+│           └── tatit
+│               ├── abstraction.h.backup
+│               ├── aggregation.h.backup
+│               ├── composition.h.backup
+│               ├── identity.h.backup
+│               ├── tactic.h.backup
+│               ├── transformation.h.backup
+│               └── traversal.h.backup
+├── src
+│   ├── core
+│   │   ├── cli
+│   │   │   ├── cli.c.backup
+│   │   │   ├── command.c.backup
+│   │   │   ├── command_params.c.backup
+│   │   │   ├── command_registration.c.backup
+│   │   │   ├── command_registry.c.backup
+│   │   │   ├── command_router.c.backup
+│   │   │   ├── commands
+│   │   │   │   ├── load.c.backup
+│   │   │   │   ├── minimal.c.backup
+│   │   │   │   ├── minimize.c.backup
+│   │   │   │   ├── pipeline.c.backup
+│   │   │   │   ├── version.c.backup
+│   │   │   │   └── version_utils.c.backup
+│   │   │   ├── main.c.backup
+│   │   │   └── parse.c.backup
+│   │   ├── etps
+│   │   │   └── telemetry.c.backup
+│   │   ├── mpsystem
+│   │   │   ├── mps_config.c.backup
+│   │   │   ├── mps_dependency.c.backup
+│   │   │   ├── mps_lifecycle.c.backup
+│   │   │   ├── mps_pipeline.c.backup
+│   │   │   └── mps_stream.c.backup
+│   │   ├── parser
+│   │   │   ├── parse.c.backup
+│   │   │   ├── parser.c.backup
+│   │   │   └── parser_interface.c.backup
+│   │   ├── pipeline
+│   │   │   ├── nlink_pipeline.c.backup
+│   │   │   ├── pipeline_detector.c.backup
+│   │   │   ├── pipeline_pass.c.backup
+│   │   │   └── pipeline_stage.c.backup
+│   │   ├── semverx
+│   │   │   ├── lazy_versioned.c.backup
+│   │   │   ├── missing_functions.c.backup
+│   │   │   ├── nexus_semver.c.backup
+│   │   │   ├── nexus_version.c.backup
+│   │   │   └── semver.c.backup
+│   │   ├── spsystem
+│   │   │   ├── sps_config.c.backup
+│   │   │   ├── sps_dependency.c.backup
+│   │   │   ├── sps_lifecycle.c.backup
+│   │   │   ├── sps_pipeline.c.backup
+│   │   │   └── sps_stream.c.backup
+│   │   ├── symbols
+│   │   │   ├── cold_symbol.c.backup
+│   │   │   ├── nexus_symbols.c.backup
+│   │   │   ├── symbols.c.backup
+│   │   │   └── versioned_symbols.c.backup
+│   │   └── tatit
+│   │       ├── abstraction.c.backup
+│   │       ├── aggregation.c.backup
+│   │       ├── composition.c.backup
+│   │       ├── identity.c.backup
+│   │       ├── tactic.c.backup
+│   │       ├── transformation.c.backup
+│   │       └── traversal.c.backup
+│   └── main.c.backup
+└── types.h
+
+84 directories, 278 files

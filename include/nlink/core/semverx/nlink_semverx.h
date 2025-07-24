@@ -1,3 +1,8 @@
+// nlink/core/semverx/nlink_semverx.h
+// OBINexus Constitutional Header Guard: OBINEXUS_NLINK_CORE_SEMVERX_NLINK_SEMVERX_H
+#ifndef OBINEXUS_NLINK_CORE_SEMVERX_NLINK_SEMVERX_H
+#define OBINEXUS_NLINK_CORE_SEMVERX_NLINK_SEMVERX_H
+
 /**
  * @file nlink_semverx.h
  * @brief NexusLink SemVerX Master Header (With Stubs)
@@ -5,8 +10,6 @@
  * @version 1.5.0
  */
 
-#ifndef NLINK_SEMVERX_H
-#define NLINK_SEMVERX_H
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -27,4 +30,5 @@
 #define NLINK_SEMVERX_VERSION_PATCH 0
 #define NLINK_SEMVERX_VERSION_STRING "1.5.0"
 
-#endif /* NLINK_SEMVERX_H */
+
+#endif // OBINEXUS_NLINK_CORE_SEMVERX_NLINK_SEMVERX_H

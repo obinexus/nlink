@@ -1,3 +1,8 @@
+// nlink/core/symbols/registry.h
+// OBINexus Constitutional Header Guard: OBINEXUS_NLINK_CORE_SYMBOLS_REGISTRY_H
+#ifndef OBINEXUS_NLINK_CORE_SYMBOLS_REGISTRY_H
+#define OBINEXUS_NLINK_CORE_SYMBOLS_REGISTRY_H
+
 /**
  * @file registry.h
  * @brief Symbol registry management for NexusLink
@@ -173,3 +178,4 @@
  #endif
  
  #endif /* NLINK_SYMBOLS_REGISTRY_H */
+#endif // OBINEXUS_NLINK_CORE_SYMBOLS_REGISTRY_H

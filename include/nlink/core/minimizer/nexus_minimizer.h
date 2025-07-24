@@ -1,3 +1,8 @@
+// nlink/core/minimizer/nexus_minimizer.h
+// OBINexus Constitutional Header Guard: OBINEXUS_NLINK_CORE_MINIMIZER_NEXUS_MINIMIZER_H
+#ifndef OBINEXUS_NLINK_CORE_MINIMIZER_NEXUS_MINIMIZER_H
+#define OBINEXUS_NLINK_CORE_MINIMIZER_NEXUS_MINIMIZER_H
+
 /**
  * @file nexus_minimizer.h
  * @brief Interface for the NexusLink state machine minimizer
@@ -164,3 +169,4 @@
  #endif
  
  #endif /* NLINK_CORE_MINIMIZER_NEXUS_MINIMIZER_H */
+#endif // OBINEXUS_NLINK_CORE_MINIMIZER_NEXUS_MINIMIZER_H

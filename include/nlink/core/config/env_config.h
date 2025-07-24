@@ -1,6 +1,9 @@
+// nlink/core/config/env_config.h
+// OBINexus Constitutional Header Guard: OBINEXUS_NLINK_CORE_CONFIG_ENV_CONFIG_H
+#ifndef OBINEXUS_NLINK_CORE_CONFIG_ENV_CONFIG_H
+#define OBINEXUS_NLINK_CORE_CONFIG_ENV_CONFIG_H
+
 // include/nlink/core/config/env_config.h
-#ifndef NLINK_CORE_CONFIG_ENV_CONFIG_H
-#define NLINK_CORE_CONFIG_ENV_CONFIG_H
 
 #include "nlink/core/config/types.h"
 #include "nlink/core/crypto/shannon_entropy.h"
@@ -48,3 +51,5 @@ nlink_config_result_t nlink_load_env_config(const char* env_name,
                                             nlink_env_config_t* config);
 
 #endif
+
+#endif // OBINEXUS_NLINK_CORE_CONFIG_ENV_CONFIG_H

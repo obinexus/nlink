@@ -1,3 +1,8 @@
+// nlink/cli/regex_matcher.h
+// OBINexus Constitutional Header Guard: OBINEXUS_NLINK_CLI_REGEX_MATCHER_H
+#ifndef OBINEXUS_NLINK_CLI_REGEX_MATCHER_H
+#define OBINEXUS_NLINK_CLI_REGEX_MATCHER_H
+
 /**
  * @file regex_matcher.h
  * @brief Regular expression matching for CLI commands
@@ -94,3 +99,4 @@
  #endif
  
  #endif /* NLINK_REGEX_MATCHER_H */
+#endif // OBINEXUS_NLINK_CLI_REGEX_MATCHER_H

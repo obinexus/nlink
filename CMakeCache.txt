@@ -25,7 +25,7 @@ CMAKE_AR:FILEPATH=/usr/bin/ar
 
 //Choose the type of build, options are: None Debug Release RelWithDebInfo
 // MinSizeRel ...
-CMAKE_BUILD_TYPE:STRING=
+CMAKE_BUILD_TYPE:STRING=Release
 
 //Enable/Disable color output during build.
 CMAKE_COLOR_MAKEFILE:BOOL=ON
@@ -68,7 +68,7 @@ CMAKE_C_COMPILER_AR:FILEPATH=/usr/bin/gcc-ar-12
 CMAKE_C_COMPILER_RANLIB:FILEPATH=/usr/bin/gcc-ranlib-12
 
 //Flags used by the C compiler during all build types.
-CMAKE_C_FLAGS:STRING=
+CMAKE_C_FLAGS:STRING=-Wall -Wextra -Werror -std=c11 -fPIC -Iinclude/nlink -Iinclude/nlink/core -DSINPHASES_COMPLIANCE=0.5 -DOBINEXUS_CONSTITUTIONAL_VALIDATION -fstack-protector-strong -D_FORTIFY_SOURCE=2 -fno-omit-frame-pointer -grecord-gcc-switches -O3 -DNDEBUG -DOBINEXUS_PRODUCTION_MODE
 
 //Flags used by the C compiler during DEBUG builds.
 CMAKE_C_FLAGS_DEBUG:STRING=-g
@@ -286,6 +286,12 @@ NexusLink_IS_TOP_LEVEL:STATIC=ON
 
 //Value Computed by CMake
 NexusLink_SOURCE_DIR:STATIC=/home/obinexus/obinexus/projects/nlink
+
+//No help, variable specified on the command line.
+OBINEXUS_CONSTITUTIONAL_VALIDATION:UNINITIALIZED=ON
+
+//No help, variable specified on the command line.
+SINPHASES_COMPLIANCE:UNINITIALIZED=0.5
 
 //Dependencies for the target
 nexus_versioning_LIB_DEPENDS:STATIC=general;nexus_common;

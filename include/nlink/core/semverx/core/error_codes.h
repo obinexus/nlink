@@ -1,3 +1,8 @@
+// nlink/core/semverx/core/error_codes.h
+// OBINexus Constitutional Header Guard: OBINEXUS_NLINK_CORE_SEMVERX_CORE_ERROR_CODES_H
+#ifndef OBINEXUS_NLINK_CORE_SEMVERX_CORE_ERROR_CODES_H
+#define OBINEXUS_NLINK_CORE_SEMVERX_CORE_ERROR_CODES_H
+
 /**
  * @file error_codes.h
  * @brief Core Error Code Definitions for NexusLink SemVerX
@@ -8,8 +13,6 @@
  * to prevent duplicate declarations and maintain separation of concerns.
  */
 
-#ifndef NLINK_SEMVERX_CORE_ERROR_CODES_H
-#define NLINK_SEMVERX_CORE_ERROR_CODES_H
 
 // Configuration result codes (Core system only)
 typedef enum {
@@ -27,4 +30,5 @@ typedef enum {
 // include/nlink_semverx/cli/parser_interface.h to maintain
 // systematic separation of concerns and prevent redeclaration conflicts.
 
-#endif /* NLINK_SEMVERX_CORE_ERROR_CODES_H */
+
+#endif // OBINEXUS_NLINK_CORE_SEMVERX_CORE_ERROR_CODES_H
