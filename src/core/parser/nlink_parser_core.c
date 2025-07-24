@@ -4,9 +4,11 @@
  * @copyright Copyright © 2025 OBINexus Computing
  */
 
-#include <nlink/core/parser/nlink_parser_core.h"
+#include <nlink/core/parser/nlink_parser_core.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdbool.h>
+
 
 nlink_parser_context* nlink_parser_create(nlink_token** tokens, nlink_parser_config* config) {
     if (tokens == NULL) {

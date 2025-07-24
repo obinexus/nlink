@@ -5,15 +5,16 @@
  * Copyright © 2025 OBINexus Computing
  */
 
- #include <nlink/cli/parse.h"
- #include <nlink/cli/command_params.h"
- #include <nlink/core/pattern/matcher.h"
- #include <nlink/core/common/nexus_core.h"
- #include <string.h>
+ #include <nlink/cli/parse.h>
+ #include <nlink/cli/command_params.h>
+ #include <nlink/core/pattern/matcher.h>
+ #include <nlink/core/common/nexus_core.h>
+  #include <string.h>
  #include <stdlib.h>
  #include <ctype.h>
  #include <stdio.h>
- 
+ #include <stdbool.h>
+
  /* Maximum length for a command string */
  #define MAX_COMMAND_LENGTH 4096
  

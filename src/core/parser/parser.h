@@ -15,7 +15,7 @@
 #include "../tactic/tactic.h"
 #include "../type/type.h"
 #include "../tokenizer/tokenizer.h"
-
+#include <stdbool.h>
 /**
  * Node type for abstract syntax trees
  */
