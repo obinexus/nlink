@@ -1,3 +1,4 @@
+#include <nlink/core/etps/etps_types.h>
 // src/core/etps/telemetry.c
 // OBINexus ETPS: Minimal Constitutional Implementation
 #define _POSIX_C_SOURCE 200809L

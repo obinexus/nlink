@@ -3,41 +3,22 @@
 #ifndef OBINEXUS_NLINK_CORE_ETPS_HOTSWAP_TYPES_H
 #define OBINEXUS_NLINK_CORE_ETPS_HOTSWAP_TYPES_H
 
-#include <stdint.h>
-#include <stdbool.h>
+#include <nlink/core/etps/etps_types.h>
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-// Hotswap State Machine: Constitutional Coordination Protocol
-typedef enum {
-    HOTSWAP_STATE_IDLE = 0,
-    HOTSWAP_STATE_PREPARING = 1,
-    HOTSWAP_STATE_EXECUTING = 2,
-    HOTSWAP_STATE_VALIDATING = 3,
-    HOTSWAP_STATE_COMPLETED = 4,
-    HOTSWAP_STATE_FAILED = -1
-} hotswap_state_t;
+// Re-export constitutional types from unified ETPS types
+typedef hotswap_result_t hotswap_result_t;
+typedef hotswap_state_t hotswap_state_t;
+typedef hotswap_operation_t hotswap_operation_t;
 
-// Hotswap Operation Types: Polymorphic Coordination
-typedef enum {
-    HOTSWAP_OP_NONE = 0,
-    HOTSWAP_OP_MODULE_RELOAD = 1,
-    HOTSWAP_OP_CONFIG_UPDATE = 2,
-    HOTSWAP_OP_TELEMETRY_RECONFIGURE = 3,
-    HOTSWAP_OP_BOUNDARY_ADJUSTMENT = 4
-} hotswap_operation_t;
-
-// Hotswap Result Type: Comprehensive Error Coordination
-typedef enum {
-    HOTSWAP_SUCCESS = 0,
-    HOTSWAP_ERROR_INVALID_STATE = -1,
-    HOTSWAP_ERROR_COORDINATION_FAILED = -2,
-    HOTSWAP_ERROR_BOUNDARY_VIOLATION = -3,
-    HOTSWAP_ERROR_ENTROPY_EXHAUSTED = -4,
-    HOTSWAP_ERROR_VALIDATION_FAILED = -5
-} hotswap_result_t;
+// Compatibility aliases for legacy code
+#define HOTSWAP_SUCCESS HOTSWAP_RESULT_SUCCESS
+#define HOTSWAP_ERROR_INVALID_STATE HOTSWAP_RESULT_ERROR_INVALID_STATE
+#define HOTSWAP_ERROR_COORDINATION_FAILED HOTSWAP_RESULT_ERROR_COORDINATION_FAILED
+#define HOTSWAP_ERROR_BOUNDARY_VIOLATION HOTSWAP_RESULT_ERROR_BOUNDARY_VIOLATION
 
 #ifdef __cplusplus
 }
