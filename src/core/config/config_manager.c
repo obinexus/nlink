@@ -1,12 +1,13 @@
-#include <nlink/core/config/config_manager.h>
 // src/core/config/config_manager.c
 // OBINexus Constitutional Configuration Manager: Parameter Coordination
-#define _POSIX_C_SOURCE 200809L
 
-#include <nlink/core/config/config.h>
+#define _POSIX_C_SOURCE 200809L
+#include <nlink/core/config/config_manager.h>
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
+
+
 
 static bool g_config_initialized = false;
 static config_context_t g_config_context = {0};
