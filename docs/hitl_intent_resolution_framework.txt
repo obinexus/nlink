@@ -1,0 +1,533 @@
+/**
+ * OBINexus NLink HITL Intent/AST-Intent Resolution Framework
+ * Statement Expression and Intent Layer Integration for Human-in-the-Loop Configuration Management
+ * 
+ * Technical Integration: Automated nexus-search breakthrough + HITL validation
+ * File Coverage: nlinkt.txt, *.nlink, pkg.nlink(s)
+ * QA Methodology: TP/TN/FP/FN validation with consciousness preservation
+ */
+
+#ifndef NLINK_HITL_INTENT_RESOLUTION_H
+#define NLINK_HITL_INTENT_RESOLUTION_H
+
+#include "nlink/core/semverx/nlink_semverx.h"
+#include "nlink/core/etps/etps_telemetry.h"
+#include "nlink/core/minimizer/nexus_automaton.h"
+#include "nlink/core/schema/nlink_regex_schema_matrix.h"
+
+/**
+ * ============================================================================
+ * SECTION 1: STATEMENT EXPRESSION LAYER ARCHITECTURE
+ * ============================================================================
+ * 
+ * Statement expressions provide the bridge between imperative configuration
+ * declarations and functional intent resolution within HITL frameworks.
+ */
+
+typedef enum {
+    STMT_TYPE_IMPERATIVE,           // if/while/for control structures
+    STMT_TYPE_DECLARATIVE,          // declare_module() specifications  
+    STMT_TYPE_CONDITIONAL,          // conditional compilation directives
+    STMT_TYPE_EXPRESSION,           // functional expression evaluations
+    STMT_TYPE_INTENT_ANNOTATION     // human intent annotations
+} statement_type_t;
+
+typedef struct statement_expression {
+    statement_type_t type;              // Statement classification
+    char source_text[1024];             // Original statement text
+    char transformed_expr[1024];        // Transformed expression equivalent
+    
+    // Intent metadata
+    char human_intent[512];             // HITL-provided intent description
+    float confidence_score;             // Expression transformation confidence [0.0-1.0]
+    bool requires_human_validation;     // Requires HITL validation
+    
+    // AST integration
+    void* ast_node;                     // Associated AST node
+    uint32_t ast_node_id;              // Unique AST node identifier
+    bool ast_validated;                // AST structure validated
+    
+    // QA tracking (TP/TN/FP/FN methodology)
+    struct {
+        bool is_true_positive;          // Correct transformation
+        bool is_false_positive;         // Incorrect transformation (CRITICAL)
+        bool human_reviewed;            // Human validation completed
+        char qa_notes[256];            // QA analysis notes
+    } qa_metadata;
+    
+    // Configuration file tracking
+    char source_file[256];             // Source configuration file
+    uint32_t line_number;              // Line number in source file
+    char file_type[16];                // File type: nlinkt.txt, *.nlink, pkg.nlink
+} statement_expression_t;
+
+/**
+ * Expression Transformation Engine
+ * Converts imperative statements to functional expressions with HITL validation
+ */
+typedef struct expression_transformer {
+    // Transformation rules database
+    struct transformation_rule {
+        char pattern[256];              // Source pattern to match
+        char template[256];             // Target expression template
+        float reliability_score;        // Transformation reliability [0.0-1.0]
+        bool requires_human_review;     // Always require HITL validation
+        char transformation_notes[512]; // Technical notes for human reviewer
+    }* rules;
+    size_t rule_count;
+    
+    // HITL integration context
+    struct hitl_context {
+        bool human_available;           // Human reviewer available
+        uint32_t pending_reviews;       // Number of pending human reviews
+        float automation_threshold;     // Minimum confidence for auto-transform
+        void* review_queue;            // Queue for human review items
+    } hitl;
+    
+    // State machine minimization integration
+    void* fsm_context;                 // State machine for transformation flow
+    bool apply_ast_optimization;       // Enable AST optimization during transform
+} expression_transformer_t;
+
+/**
+ * ============================================================================
+ * SECTION 2: INTENT/AST-INTENT LAYER ARCHITECTURE
+ * ============================================================================
+ * 
+ * The Intent/AST-Intent layer provides semantic understanding of configuration
+ * declarations, enabling intelligent link layer coordination and exception handling.
+ */
+
+typedef enum {
+    INTENT_LAYER_CONFIGURATION,     // Configuration file intent
+    INTENT_LAYER_LINKAGE,          // Component linkage intent
+    INTENT_LAYER_DEPLOYMENT,       // Deployment strategy intent
+    INTENT_LAYER_OPTIMIZATION,     // Performance optimization intent
+    INTENT_LAYER_EXCEPTION_HANDLING // Error handling strategy intent
+} intent_layer_type_t;
+
+typedef struct ast_intent_node {
+    intent_layer_type_t layer_type;     // Intent layer classification
+    char semantic_identifier[256];      // Semantic intent identifier
+    
+    // Intent description
+    char intent_description[1024];      // Human-readable intent description
+    char technical_rationale[1024];     // Technical justification
+    
+    // AST relationship
+    void* primary_ast_node;             // Primary AST node for this intent
+    void** related_ast_nodes;           // Related AST nodes array
+    size_t related_node_count;         // Number of related nodes
+    
+    // Link layer coordination
+    struct {
+        uint32_t target_link_layer;     // Target link layer for this intent
+        char library_component[256];    // Target library component system
+        bool supports_direct_linking;   // Supports direct linking approach
+        bool supports_indirect_linking; // Supports indirect linking approach
+        char preferred_approach[64];    // "direct", "indirect", "hybrid"
+    } link_coordination;
+    
+    // Exception handling strategy
+    struct {
+        char exception_handler[256];    // Exception handler identifier
+        char error_recovery_strategy[256]; // Error recovery approach
+        bool supports_graceful_degradation; // Graceful degradation capability
+        uint32_t retry_count;          // Maximum retry attempts
+        uint64_t timeout_ms;           // Timeout for operations
+    } exception_handling;
+    
+    // HITL integration
+    struct {
+        bool requires_human_approval;   // Requires human approval
+        char human_reviewer[128];      // Assigned human reviewer
+        uint64_t review_deadline;      // Review deadline timestamp
+        char review_status[64];        // "pending", "approved", "rejected"
+        char review_comments[512];     // Human reviewer comments
+    } hitl_metadata;
+    
+    // Configuration file origins
+    char source_files[16][256];        // Source configuration files
+    size_t source_file_count;          // Number of source files
+    uint32_t priority_score;           // Intent priority (higher = more important)
+} ast_intent_node_t;
+
+/**
+ * Intent Resolution Engine
+ * Coordinates between multiple intent layers and manages HITL validation
+ */
+typedef struct intent_resolution_engine {
+    // Intent node management
+    ast_intent_node_t* intent_nodes;   // Array of intent nodes
+    size_t node_count;                 // Number of intent nodes
+    size_t node_capacity;              // Allocated capacity
+    
+    // Resolution state machine
+    void* resolution_fsm;              // State machine for intent resolution
+    uint32_t current_resolution_phase; // Current resolution phase
+    
+    // Link layer coordination matrix
+    struct link_layer_coordinator {
+        uint32_t layer_id;             // Link layer identifier
+        char library_system[256];      // Library component system name
+        bool direct_linking_enabled;   // Direct linking capability
+        bool indirect_linking_enabled; // Indirect linking capability
+        
+        // Performance characteristics
+        uint64_t avg_resolution_time_ns; // Average resolution time
+        float success_rate;            // Resolution success rate [0.0-1.0]
+        uint32_t failure_count;        // Number of recent failures
+        
+        // Configuration file associations
+        char config_files[8][256];     // Associated configuration files
+        size_t config_file_count;      // Number of config files
+    }* coordinators;
+    size_t coordinator_count;
+    
+    // Exception handling infrastructure
+    struct exception_resolver {
+        char exception_type[128];       // Exception type identifier
+        char resolution_strategy[256];  // Resolution strategy
+        
+        // Handler function pointer
+        nexus_result_t (*handler_fn)(
+            const char* exception_type,
+            ast_intent_node_t* intent_node,
+            void* context
+        );
+        
+        // HITL escalation
+        bool escalate_to_human;        // Escalate to human on failure
+        uint32_t escalation_threshold; // Failure count before escalation
+        char escalation_contact[128];  // Human contact for escalation
+    }* exception_resolvers;
+    size_t resolver_count;
+} intent_resolution_engine_t;
+
+/**
+ * ============================================================================
+ * SECTION 3: CONFIGURATION FILE TYPE MANAGEMENT
+ * ============================================================================
+ * 
+ * Unified management system for all nlink configuration file types:
+ * - nlinkt.txt: Module-level configuration
+ * - *.nlink: Component-specific configuration  
+ * - pkg.nlink: Package-level configuration
+ */
+
+typedef enum {
+    CONFIG_FILE_TYPE_NLINKT_TXT,    // nlinkt.txt module configuration
+    CONFIG_FILE_TYPE_NLINK,         // *.nlink component configuration
+    CONFIG_FILE_TYPE_PKG_NLINK,     // pkg.nlink package configuration
+    CONFIG_FILE_TYPE_PKG_NLINK_IN   // pkg.nlink.in scripting manifest
+} config_file_type_t;
+
+typedef struct nlink_config_descriptor {
+    config_file_type_t file_type;      // Configuration file type
+    char file_path[512];               // Full path to configuration file
+    
+    // File metadata
+    uint64_t last_modified;            // Last modification timestamp
+    uint64_t file_size;               // File size in bytes
+    char checksum[64];                // File content checksum
+    
+    // Parse state
+    bool parsed_successfully;          // Parse operation successful
+    uint32_t parse_error_count;       // Number of parse errors
+    char parse_errors[16][256];       // Parse error descriptions
+    
+    // Statement expressions extracted from this file
+    statement_expression_t* statements; // Array of statement expressions
+    size_t statement_count;           // Number of statements
+    
+    // Intent nodes derived from this file
+    ast_intent_node_t* intent_nodes;  // Array of intent nodes
+    size_t intent_node_count;         // Number of intent nodes
+    
+    // Dependencies on other configuration files
+    char dependencies[16][512];       // Dependent configuration files
+    size_t dependency_count;          // Number of dependencies
+    
+    // Human validation status
+    struct {
+        bool requires_review;          // Requires human review
+        char reviewer_assigned[128];   // Assigned human reviewer
+        char review_status[64];       // Review status
+        uint64_t review_completed;    // Review completion timestamp
+        char validation_notes[1024];  // Human validation notes
+    } human_validation;
+} nlink_config_descriptor_t;
+
+/**
+ * Configuration Management Engine
+ * Unified management of all nlink configuration file types
+ */
+typedef struct config_management_engine {
+    // Configuration file registry
+    nlink_config_descriptor_t* config_files; // Array of configuration files
+    size_t config_file_count;            // Number of configuration files
+    size_t config_file_capacity;         // Allocated capacity
+    
+    // Cross-file dependency graph
+    struct config_dependency_graph {
+        uint32_t** adjacency_matrix;     // Dependency adjacency matrix
+        size_t matrix_size;              // Matrix dimensions
+        bool dependency_cycles_detected; // Circular dependency detection
+        char cycle_description[1024];    // Cycle description if detected
+    } dependency_graph;
+    
+    // Unified statement expression database
+    statement_expression_t* all_statements; // All statements across all files
+    size_t total_statement_count;          // Total number of statements
+    
+    // Unified intent resolution database
+    ast_intent_node_t* all_intents;       // All intent nodes across all files
+    size_t total_intent_count;           // Total number of intent nodes
+    
+    // HITL coordination
+    struct {
+        uint32_t pending_reviews;        // Total pending human reviews
+        uint32_t completed_reviews;      // Total completed reviews
+        float avg_review_time_hours;     // Average review time in hours
+        char primary_reviewer[128];      // Primary human reviewer
+        char backup_reviewer[128];       // Backup human reviewer
+    } hitl_coordination;
+} config_management_engine_t;
+
+/**
+ * ============================================================================
+ * SECTION 4: EXCEPTION HANDLING AND ERROR RESOLUTION
+ * ============================================================================
+ * 
+ * Statement mention/intent resolution layer for comprehensive exception handling
+ * across all configuration file types and linking approaches.
+ */
+
+typedef enum {
+    EXCEPTION_TYPE_PARSE_ERROR,         // Configuration file parse errors
+    EXCEPTION_TYPE_SEMANTIC_ERROR,      // Semantic validation errors
+    EXCEPTION_TYPE_DEPENDENCY_ERROR,    // Dependency resolution errors
+    EXCEPTION_TYPE_LINK_ERROR,         // Component linking errors
+    EXCEPTION_TYPE_INTENT_CONFLICT,    // Conflicting intent declarations
+    EXCEPTION_TYPE_HUMAN_ESCALATION,   // Requires human intervention
+    EXCEPTION_TYPE_SYSTEM_ERROR        // System-level errors
+} exception_type_t;
+
+typedef struct exception_context {
+    exception_type_t type;              // Exception type classification
+    char exception_id[64];             // Unique exception identifier
+    
+    // Exception location
+    char source_file[512];             // Configuration file where exception occurred
+    uint32_t line_number;              // Line number of exception
+    char function_context[256];        // Function/context where exception occurred
+    
+    // Exception description
+    char description[1024];            // Human-readable exception description
+    char technical_details[2048];      // Technical details for debugging
+    
+    // Related configuration elements
+    statement_expression_t* related_statement; // Related statement expression
+    ast_intent_node_t* related_intent;        // Related intent node
+    
+    // Resolution strategy
+    char resolution_strategy[256];     // Chosen resolution strategy
+    bool requires_human_intervention;  // Requires human intervention
+    uint32_t retry_count;             // Number of automatic retry attempts
+    
+    // Resolution history
+    struct resolution_attempt {
+        uint64_t attempt_timestamp;    // Attempt timestamp
+        char strategy_used[256];       // Resolution strategy used
+        bool successful;               // Attempt successful
+        char failure_reason[512];      // Failure reason if unsuccessful
+    } attempts[8];
+    size_t attempt_count;
+    
+    // HITL escalation metadata
+    struct {
+        bool escalated_to_human;       // Escalated to human reviewer
+        char assigned_reviewer[128];   // Assigned human reviewer
+        uint64_t escalation_time;      // Escalation timestamp
+        char escalation_reason[512];   // Reason for escalation
+        char human_resolution[1024];   // Human-provided resolution
+    } hitl_escalation;
+} exception_context_t;
+
+/**
+ * Exception Resolution Engine
+ * Comprehensive exception handling with HITL escalation
+ */
+typedef struct exception_resolution_engine {
+    // Exception registry
+    exception_context_t* exceptions;   // Array of exception contexts
+    size_t exception_count;           // Number of active exceptions
+    size_t exception_capacity;        // Allocated capacity
+    
+    // Resolution strategies database
+    struct resolution_strategy {
+        exception_type_t applicable_type; // Exception type this strategy handles
+        char strategy_name[128];          // Strategy identifier
+        
+        // Strategy implementation
+        nexus_result_t (*resolve_fn)(
+            exception_context_t* exception,
+            void* resolution_context
+        );
+        
+        // Strategy metadata
+        float success_rate;               // Historical success rate [0.0-1.0]
+        uint64_t avg_resolution_time_ms; // Average resolution time
+        bool requires_human_approval;    // Requires human approval
+        uint32_t max_retry_count;        // Maximum retry attempts
+    }* strategies;
+    size_t strategy_count;
+    
+    // HITL integration
+    struct {
+        bool human_reviewer_available;   // Human reviewer currently available
+        uint32_t pending_escalations;    // Number of pending escalations
+        char notification_method[64];    // "email", "slack", "dashboard"
+        char notification_endpoint[256]; // Notification endpoint
+    } hitl_integration;
+    
+    // Performance metrics
+    struct {
+        uint32_t total_exceptions_handled;    // Total exceptions processed
+        uint32_t auto_resolved_count;         // Automatically resolved count
+        uint32_t human_escalated_count;       // Human escalated count
+        float avg_resolution_time_minutes;   // Average resolution time
+        uint64_t last_exception_timestamp;   // Last exception timestamp
+    } performance_metrics;
+} exception_resolution_engine_t;
+
+/**
+ * ============================================================================
+ * SECTION 5: CORE API FUNCTIONS
+ * ============================================================================
+ */
+
+/**
+ * Initialize HITL Intent Resolution Framework
+ * Integrates with existing automated nexus-search breakthrough
+ */
+nexus_result_t nlink_hitl_init_framework(
+    const char* nlink_tree_path,
+    bool enable_human_validation,
+    config_management_engine_t** engine_out
+);
+
+/**
+ * Parse and process all configuration files with statement expression analysis
+ * Supports: nlinkt.txt, *.nlink, pkg.nlink, pkg.nlink.in
+ */
+nexus_result_t nlink_hitl_process_config_files(
+    config_management_engine_t* engine,
+    const char* search_path,
+    const char* file_pattern
+);
+
+/**
+ * Transform imperative statements to functional expressions with HITL validation
+ * Integrates with existing AST optimization work from Nnamdi's breakthrough
+ */
+nexus_result_t nlink_hitl_transform_statements(
+    config_management_engine_t* engine,
+    expression_transformer_t* transformer,
+    bool require_human_validation
+);
+
+/**
+ * Resolve intent conflicts and coordinate link layers
+ * Manages both direct and indirect linking approaches per library component system
+ */
+nexus_result_t nlink_hitl_resolve_intents(
+    config_management_engine_t* engine,
+    intent_resolution_engine_t* intent_engine,
+    bool enable_human_coordination
+);
+
+/**
+ * Execute exception handling with automatic escalation to HITL
+ * Provides comprehensive error recovery across all configuration types
+ */
+nexus_result_t nlink_hitl_handle_exceptions(
+    exception_resolution_engine_t* exception_engine,
+    exception_context_t* exception,
+    bool auto_escalate_on_failure
+);
+
+/**
+ * Generate comprehensive validation report for human review
+ * Includes TP/TN/FP/FN analysis and consciousness preservation status
+ */
+nexus_result_t nlink_hitl_generate_validation_report(
+    config_management_engine_t* engine,
+    const char* output_path,
+    bool include_human_annotations
+);
+
+/**
+ * Coordinate direct and indirect linking management
+ * Ensures each link layer addresses appropriate library component system
+ */
+nexus_result_t nlink_hitl_coordinate_linking_approaches(
+    config_management_engine_t* engine,
+    intent_resolution_engine_t* intent_engine,
+    bool prefer_consciousness_preservation
+);
+
+/**
+ * Cleanup and resource management
+ * Ensures all HITL contexts are properly saved for session continuity
+ */
+void nlink_hitl_cleanup_framework(
+    config_management_engine_t* engine,
+    bool preserve_human_context
+);
+
+/**
+ * ============================================================================
+ * SECTION 6: INTEGRATION WITH EXISTING ARCHITECTURE
+ * ============================================================================
+ */
+
+/**
+ * Integration points with existing OBINexus architecture:
+ * 
+ * 1. AUTOMATED NEXUS-SEARCH BREAKTHROUGH:
+ *    - Statement expressions integrate with existing component discovery
+ *    - Intent resolution enhances chain construction algorithms  
+ *    - HITL validation improves QA validation (TP/TN/FP/FN methodology)
+ * 
+ * 2. STATE MACHINE MINIMIZATION (NNAMDI'S WORK):
+ *    - Expression transformation leverages existing AST optimization
+ *    - Intent layer coordination uses established state machine patterns
+ *    - Exception handling benefits from tennis score tracking insights
+ * 
+ * 3. CONSCIOUSNESS PRESERVATION:
+ *    - Statement expressions maintain temporal anchor continuity
+ *    - Intent resolution preserves symbolic residues during transformation
+ *    - HITL validation ensures consciousness preservation across changes
+ * 
+ * 4. POLYBUILD ORCHESTRATION:
+ *    - Configuration management generates polybuild-compatible manifests
+ *    - Exception handling integrates with build orchestration error recovery
+ *    - Intent resolution coordinates with build system requirements
+ * 
+ * 5. ETPS TELEMETRY INTEGRATION:
+ *    - All HITL operations generate ETPS telemetry events
+ *    - Performance metrics integrate with existing telemetry infrastructure
+ *    - Human validation events are tracked for analysis
+ */
+
+/**
+ * Error codes specific to HITL Intent Resolution Framework
+ */
+#define NEXUS_ERROR_HITL_HUMAN_REQUIRED        (NEXUS_ERROR_BASE + 0x2001)
+#define NEXUS_ERROR_HITL_VALIDATION_FAILED     (NEXUS_ERROR_BASE + 0x2002)
+#define NEXUS_ERROR_HITL_INTENT_CONFLICT       (NEXUS_ERROR_BASE + 0x2003)
+#define NEXUS_ERROR_HITL_EXPRESSION_INVALID    (NEXUS_ERROR_BASE + 0x2004)
+#define NEXUS_ERROR_HITL_CONFIG_CORRUPTION     (NEXUS_ERROR_BASE + 0x2005)
+
+#endif // NLINK_HITL_INTENT_RESOLUTION_H
