@@ -1,0 +1,73 @@
+name: nlink CI/CD Release Channels
+
+on:
+  push:
+    branches:
+      - main
+      - alpha
+      - beta
+    tags:
+      - 'v*'
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        build-type: [Debug, Release]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up CMake
+        uses: jwlawson/actions-setup-cmake@v1
+
+      - name: Configure
+        run: cmake -B build -DCMAKE_BUILD_TYPE=${{ matrix.build-type }}
+
+      - name: Build
+        run: cmake --build build --parallel
+
+      - name: Run Tests
+        run: ctest --test-dir build
+
+  release:
+    needs: build-test
+    if: github.ref == 'refs/heads/beta' || startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up GitHub CLI
+        uses: cli/cli@v2
+
+      - name: Create GitHub Release
+        run: |
+          gh release create "${{ github.ref_name }}" \
+            --title "Release ${{ github.ref_name }}" \
+            --notes "Automated release from CI/CD for beta/stable channel"
+
+  package:
+    needs: release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build DEB Package (Ubuntu)
+        run: |
+          mkdir -p dist
+          checkinstall --install=no --pkgname=nlink --pkgversion=${{ github.ref_name }} --pkgrelease=1 --default
+          mv *.deb dist/
+
+      - name: Upload Release Asset
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/*.deb
+
+      - name: Build AUR-style PKGBUILD (Arch)
+        run: |
+          # Custom PKGBUILD creation logic here
+          echo "TODO: Add Arch support script"
+
+      - name: Publish to Internal Registry (Optional)
+        run: |
+          echo "Push packages to Nexus/internal channels if needed."

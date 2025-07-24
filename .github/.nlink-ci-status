@@ -1,0 +1,33 @@
+#!/bin/bash
+# File: .git/hooks/pre-push
+# Purpose: Block unstable alpha/beta pushes unless specific conditions are met
+
+set -e
+
+BRANCH=$(git rev-parse --abbrev-ref HEAD)
+REMOTE=$(git remote get-url origin)
+
+# Optional: Define allowed push paths
+ALLOWED_BRANCHES=("main" "stable" "release")
+BETA_BRANCH="beta"
+ALPHA_BRANCH="alpha"
+
+# Check if pushing to alpha/beta and reject if build failed last time
+if [[ "$BRANCH" == "$BETA_BRANCH" || "$BRANCH" == "$ALPHA_BRANCH" ]]; then
+  echo "[nlink] Checking push policy for $BRANCH..."
+
+  if [ ! -f ".nlink-ci-status" ]; then
+    echo "[error] No CI status file (.nlink-ci-status) found. Push blocked."
+    exit 1
+  fi
+
+  STATUS=$(cat .nlink-ci-status)
+  if [[ "$STATUS" != "OK" ]]; then
+    echo "[error] Previous CI/CD run failed or marked unstable. Push to $BRANCH blocked."
+    echo "Reason: $STATUS"
+    exit 1
+  fi
+fi
+
+# Allow all other branches
+exit 0
