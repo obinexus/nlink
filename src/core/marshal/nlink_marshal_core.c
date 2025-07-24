@@ -8,7 +8,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdint.h>
-#include "nlink/core/etps/telemetry.h"
+#include <nlink/core/etps/telemetry.h"
 
 // Marshal format types
 typedef enum {

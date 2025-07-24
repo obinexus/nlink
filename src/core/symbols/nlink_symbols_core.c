@@ -9,7 +9,7 @@
  * Copyright © 2025 OBINexus Computing
  */
 
- #include "nlink/core/symbols/nexus_symbols.h"
+ #include <nlink/core/symbols/nexus_symbols.h"
  #include <stdio.h>
  #include <stdlib.h>
  #include <string.h>

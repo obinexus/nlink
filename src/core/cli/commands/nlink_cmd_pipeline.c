@@ -7,12 +7,12 @@
  * Copyright © 2025 OBINexus Computing
  */
 
- #include "nlink/cli/commands/pipeline.h"
- #include "nlink/cli/command_registration.h"  // Include the central registration header
- #include "nlink/core/pipeline/nlink_pipeline.h"
- #include "nlink/core/pipeline/pipeline_pass.h"
- #include "nlink/core/common/nexus_core.h"
- #include "nlink/core/common/result.h"
+ #include <nlink/cli/commands/pipeline.h"
+ #include <nlink/cli/command_registration.h"  // Include the central registration header
+ #include <nlink/core/pipeline/nlink_pipeline.h"
+ #include <nlink/core/pipeline/pipeline_pass.h"
+ #include <nlink/core/common/nexus_core.h"
+ #include <nlink/core/common/result.h"
  #include <stdio.h>
  #include <stdlib.h>
  #include <string.h>

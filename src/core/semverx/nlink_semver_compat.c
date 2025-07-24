@@ -8,9 +8,9 @@
  * Copyright © 2025 OBINexus Computing
  */
 
- #include "nlink/core/common/types.h"
- #include "nlink/core/common/result.h"
- #include "nlink/core/common/nexus_core.h"
+ #include <nlink/core/common/types.h"
+ #include <nlink/core/common/result.h"
+ #include <nlink/core/common/nexus_core.h"
  
  /* Global configuration for versioned lazy loading */
  typedef struct {

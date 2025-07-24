@@ -29,7 +29,7 @@ BIN_DIR := $(BUILD_DIR)/bin
 
 # Constitutional Compilation Flags: Boundary Enforcement
 CFLAGS := -Wall -Wextra -Werror -std=c11 -fPIC
-CFLAGS += -I$(INCLUDE_DIR) -I$(INCLUDE_DIR)/core
+CFLAGS += -I$(INCLUDE_DIR) -I$(INCLUDE_DIR)/core -Iinclude -Iinclude/nlink -Iinclude/nlink/core
 CFLAGS += -DSINPHASES_COMPLIANCE=$(SINPHASES_COMPLIANCE)
 CFLAGS += -DOBINEXUS_CONSTITUTIONAL_VALIDATION
 

@@ -7,12 +7,12 @@
  * Copyright © 2025 OBINexus Computing
  */
 
- #include "nlink/cli/commands/load.h"
- #include "nlink/cli/command_params.h"
- #include "nlink/cli/command_router.h"
- #include "nlink/cli/command_registration.h"  // Include the central registration header
- #include "nlink/core/common/nexus_loader.h"
- #include "nlink/core/common/result.h"
+ #include <nlink/cli/commands/load.h"
+ #include <nlink/cli/command_params.h"
+ #include <nlink/cli/command_router.h"
+ #include <nlink/cli/command_registration.h"  // Include the central registration header
+ #include <nlink/core/common/nexus_loader.h"
+ #include <nlink/core/common/result.h"
  #include <stdio.h>
  #include <stdlib.h>
  #include <string.h>

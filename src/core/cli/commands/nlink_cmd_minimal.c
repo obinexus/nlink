@@ -5,7 +5,7 @@
  * Copyright © 2025 OBINexus Computing
  */
 
- #include "nlink/cli/commands/minimal.h"
+ #include <nlink/cli/commands/minimal.h"
 
  
  // Forward declaration of load command execute function

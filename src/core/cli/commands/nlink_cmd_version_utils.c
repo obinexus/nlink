@@ -9,7 +9,7 @@
  * Copyright © 2025 OBINexus Computing
  */
 
- #include "nlink/cli/commands/version_utils.h"
+ #include <nlink/cli/commands/version_utils.h"
  /* Core versioning functionality - ONLY INCLUDE, DO NOT REDEFINE */
  #include <stdio.h>
  #include <stdlib.h>

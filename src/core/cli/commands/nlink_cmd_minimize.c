@@ -5,10 +5,10 @@
  * Copyright © 2025 OBINexus Computing
  */
 
- #include "nlink/cli/commands/minimize.h"
- #include "nlink/core/minimizer/nexus_minimizer.h"
- #include "nlink/core/common/nexus_core.h"
- #include "nlink/core/common/result.h"
+ #include <nlink/cli/commands/minimize.h"
+ #include <nlink/core/minimizer/nexus_minimizer.h"
+ #include <nlink/core/common/nexus_core.h"
+ #include <nlink/core/common/result.h"
  #include <stdio.h>
  #include <stdlib.h>
  #include <string.h>

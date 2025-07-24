@@ -1,3 +1,4 @@
+#include <nlink/core/marshal/marshal.h>
 // src/core/marshal/marshal.c
 // OBINexus Marshal: Data Serialization Coordination Protocol
 #define _POSIX_C_SOURCE 200809L
@@ -8,19 +9,7 @@
 #include <stdio.h>
 
 // Constitutional marshaling structures
-typedef struct {
-    uint32_t magic_marker;
-    uint8_t *buffer;
-    size_t buffer_size;
-    size_t position;
-} marshal_context_t;
 
-typedef enum {
-    MARSHAL_SUCCESS = 0,
-    MARSHAL_ERROR_INVALID_PARAMETER = -1,
-    MARSHAL_ERROR_BUFFER_OVERFLOW = -2,
-    MARSHAL_ERROR_MEMORY_ALLOCATION = -3
-} marshal_result_t;
 
 // Constitutional marshaling implementation
 marshal_result_t marshal_create_context(marshal_context_t **ctx, size_t buffer_size) {

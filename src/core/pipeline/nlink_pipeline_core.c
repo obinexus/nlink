@@ -5,8 +5,8 @@
  * Copyright © 2025 OBINexus Computing
  */
 
-#include "nlink/core/pipeline/nlink_pipeline.h"
-#include "nlink/core/common/nexus_core.h"
+#include <nlink/core/pipeline/nlink_pipeline.h"
+#include <nlink/core/common/nexus_core.h"
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>

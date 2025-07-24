@@ -1,5 +1,5 @@
 // src/core/crypto/shannon_entropy.c
-#include "nlink/core/crypto/shannon_entropy.h"
+#include <nlink/core/crypto/shannon_entropy.h"
 #include <math.h>
 #include <string.h>
 #include <stdlib.h>

@@ -5,13 +5,13 @@
  * Copyright © 2025 OBINexus Computing
  */
 
- #include "nlink/core/pipeline/pipeline_detector.h"
- #include "nlink/core/minimizer/nexus_minimizer.h"
- #include "nlink/core/minimizer/okpala_automaton.h"
- #include "nlink/spsystem/sps_config.h"
- #include "nlink/spsystem/sps_dependency.h"
- #include "nlink/mpsystem/mps_config.h"
- #include "nlink/mpsystem/mps_dependency.h"
+ #include <nlink/core/pipeline/pipeline_detector.h"
+ #include <nlink/core/minimizer/nexus_minimizer.h"
+ #include <nlink/core/minimizer/okpala_automaton.h"
+ #include <nlink/spsystem/sps_config.h"
+ #include <nlink/spsystem/sps_dependency.h"
+ #include <nlink/mpsystem/mps_config.h"
+ #include <nlink/mpsystem/mps_dependency.h"
  #include <stdio.h>
  #include <stdlib.h>
  #include <string.h>

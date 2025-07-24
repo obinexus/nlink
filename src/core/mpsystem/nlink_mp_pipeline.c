@@ -8,12 +8,12 @@
  * Copyright © 2025 OBINexus Computing
  */
 
-#include "nlink/mpsystem/mps_pipeline.h"
-#include "nlink/mpsystem/mps_dependency.h"
-#include "nlink/mpsystem/mps_stream.h"
-#include "nlink/mpsystem/mps_lifecycle.h"
-#include "nlink/core/common/nexus_core.h"
-#include "nlink/core/common/nexus_loader.h"
+#include <nlink/mpsystem/mps_pipeline.h"
+#include <nlink/mpsystem/mps_dependency.h"
+#include <nlink/mpsystem/mps_stream.h"
+#include <nlink/mpsystem/mps_lifecycle.h"
+#include <nlink/core/common/nexus_core.h"
+#include <nlink/core/common/nexus_loader.h"
 #include <string.h>
 #include <stdlib.h>
 

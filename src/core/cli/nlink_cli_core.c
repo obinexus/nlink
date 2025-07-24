@@ -8,17 +8,17 @@
  * Copyright © 2025 OBINexus Computing
  */
 
- #include "nlink/cli/cli.h"
- #include "nlink/cli/command_router.h"
- #include "nlink/cli/command_registry.h"
- #include "nlink/cli/command_registration.h"
- #include "nlink/cli/commands/load.h"
- #include "nlink/cli/commands/minimal.h"
- #include "nlink/cli/commands/version.h"
- #include "nlink/cli/commands/minimize.h"
- #include "nlink/cli/commands/pipeline.h"
- #include "nlink/core/common/nexus_core.h"
- #include "nlink/core/nlink.h"
+ #include <nlink/cli/cli.h"
+ #include <nlink/cli/command_router.h"
+ #include <nlink/cli/command_registry.h"
+ #include <nlink/cli/command_registration.h"
+ #include <nlink/cli/commands/load.h"
+ #include <nlink/cli/commands/minimal.h"
+ #include <nlink/cli/commands/version.h"
+ #include <nlink/cli/commands/minimize.h"
+ #include <nlink/cli/commands/pipeline.h"
+ #include <nlink/core/common/nexus_core.h"
+ #include <nlink/core/nlink.h"
  #include <string.h>
  #include <stdio.h>
  #include <stdlib.h>

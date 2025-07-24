@@ -1,3 +1,4 @@
+#include <nlink/core/config/config_manager.h>
 // src/core/config/config_manager.c
 // OBINexus Constitutional Configuration Manager: Parameter Coordination
 #define _POSIX_C_SOURCE 200809L

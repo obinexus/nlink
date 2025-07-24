@@ -8,8 +8,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
-#include "nlink/core/config/types.h"
-#include "nlink/core/etps/telemetry.h"
+#include <nlink/core/config/types.h"
+#include <nlink/core/etps/telemetry.h"
 
 // Configuration node structure
 typedef struct config_node {

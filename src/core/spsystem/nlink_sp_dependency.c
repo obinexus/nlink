@@ -8,9 +8,9 @@
  * Copyright © 2025 OBINexus Computing
  */
 
- #include "nlink/spsystem/sps_dependency.h"
- #include "nlink/core/common/nexus_core.h"
- #include "nlink/core/common/nexus_loader.h"
+ #include <nlink/spsystem/sps_dependency.h"
+ #include <nlink/core/common/nexus_core.h"
+ #include <nlink/core/common/nexus_loader.h"
  #include <stdlib.h>
  #include <string.h>
  

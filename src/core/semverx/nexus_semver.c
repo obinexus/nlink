@@ -2,7 +2,7 @@
 // Semantic versioning implementation for NexusLink
 // Author: Nnamdi Michael Okpala
 
-#include "../include/nexus_semver.h"
+#include <nlink/include/nexus_semver.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>

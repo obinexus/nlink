@@ -8,10 +8,10 @@
  * Copyright © 2025 OBINexus Computing
  */
 
- #include "nlink/cli/command_router.h"
- #include "nlink/cli/command_params.h"
- #include "nlink/core/pattern/matcher.h"
- #include "nlink/core/common/nexus_core.h"
+ #include <nlink/cli/command_router.h"
+ #include <nlink/cli/command_params.h"
+ #include <nlink/core/pattern/matcher.h"
+ #include <nlink/core/common/nexus_core.h"
  #include <stdlib.h>
  #include <string.h>
  #include <stdio.h>
