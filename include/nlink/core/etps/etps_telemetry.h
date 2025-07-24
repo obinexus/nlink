@@ -13,19 +13,28 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+typedef struct etps_context_t {
+    char project_root[256];                 // example size
+    void* registered_components;           // actual type array/pointer
+    int component_count;
+    int component_capacity;
+    bool strict_mode;
+    bool allow_experimental_stable;
+    bool auto_migration_enabled;
+} etps_context_t;
 
 // ETPS Core Types
 typedef uint64_t etps_guid_t;
 typedef uint64_t etps_timestamp_t;
 
-// ETPS Context Structure
-typedef struct etps_context {
-    etps_guid_t binding_guid;           // Unique binding identifier
-    etps_timestamp_t created_time;      // Context creation timestamp
-    etps_timestamp_t last_activity;     // Last activity timestamp
-    char context_name[64];              // Human-readable context name
-    bool is_active;                     // Context active status
-} etps_context_t;
+// // ETPS Context Structure
+// typedef struct etps_context {
+//     etps_guid_t binding_guid;           // Unique binding identifier
+//     etps_timestamp_t created_time;      // Context creation timestamp
+//     etps_timestamp_t last_activity;     // Last activity timestamp
+//     char context_name[64];              // Human-readable context name
+//     bool is_active;                     // Context active status
+// } etps_context_t;
 
 // ETPS Component Types
 typedef enum {
@@ -69,7 +78,7 @@ void etps_context_destroy(etps_context_t* ctx);
  * @param type Expected type as string
  * @return true if valid, false otherwise
  */
-bool etps_validate_input(etps_context_t* ctx, const char* param_name, 
+bool etps_validate_input(etps_context_t* ctx, const char* param_name,
                         const void* value, const char* type);
 
 /**
@@ -93,7 +102,7 @@ bool etps_validate_config(etps_context_t* ctx, const char* buffer, size_t size);
  * @param function Function name where error occurred
  * @param message Human-readable error message
  */
-void etps_log_error(etps_context_t* ctx, etps_component_t component, 
+void etps_log_error(etps_context_t* ctx, etps_component_t component,
                    etps_error_code_t error_code, const char* function, const char* message);
 
 /**
@@ -103,7 +112,7 @@ void etps_log_error(etps_context_t* ctx, etps_component_t component,
  * @param function Function name logging the message
  * @param message Human-readable info message
  */
-void etps_log_info(etps_context_t* ctx, etps_component_t component, 
+void etps_log_info(etps_context_t* ctx, etps_component_t component,
                   const char* function, const char* message);
 
 // =============================================================================
