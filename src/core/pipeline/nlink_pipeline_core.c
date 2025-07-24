@@ -5,10 +5,21 @@
  * Copyright © 2025 OBINexus Computing
  */
 
-#include <nlink/core/pipeline/nlink_pipeline.h"
-#include <nlink/core/common/nexus_core.h"
-#include <stdlib.h>
-#include <string.h>
+#include <nlink/core/pipeline/nlink_pipeline.h>
+#include <nlink/core/common/nexus_core.h>
+ #include <nlink/core/pipeline/pipeline_detector.h>
+ #include <nlink/core/minimizer/nexus_minimizer.h>
+ #include <nlink/core/minimizer/okpala_automaton.h>
+ #include <nlink/spsystem/sps_config.h>
+ #include <nlink/spsystem/sps_dependency.h>
+ #include <nlink/mpsystem/mps_config.h>
+ #include <nlink/mpsystem/mps_dependency.h>
+ #include <stdio.h>
+ #include <stdlib.h>
+ #include <string.h>
+ #include <time.h>
+ #include <sys/stat.h>
+ #include <stdbool.h>
 #include <time.h>
 
 NlinkPipelineConfig nlink_pipeline_default_config(void) {

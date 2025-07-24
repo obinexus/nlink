@@ -4,8 +4,8 @@
  * @copyright Copyright © 2025 OBINexus Computing
  */
 
-#include <nlink/core/pipeline/pipeline_stage.h"
-#include <nlink/core/common/nexus_error.h"
+#include <nlink/core/pipeline/pipeline_stage.h>
+#include <nlink/core/common/nexus_error.h>
 #include <stdlib.h>
 
 // Context for composed stages
