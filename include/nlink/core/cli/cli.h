@@ -2,9 +2,11 @@
 // OBINexus CLI: Constitutional Command Interface
 #ifndef OBINEXUS_NLINK_CORE_CLI_CLI_H
 #define OBINEXUS_NLINK_CORE_CLI_CLI_H
-
+#include <stdbool.h>
 #include <stdint.h>
 #include <stdbool.h>
+
+
 
 #ifdef __cplusplus
 extern "C" {
