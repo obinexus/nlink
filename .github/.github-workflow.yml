@@ -1,0 +1,78 @@
+name: CMake CI/CD Pipeline
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+env:
+  BUILD_TYPE: Release
+  CMAKE_BUILD_PARALLEL_LEVEL: 4
+
+jobs:
+  build-and-test:
+    name: ✨ Build & Test (${{ matrix.os }}, ${{ matrix.compiler }})
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: [ubuntu-24.04, fedora-latest, archlinux-latest]
+        compiler: [gcc, clang]
+        include:
+          - os: ubuntu-24.04
+            compiler: gcc
+          - os: ubuntu-24.04
+            compiler: clang
+          - os: fedora-latest
+            compiler: gcc
+          - os: archlinux-latest
+            compiler: gcc
+
+    container:
+      image: docker.io/${{ matrix.os }}-build-env:latest
+
+    steps:
+      - name: ⚡ Checkout source
+        uses: actions/checkout@v4
+
+      - name: ⚙ Setup CMake
+        uses: jwlawson/actions-setup-cmake@v2
+        with:
+          cmake-version: '3.27.x'
+
+      - name: 💥 Configure build
+        run: >
+          cmake -B build \
+                -DCMAKE_BUILD_TYPE=${{ env.BUILD_TYPE }} \
+                -DCMAKE_C_COMPILER=${{ matrix.compiler }} \
+                -DCMAKE_CXX_COMPILER=${{ matrix.compiler }}++
+
+      - name: 🚀 Build project
+        run: cmake --build build --parallel
+
+      - name: 🔍 Run tests
+        run: ctest --test-dir build --output-on-failure
+
+      - name: 📊 Upload test results
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results-${{ matrix.os }}-${{ matrix.compiler }}
+          path: build/Testing/**/Test.xml
+
+  release:
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: build-and-test
+    name: 🌟 Release Packaging
+    runs-on: ubuntu-latest
+    steps:
+      - name: 💼 Checkout code
+        uses: actions/checkout@v4
+
+      - name: 🛠️ Package binaries
+        run: |
+          cmake -B build -DCMAKE_BUILD_TYPE=Release
+          cmake --build build --target package
+
+      - name: 📦 Upload release assets
+        uses: softprops/action-gh-release@v2
+        with:
+          files: build/*.tar.gz
