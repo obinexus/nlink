@@ -9,7 +9,7 @@
  #include <nlink/core/common/nexus_core.h>
  #include <stdlib.h>
  #include <string.h>
- 
+ #include <stdbool.h>
  
  NlinkPipelinePass* nlink_pipeline_pass_create(const char* name,
                                             NlinkPassType type,

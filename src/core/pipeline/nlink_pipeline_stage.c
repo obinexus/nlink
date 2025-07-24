@@ -7,6 +7,7 @@
 #include <nlink/core/pipeline/pipeline_stage.h>
 #include <nlink/core/common/nexus_error.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 // Context for composed stages
 typedef struct {

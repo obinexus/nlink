@@ -21,6 +21,7 @@
  #include <sys/stat.h>
  #include <stdbool.h>
 #include <time.h>
+#include <stdbool.h>
 
 NlinkPipelineConfig nlink_pipeline_default_config(void) {
     NlinkPipelineConfig config;
