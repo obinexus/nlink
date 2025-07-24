@@ -1,11 +1,14 @@
-#ifndef NLINK_CORE_ETPS_TELEMETRY_H
-#define NLINK_CORE_ETPS_TELEMETRY_H
+// nlink/core/etps/etps_telemetry.h
+// OBINexus Constitutional Header Guard: OBINEXUS_NLINK_CORE_ETPS_ETPS_TELEMETRY_H
+#ifndef OBINEXUS_NLINK_CORE_ETPS_ETPS_TELEMETRY_H
+#define OBINEXUS_NLINK_CORE_ETPS_ETPS_TELEMETRY_H
+
 
 #include <stdint.h>
 #include <stddef.h>
 #include <stdbool.h>
-#include "semverx/core/types.h"
-#include "semverx/compatibility.h"
+#include "nlink/core/semverx/nlink_semver_core.h"
+#include "nlink/core/semverx/nlink_semver_compat.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -104,4 +107,5 @@ int etps_export_events_json(etps_context_t* ctx, const char* output_path);
 }
 #endif
 
-#endif // NLINK_CORE_ETPS_TELEMETRY_H
+
+#endif // OBINEXUS_NLINK_CORE_ETPS_ETPS_TELEMETRY_H
