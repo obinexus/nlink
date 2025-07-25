@@ -1,210 +1,72 @@
-# OBINexus NLink: DAG-Protected Module Hierarchy Build System
-# Constitutional Governance through CMake/Make Coordination
-# Revision 3.7 - Entropy-Adaptive Dependency Resolution
-
-# =============================================================================
-# Strategic Architectural Parameters: Sinphases >= 0.5 Compliance
-# =============================================================================
-
-PROJECT_NAME := nlink
-VERSION_MAJOR := 3
-VERSION_MINOR := 7
-VERSION_PATCH := 0
-SINPHASES_COMPLIANCE := 0.5
-
-# Constitutional Build Environment Enforcement
-CC := gcc
-CXX := g++
-CMAKE := cmake
-BUILD_TYPE := Release
-PARALLEL_JOBS := $(shell nproc 2>/dev/null || echo 4)
-
-# Triaxial Directory Architecture: DAG-Protected Boundaries
-SRC_DIR := src
-INCLUDE_DIR := include/nlink
+# Makefile for OBINexus NLink
+# Phase 1: Constants
 BUILD_DIR := build
+SRC_DIR := src
 OBJ_DIR := $(BUILD_DIR)/obj
-LIB_DIR := $(BUILD_DIR)/lib
 BIN_DIR := $(BUILD_DIR)/bin
+LIB_DIR := $(BUILD_DIR)/lib
 
-# Constitutional Compilation Flags: Boundary Enforcement
-CFLAGS := -Wall -Wextra -Werror -std=c11 -fPIC
-CFLAGS += -I$(INCLUDE_DIR) -I$(INCLUDE_DIR)/core -Iinclude -Iinclude/nlink -Iinclude/nlink/core
-CFLAGS += -DSINPHASES_COMPLIANCE=$(SINPHASES_COMPLIANCE)
-CFLAGS += -DOBINEXUS_CONSTITUTIONAL_VALIDATION
+PARALLEL_JOBS := 4
+BUILD_TYPE := Release
+CFLAGS := -Wall -Wextra -std=c11 -O2
+LDFLAGS :=
 
-# Entropy-Adaptive Security Flags
-CFLAGS += -fstack-protector-strong -D_FORTIFY_SOURCE=2
-CFLAGS += -fno-omit-frame-pointer -grecord-gcc-switches
-
-# Polymorphic Coordination Protocol: Debug vs Release
-ifeq ($(BUILD_TYPE),Debug)
-    CFLAGS += -g3 -O0 -DDEBUG -DOBINEXUS_DEVELOPMENT_MODE
-else
-    CFLAGS += -O3 -DNDEBUG -DOBINEXUS_PRODUCTION_MODE
-endif
-
-# =============================================================================
-# DAG-Protected Module Classification: Hierarchical Dependency Matrix
-# =============================================================================
-
-# Core Infrastructure Modules (Tier 1: Constitutional Foundation)
-CORE_MODULES := \
-    core/config/config_manager \
-    core/config/config_parser \
-    core/crypto/shannon_entropy \
-    core/marshal/marshal
-
-# SemVerX Governance Modules (Tier 2: Version Coordination)
-SEMVERX_MODULES := \
-    core/semverx/semver \
-    core/semverx/nexus_version \
-    core/semverx/lazy_versioned \
-    core/semverx/missing_functions
-
-# ETPS Telemetry Modules (Tier 3: Monitoring Coordination)
-ETPS_MODULES := \
-    core/etps/telemetry
-
-# CLI Interface Modules (Tier 4: User Boundary Management)
+# Phase 2: Source Modules
 CLI_MODULES := \
-    core/cli/cli \
-    core/cli/command \
-    core/cli/command_params \
-    core/cli/command_registration \
-    core/cli/command_registry \
-    core/cli/command_router \
-    core/cli/parse
+	core/cli/parse
 
-# CLI Command Implementations (Tier 4b: Command Specialization)
-CLI_COMMAND_MODULES := \
-    core/cli/commands/load \
-    core/cli/commands/minimal \
-    core/cli/commands/minimize \
-    core/cli/commands/pipeline \
-    core/cli/commands/version \
-    core/cli/commands/version_utils
+PARSER_MODULES :=
 
-# Pipeline Orchestration Modules (Tier 5: Processing Coordination)
-PIPELINE_MODULES := \
-    core/pipeline/nlink_pipeline \
-    core/pipeline/pipeline_detector \
-    core/pipeline/pipeline_pass \
-    core/pipeline/pipeline_stage
+ALL_MODULES := $(CLI_MODULES) $(PARSER_MODULES)
 
-# Parser Infrastructure Modules (Tier 6: Language Processing)
-PARSER_MODULES := \
-    core/parser/parse \
-    core/parser/parser \
-    core/parser/parser_interface
-
-# Symbol Management Modules (Tier 7: Symbol Coordination)
-SYMBOL_MODULES := \
-    core/symbols/cold_symbol \
-    core/symbols/nexus_symbols \
-    core/symbols/symbols \
-    core/symbols/versioned_symbols
-
-# Minimizer Architecture Modules (Tier 8: AST Optimization)
-MINIMIZER_MODULES := \
-    core/minimizer/minimizer \
-    core/minimizer/nexus_automaton \
-    core/minimizer/okpala_ast \
-    core/minimizer/okpala_automaton \
-    core/minimizer/okpala_automaton_minimzer
-
-# Multi-Processing System Modules (Tier 9: Concurrent Coordination)
-MPS_MODULES := \
-    core/mpsystem/mps_config \
-    core/mpsystem/mps_dependency \
-    core/mpsystem/mps_lifecycle \
-    core/mpsystem/mps_pipeline \
-    core/mpsystem/mps_stream
-
-# Single-Processing System Modules (Tier 10: Sequential Coordination)
-SPS_MODULES := \
-    core/spsystem/sps_config \
-    core/spsystem/sps_dependency \
-    core/spsystem/sps_lifecycle \
-    core/spsystem/sps_pipeline \
-    core/spsystem/sps_stream
-
-# TATIT Transformation Modules (Tier 11: Meta-Architectural Operations)
-TATIT_MODULES := \
-    core/tatit/abstraction \
-    core/tatit/aggregation \
-    core/tatit/composition \
-    core/tatit/identity \
-    core/tatit/tactic \
-    core/tatit/transformation \
-    core/tatit/traversal
-
-# Consolidated Module Registry: Hierarchical Dependency Resolution
-ALL_MODULES := \
-    $(CORE_MODULES) \
-    $(SEMVERX_MODULES) \
-    $(ETPS_MODULES) \
-    $(CLI_MODULES) \
-    $(CLI_COMMAND_MODULES) \
-    $(PIPELINE_MODULES) \
-    $(PARSER_MODULES) \
-    $(SYMBOL_MODULES) \
-    $(MINIMIZER_MODULES) \
-    $(MPS_MODULES) \
-    $(SPS_MODULES) \
-    $(TATIT_MODULES)
-
-# =============================================================================
-# Constitutional Object File Generation: DAG-Protected Compilation
-# =============================================================================
-
-# Transform module names to object file paths with boundary enforcement
-OBJECTS := $(patsubst %,$(OBJ_DIR)/%.o,$(ALL_MODULES))
-
-# Primary Library Targets: Polymorphic Coordination Artifacts
+OBJECTS := $(foreach m,$(ALL_MODULES),$(OBJ_DIR)/$(m).o)
 STATIC_LIB := $(LIB_DIR)/libnlink.a
 SHARED_LIB := $(LIB_DIR)/libnlink.so
 CLI_BINARY := $(BIN_DIR)/nlink
 
-# =============================================================================
-# Strategic Build Targets: Hierarchical Coordination Protocols
-# =============================================================================
+# Phase 3: Entry Rules
+.PHONY: all clean configure cmake-configure cmake-build build
 
-.PHONY: all clean distclean configure build install test lint format cmake-build
+all: build
 
-# Default Constitutional Governance Target
-all: configure build
-
-# Phase 1: Constitutional Environment Preparation
 configure:
 	@echo "📇 OBINexus NLink: Constitutional Environment Configuration"
-	@echo "   Sinphases Compliance: $(SINPHASES_COMPLIANCE)"
+	@echo "   Sinphases Compliance: 0.5"
 	@echo "   Build Type: $(BUILD_TYPE)"
-	@mkdir -p $(BUILD_DIR) $(OBJ_DIR) $(LIB_DIR) $(BIN_DIR)
-	@mkdir -p $(OBJ_DIR)/core/{config,crypto,etps,marshal,semverx,cli/commands,pipeline,parser,symbols,minimizer,mpsystem,spsystem,tatit}
+	@mkdir -p $(BUILD_DIR) $(OBJ_DIR) $(BIN_DIR) $(LIB_DIR)
 	@echo "✅ Constitutional directory hierarchy established"
 
-# Phase 2: CMake Integration Protocol
 cmake-configure:
-	@echo "🔧 CMake Constitutional Integration Protocol"
-	cd $(BUILD_DIR) && $(CMAKE) -DCMAKE_BUILD_TYPE=$(BUILD_TYPE) \
-		-DCMAKE_C_FLAGS="$(CFLAGS)" \
-		-DSINPHASES_COMPLIANCE=$(SINPHASES_COMPLIANCE) \
-		-DOBINEXUS_CONSTITUTIONAL_VALIDATION=ON ..
-	@echo "✅ CMake configuration completed with constitutional compliance"
+	@echo "📝 Configuring with CMake"
+	@cmake -B $(BUILD_DIR) -DCMAKE_BUILD_TYPE=$(BUILD_TYPE)
 
-# Phase 3: CMake Build Execution
 cmake-build: cmake-configure
 	@echo "🚀 CMake Build Orchestration: Parallel Execution ($(PARALLEL_JOBS) jobs)"
-	cd $(BUILD_DIR) && $(CMAKE) --build . --parallel $(PARALLEL_JOBS)
+	cd $(BUILD_DIR) && cmake --build . --parallel $(PARALLEL_JOBS)
 	@echo "✅ CMake build completed with constitutional governance"
 
 # Phase 4: Manual Build Orchestration (DAG-Protected)
 build: configure $(STATIC_LIB) $(SHARED_LIB) $(CLI_BINARY)
-	@echo "🎯 OBINexus NLink: Build Orchestration Complete"
+	@echo "🏆 OBINexus NLink: Build Orchestration Complete"
 	@echo "   Static Library: $(STATIC_LIB)"
 	@echo "   Shared Library: $(SHARED_LIB)"
 	@echo "   CLI Binary: $(CLI_BINARY)"
+
+# Phase 5: Object Compilation
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+	@echo "🔨 Compiling: $< → $@"
+	@mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) -c $< -o $@
+
+# Phase 6: Linking
+$(STATIC_LIB): $(OBJECTS)
+	@ar rcs $@ $^
+
+$(SHARED_LIB): $(OBJECTS)
+	$(CC) -shared -o $@ $^
+
+$(CLI_BINARY): $(OBJECTS)
+	$(CC) $(CFLAGS) $^ -o $@ $(LDFLAGS)
 
 # Constitutional Object File Compilation: Entropy-Adaptive Pattern Rules
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
