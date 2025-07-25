@@ -1,5 +1,6 @@
 // cold.c – "Cold" code to be lazy-loaded
 #include <stdio.h>
+#include <stdbool.h>
 
 __attribute__((visibility("hidden"))) void cold_function_impl(int x) {
   printf("Lazy-loaded function called with %d\n", x);

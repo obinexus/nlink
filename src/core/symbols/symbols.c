@@ -7,6 +7,8 @@
 #include <string.h>
 #include <stdio.h>
 
+#include <stdbool.h>
+
 // Constitutional module initialization
 static bool g_SYMBOLS_initialized = false;
 
