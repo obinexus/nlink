@@ -5,17 +5,42 @@
 
 #ifndef NLINK_SEMVERX_CORE_TYPES_H
 #define NLINK_SEMVERX_CORE_TYPES_H
+#define NLINK_MAX_FEATURES 32
+#define NLINK_MAX_COMPONENTS 64
+#define NLINK_VERSION_STRING_MAX 32
+// Basic configuration constants
+#define NLINK_MAX_PATH_LENGTH 512
 
 #include <stdint.h>
 #include <stdbool.h>
 #include <time.h>
 #include <stdarg.h> // needed for va_list
+#include <stdint.h>
+#include <stdbool.h>
+#include <stdarg.h>
 
-// Basic configuration constants
-#define NLINK_MAX_PATH_LENGTH 512
-#define NLINK_MAX_FEATURES 32
-#define NLINK_MAX_COMPONENTS 64
-#define NLINK_VERSION_STRING_MAX 32
+// Define basic types used across NLink
+
+typedef int NexusResult;
+typedef int NexusFlags;
+typedef int NexusLogLevel;
+
+// Define NexusContext as a dummy struct for now
+typedef struct NexusContext {
+    int placeholder; // Add real fields as needed later
+} NexusContext;
+
+// Define log callback
+
+typedef void (*NexusLogCallback)(NexusLogLevel level, const char* format, va_list args);
+
+// Symbol registry placeholder
+
+typedef struct NexusSymbolRegistry {
+    int placeholder;
+} NexusSymbolRegistry;
+
+
 
 // Pass mode enumeration
 typedef enum {
