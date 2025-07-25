@@ -32,17 +32,6 @@ struct NexusConfig {
     const char* component_path;
 };
 
-/**
- * @brief Context for NexusLink operations
- */
-typedef struct NexusContext NexusContext;
-struct NexusContext {
-    NexusFlags flags;                   /**< Configuration flags */
-    NexusLogLevel log_level;            /**< Log level */
-    NexusLogCallback log_callback;      /**< Log callback function */
-    char* component_path;               /**< Path to components */
-    NexusSymbolRegistry* symbols;       /**< Symbol registry */
-};
 
 /**
  * @brief Create a new NexusLink context

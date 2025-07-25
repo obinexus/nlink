@@ -1,46 +1,43 @@
-/**
- * @file types.h
- * @brief Core type definitions for NexusLink SemVerX
- */
+// types.h — Cleaned up to avoid duplicate struct definitions and header inclusion issues
 
 #ifndef NLINK_SEMVERX_CORE_TYPES_H
 #define NLINK_SEMVERX_CORE_TYPES_H
+
 #define NLINK_MAX_FEATURES 32
 #define NLINK_MAX_COMPONENTS 64
 #define NLINK_VERSION_STRING_MAX 32
-// Basic configuration constants
 #define NLINK_MAX_PATH_LENGTH 512
 
 #include <stdint.h>
 #include <stdbool.h>
 #include <time.h>
-#include <stdarg.h> // needed for va_list
-#include <stdint.h>
-#include <stdbool.h>
 #include <stdarg.h>
 
-// Define basic types used across NLink
+// Forward declare structs to prevent redefinition issues
+#ifndef NEXUS_CONTEXT_DEFINED
+#define NEXUS_CONTEXT_DEFINED
 
-typedef int NexusResult;
-typedef int NexusFlags;
-typedef int NexusLogLevel;
-
-// Define NexusContext as a dummy struct for now
 typedef struct NexusContext {
-    int placeholder; // Add real fields as needed later
+    int placeholder;
 } NexusContext;
 
-// Define log callback
+#endif
 
-typedef void (*NexusLogCallback)(NexusLogLevel level, const char* format, va_list args);
-
-// Symbol registry placeholder
+#ifndef NEXUS_SYMBOL_REGISTRY_DEFINED
+#define NEXUS_SYMBOL_REGISTRY_DEFINED
 
 typedef struct NexusSymbolRegistry {
     int placeholder;
 } NexusSymbolRegistry;
 
+#endif
 
+// Basic type definitions
+typedef int NexusResult;
+typedef int NexusFlags;
+typedef int NexusLogLevel;
+
+typedef void (*NexusLogCallback)(NexusLogLevel level, const char* format, va_list args);
 
 // Pass mode enumeration
 typedef enum {
@@ -49,7 +46,7 @@ typedef enum {
     NLINK_PASS_MODE_MULTI
 } nlink_pass_mode_t;
 
-// Threading configuration
+// Thread pool config
 typedef struct {
     uint32_t worker_count;
     uint32_t queue_depth;
@@ -58,19 +55,5 @@ typedef struct {
     bool enable_work_stealing;
     struct timespec idle_timeout;
 } nlink_thread_pool_config_t;
-
-/* FIXING BUILD ERRORS CHECKLIST */
-
-// Define missing types (used in result.h and nexus_core.h)
-typedef int NexusResult;
-typedef int NexusFlags;
-typedef int NexusLogLevel;
-
-// Define callback and symbol registry
-typedef void (*NexusLogCallback)(NexusLogLevel level, const char* format, va_list args);
-
-typedef struct NexusSymbolRegistry {
-    int placeholder;
-} NexusSymbolRegistry;
 
 #endif /* NLINK_SEMVERX_CORE_TYPES_H */
