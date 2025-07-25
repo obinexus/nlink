@@ -4,7 +4,7 @@
  * @copyright Copyright © 2025 OBINexus Computing
  */
 
-#include <nlink/core/tactic/abstraction.h"
+#include <nlink/core/tactic/abstraction.h>
 #include <stdlib.h>
 #include <string.h>
 #include <assert.h>

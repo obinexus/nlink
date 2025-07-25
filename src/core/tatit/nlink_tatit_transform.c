@@ -4,13 +4,14 @@
  * @copyright Copyright © 2025 OBINexus Computing
  */
 
-#include <nlink/core/tactic/transformation.h"
+#include <nlink/core/tactic/transformation.h>
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
 #include <float.h>
 #include <math.h>
 
+#include <stdbool.h>
 nlink_transform_config* nlink_transform_config_create(nlink_transformer_fn transform_fn, 
                                                     void* context) {
     nlink_transform_config* config = malloc(sizeof(nlink_transform_config));

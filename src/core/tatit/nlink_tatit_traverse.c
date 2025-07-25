@@ -4,10 +4,11 @@
  * @copyright Copyright © 2025 OBINexus Computing
  */
 
-#include <nlink/core/tactic/traversal.h"
+#include <nlink/core/tactic/traversal.h>
 #include <stdlib.h>
 #include <string.h>
 #include <assert.h>
+#include <stdbool.h>
 
 /**
  * Queue implementation for breadth-first traversal

@@ -4,12 +4,12 @@
  * @copyright Copyright © 2025 OBINexus Computing
  */
 
-#include <nlink/core/tactic/aggregation.h"
+#include <nlink/core/tactic/aggregation.h>
 #include <stdlib.h>
 #include <string.h>
 #include <assert.h>
 #include <math.h>
-
+#include <stdbool.h>
 // Default comparison function for generic pointers
 static int default_compare(const void* a, const void* b) {
     if (a < b) return -1;
