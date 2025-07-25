@@ -9,6 +9,7 @@
 #include <stdint.h>
 #include <stdbool.h>
 #include <time.h>
+#include <stdarg.h> // needed for va_list
 
 // Basic configuration constants
 #define NLINK_MAX_PATH_LENGTH 512
@@ -32,5 +33,19 @@ typedef struct {
     bool enable_work_stealing;
     struct timespec idle_timeout;
 } nlink_thread_pool_config_t;
+
+/* FIXING BUILD ERRORS CHECKLIST */
+
+// Define missing types (used in result.h and nexus_core.h)
+typedef int NexusResult;
+typedef int NexusFlags;
+typedef int NexusLogLevel;
+
+// Define callback and symbol registry
+typedef void (*NexusLogCallback)(NexusLogLevel level, const char* format, va_list args);
+
+typedef struct NexusSymbolRegistry {
+    int placeholder;
+} NexusSymbolRegistry;
 
 #endif /* NLINK_SEMVERX_CORE_TYPES_H */
