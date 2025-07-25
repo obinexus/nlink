@@ -14,87 +14,48 @@ LDFLAGS :=
 
 # Phase 2: Source Modules
 CLI_MODULES := \
-	core/cli/parse
+	core/cli/parse \
+	core/cli/main
+
+ETPS_MODULES := \
+	core/etps/etps_telemetry
 
 PARSER_MODULES :=
 
-ALL_MODULES := $(CLI_MODULES) $(PARSER_MODULES)
+ALL_MODULES := $(CLI_MODULES) $(PARSER_MODULES) $(ETPS_MODULES)
 
+# Phase 3: Object and Binary Targets
 OBJECTS := $(foreach m,$(ALL_MODULES),$(OBJ_DIR)/$(m).o)
 STATIC_LIB := $(LIB_DIR)/libnlink.a
 SHARED_LIB := $(LIB_DIR)/libnlink.so
 CLI_BINARY := $(BIN_DIR)/nlink
 
-# Phase 3: Entry Rules
-.PHONY: all clean configure cmake-configure cmake-build build
+# Phase 4: Rules
+.PHONY: all clean configure
 
-all: build
+all: configure $(CLI_BINARY)
 
 configure:
 	@echo "📇 OBINexus NLink: Constitutional Environment Configuration"
 	@echo "   Sinphases Compliance: 0.5"
 	@echo "   Build Type: $(BUILD_TYPE)"
-	@mkdir -p $(BUILD_DIR) $(OBJ_DIR) $(BIN_DIR) $(LIB_DIR)
+	@mkdir -p $(OBJ_DIR) $(BIN_DIR) $(LIB_DIR)
 	@echo "✅ Constitutional directory hierarchy established"
 
-cmake-configure:
-	@echo "📝 Configuring with CMake"
-	@cmake -B $(BUILD_DIR) -DCMAKE_BUILD_TYPE=$(BUILD_TYPE)
-
-cmake-build: cmake-configure
-	@echo "🚀 CMake Build Orchestration: Parallel Execution ($(PARALLEL_JOBS) jobs)"
-	cd $(BUILD_DIR) && cmake --build . --parallel $(PARALLEL_JOBS)
-	@echo "✅ CMake build completed with constitutional governance"
-
-# Phase 4: Manual Build Orchestration (DAG-Protected)
-build: configure $(STATIC_LIB) $(SHARED_LIB) $(CLI_BINARY)
-	@echo "🏆 OBINexus NLink: Build Orchestration Complete"
-	@echo "   Static Library: $(STATIC_LIB)"
-	@echo "   Shared Library: $(SHARED_LIB)"
-	@echo "   CLI Binary: $(CLI_BINARY)"
-
-# Phase 5: Object Compilation
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
-	@echo "🔨 Compiling: $< → $@"
 	@mkdir -p $(dir $@)
-	$(CC) $(CFLAGS) -c $< -o $@
+	cc $(CFLAGS) -c $< -o $@
 
-# Phase 6: Linking
 $(STATIC_LIB): $(OBJECTS)
-	@ar rcs $@ $^
+	ar rcs $@ $@
 
 $(SHARED_LIB): $(OBJECTS)
-	$(CC) -shared -o $@ $^
+	cc -shared -o $@ $^
 
 $(CLI_BINARY): $(OBJECTS)
-	$(CC) $(CFLAGS) $^ -o $@ $(LDFLAGS)
-
-# Constitutional Object File Compilation: Entropy-Adaptive Pattern Rules
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
-	@echo "🔨 Compiling: $< → $@"
-	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) -c $< -o $@
-
-# Static Library Construction: Constitutional Boundary Enforcement
-$(STATIC_LIB): $(OBJECTS)
-	@echo "📚 Creating static library: $@"
-	@mkdir -p $(@D)
-	ar rcs $@ $^
-	@echo "✅ Static library created with constitutional compliance"
-
-# Shared Library Construction: Polymorphic Coordination Protocol
-$(SHARED_LIB): $(OBJECTS)
-	@echo "🔗 Creating shared library: $@"
-	@mkdir -p $(@D)
-	$(CC) -shared -o $@ $^ $(LDFLAGS)
-	@echo "✅ Shared library created with distributed coordination"
-
-# CLI Binary Construction: User Interface Boundary Management
-$(CLI_BINARY): $(STATIC_LIB) $(SRC_DIR)/core/cli/main.c
 	@echo "⚡ Creating CLI binary: $@"
-	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(SRC_DIR)/core/cli/main.c -L$(LIB_DIR) -lnlink -o $@
-	@echo "✅ CLI binary created with constitutional governance"
+	cc $(CFLAGS) src/core/cli/main.c -L$(LIB_DIR) -lnlink -o $@
+
 
 
 # =============================================================================
