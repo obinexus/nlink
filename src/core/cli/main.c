@@ -28,7 +28,7 @@ static int cmd_validate(void) {
     printf("🔍 OBINexus Constitutional Framework Validation\n");
     
     etps_result_t result = etps_initialize();
-    if (result == ETPS_ERROR_SUCCESS) {
+    if (result == ETPS_SUCCESS) {
         printf("✅ ETPS telemetry constitutional framework: VALIDATED\n");
         etps_shutdown();
         return 0;
