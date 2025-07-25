@@ -13,7 +13,7 @@
  #include <nlink/core/common/nexus_loader.h>
  #include <stdlib.h>
  #include <string.h>
- 
+ #include <stdbool.h>
  /* Forward declaration of internal functions */
  static NexusResult build_dependency_nodes(NexusContext* ctx, 
                                           NexusDependencyGraph* graph,

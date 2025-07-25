@@ -14,7 +14,7 @@
  #include <stdio.h>
  #include <stdlib.h>
  #include <string.h>
- 
+ #include <stdbool.h>
 
  // Initialize a symbol registry
  NexusSymbolRegistry* nexus_init_symbol_registry(void) {

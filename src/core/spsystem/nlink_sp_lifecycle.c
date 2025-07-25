@@ -14,7 +14,7 @@
  #include <nlink/core/common/nexus_loader.h>
  #include <string.h>
  #include <stdlib.h>
- 
+ #include <stdbool.h>
  /* Internal structure for component lifecycle data */
  typedef struct {
      NexusComponentLifecycle lifecycle;

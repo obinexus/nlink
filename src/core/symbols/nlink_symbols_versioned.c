@@ -5,6 +5,7 @@
 #include <nlink/core/symbols/nexus_versioned_symbols.h>
 #include <stdbool.h>
 
+
 // Initialize a versioned symbol table
 void versioned_symbol_table_init(VersionedSymbolTable* table, size_t initial_capacity) {
     table->symbols = (VersionedSymbol*)malloc(initial_capacity * sizeof(VersionedSymbol));

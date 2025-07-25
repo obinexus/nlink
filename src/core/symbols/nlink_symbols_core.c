@@ -14,7 +14,7 @@
  #include <stdio.h>
  #include <stdlib.h>
  #include <string.h>
- 
+ #include <stdbool.h>
  // Constants for symbol tables
  #define NEXUS_DEFAULT_TABLE_SIZE 64
  

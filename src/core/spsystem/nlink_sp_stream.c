@@ -12,7 +12,7 @@
  #include <nlink/core/common/nexus_core.h>
  #include <string.h>
  #include <stdlib.h>
- 
+ #include <stdbool.h>
  /* Forward declarations for helper functions */
  static NexusResult ensure_stream_capacity(NexusDataStream* stream, size_t required_size);
  static void free_metadata_entry(StreamMetadataEntry* entry);

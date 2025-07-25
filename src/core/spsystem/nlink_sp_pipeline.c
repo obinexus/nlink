@@ -16,7 +16,7 @@
  #include <stdlib.h>
  #include <string.h>
  #include <time.h>
- 
+ #include <stdbool.h>
  /* Forward declarations for internal functions */
  static NexusResult load_components(NexusContext* ctx, NexusPipeline* pipeline);
  static NexusResult initialize_components(NexusContext* ctx, NexusPipeline* pipeline);

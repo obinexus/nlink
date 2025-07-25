@@ -15,6 +15,8 @@
  #include <stdio.h>
  #include <stdlib.h>
  
+ #include <stdbool.h>
+ 
  /* Forward declarations for internal functions */
  static NexusResult validate_component_config(NexusContext* ctx, NexusPipelineComponentConfig* config);
  static void free_component_config(NexusPipelineComponentConfig* config, void (*destructor)(void*));
