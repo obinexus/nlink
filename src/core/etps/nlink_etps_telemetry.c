@@ -20,6 +20,9 @@
 #include <core/semverx/nlink_semver_core.h>  // for semverx_range_state_t, semverx_component_t etc.
 #include <core/semverx/nlink_semver_compat.h> // for compatibility_result_t and related enums
 #include <core/etps/etps_telemetry.h>
+#include <nlink/core/etps/etps_telemetry.h>
+#include <stdio.h>
+
 
 // =============================================================================
 // Global ETPS State
@@ -139,6 +142,19 @@ void etps_shutdown(void) {
 bool etps_is_initialized(void) {
     return g_etps_initialized;
 }
+
+
+etps_result_t etps_initialize(void) {
+    printf("[ETPS] Initialized.\n");
+    return ETPS_SUCCESS;
+}
+
+etps_result_t etps_shutdown(void) {
+    printf("[ETPS] Shutdown.\n");
+    return ETPS_SUCCESS;
+}
+
+
 
 etps_context_t* etps_context_create(const char* context_name) {
     etps_context_t* ctx = malloc(sizeof(etps_context_t));
