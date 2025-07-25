@@ -8,8 +8,8 @@
  #include <nlink/cli/command_registration.h"
  #include <nlink/cli/command_router.h"
  #include <nlink/cli/command.h"
- #include <nlink/core/common/nexus_core.h"
- #include <nlink/core/pattern/matcher.h"
+ #include <core/common/nexus_core.h"
+ #include <core/pattern/matcher.h"
  #include <string.h>
  #include <stdlib.h>
  #include <ctype.h>

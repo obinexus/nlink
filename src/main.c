@@ -6,6 +6,8 @@
 #include "nlink/core/etps/telemetry.h"
 #include "nlink/core/semverx/semver.h"
 #include "nlink/cli/commands/command.h"
+#include <core/etps/etps_telemetry.h>
+
 
 void print_usage(const char* program) {
     printf("NexusLink v1.0 - OBINexus Computing\n");

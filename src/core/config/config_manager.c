@@ -2,7 +2,7 @@
 // OBINexus Constitutional Configuration Manager: Parameter Coordination
 
 #define _POSIX_C_SOURCE 200809L
-#include <nlink/core/config/config_manager.h>
+#include <core/config/config_manager.h>
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>

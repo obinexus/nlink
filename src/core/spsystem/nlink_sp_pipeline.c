@@ -11,8 +11,8 @@
  #include <nlink/spsystem/sps_pipeline.h>
  #include <nlink/spsystem/sps_dependency.h>
  #include <nlink/spsystem/sps_lifecycle.h>
- #include <nlink/core/common/nexus_core.h>
- #include <nlink/core/common/nexus_loader.h>
+ #include <core/common/nexus_core.h>
+ #include <core/common/nexus_loader.h>
  #include <stdlib.h>
  #include <string.h>
  #include <time.h>

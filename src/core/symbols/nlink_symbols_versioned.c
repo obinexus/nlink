@@ -2,7 +2,7 @@
 // Version-aware symbol management for NexusLink
 // Author: Nnamdi Michael Okpala
 
-#include <nlink/core/symbols/nexus_versioned_symbols.h>
+#include <core/symbols/nexus_versioned_symbols.h>
 #include <stdbool.h>
 
 

@@ -4,7 +4,7 @@
  * @copyright © 2025 OBINexus Computing
  */
 
-#include <nlink/core/tactic/identity.h>
+#include <core/tactic/identity.h>
 #include <stdlib.h>
 
 void* nlink_identity(void* data, void* context) {

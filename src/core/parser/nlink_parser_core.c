@@ -4,7 +4,7 @@
  * @copyright Copyright © 2025 OBINexus Computing
  */
 
-#include <nlink/core/parser/nlink_parser_core.h>
+#include <core/parser/nlink_parser_core.h>
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>

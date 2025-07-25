@@ -4,8 +4,8 @@
  * @copyright Copyright © 2025 OBINexus Computing
  */
 
-#include <nlink/core/pipeline/pipeline_stage.h>
-#include <nlink/core/common/nexus_error.h>
+#include <core/pipeline/pipeline_stage.h>
+#include <core/common/nexus_error.h>
 #include <stdlib.h>
 #include <stdbool.h>
 

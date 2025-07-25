@@ -3,8 +3,8 @@
  * @brief Enhanced configuration parser with ETPS integration
  */
 
-#include <nlink/core/config/types.h"
-#include <nlink/core/etps/telemetry.h"
+#include <core/config/types.h"
+#include <core/etps/telemetry.h"
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>

@@ -9,8 +9,8 @@
  */
 
  #include <nlink/spsystem/sps_dependency.h>
- #include <nlink/core/common/nexus_core.h>
- #include <nlink/core/common/nexus_loader.h>
+ #include <core/common/nexus_core.h>
+ #include <core/common/nexus_loader.h>
  #include <stdlib.h>
  #include <string.h>
  #include <stdbool.h>

@@ -6,7 +6,7 @@
  */
 
  #include <nlink/cli/commands/version.h>
- #include <nlink/core/common/nexus_core.h>
+ #include <core/common/nexus_core.h>
  #include <stdio.h>
  #include <stdlib.h>
  #include <string.h>

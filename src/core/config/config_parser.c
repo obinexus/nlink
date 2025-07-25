@@ -1,9 +1,9 @@
-#include <nlink/core/config/config_parser.h>
+#include <core/config/config_parser.h>
 // src/core/config/config_parser.c
 // OBINexus Constitutional Configuration Parser: Syntax Analysis Engine
 #define _POSIX_C_SOURCE 200809L
 
-#include <nlink/core/config/config.h>
+#include <core/config/config.h>
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>

@@ -2,7 +2,7 @@
 // Semantic versioning implementation for NexusLink
 // Author: Nnamdi Michael Okpala
 
-#include <nlink/core/versioning/semver.h>
+#include <core/versioning/semver.h>
 
 
 // Parse a semantic version string into components

@@ -9,8 +9,8 @@
  */
 
 #include <nlink/mpsystem/mps_config.h>
-#include <nlink/core/common/nexus_json.h>
-#include <nlink/core/common/nexus_core.h>
+#include <core/common/nexus_json.h>
+#include <core/common/nexus_core.h>
 #include <string.h>
 #include <stdio.h>
 #include <stdbool.h>

@@ -10,7 +10,7 @@
  */
 
  #include <nlink/mpsystem/mps_stream.h>
- #include <nlink/core/common/nexus_core.h>
+ #include <core/common/nexus_core.h>
  #include <string.h>
  #include <stdlib.h>
  

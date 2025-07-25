@@ -1,4 +1,4 @@
-#include <nlink/core/crypto/shannon_entropy.h>
+#include <core/crypto/shannon_entropy.h>
 // src/core/crypto/shannon_entropy.c
 // OBINexus Shannon Entropy: Cryptographic Boundary Management
 #define _POSIX_C_SOURCE 200809L

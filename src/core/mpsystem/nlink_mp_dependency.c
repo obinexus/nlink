@@ -9,8 +9,8 @@
  */
 
 #include <nlink/mpsystem/mps_dependency.h>
-#include <nlink/core/common/nexus_core.h>
-#include <nlink/core/common/nexus_loader.h>
+#include <core/common/nexus_core.h>
+#include <core/common/nexus_loader.h>
 #include <string.h>
 #include <stdlib.h>
 

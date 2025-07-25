@@ -1,5 +1,5 @@
-#include <nlink/core/marshal/marshal.h>
-#include <nlink/core/marshal/marshal_types.h>
+#include <core/marshal/marshal.h>
+#include <core/marshal/marshal_types.h>
 // src/core/marshal/marshal.c
 // OBINexus Marshal: Data Serialization Coordination Protocol
 #define _POSIX_C_SOURCE 200809L

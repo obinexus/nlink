@@ -5,10 +5,11 @@ SRC_DIR := src
 OBJ_DIR := $(BUILD_DIR)/obj
 BIN_DIR := $(BUILD_DIR)/bin
 LIB_DIR := $(BUILD_DIR)/lib
+INCLUDE := include/nlink
 
 PARALLEL_JOBS := 4
 BUILD_TYPE := Release
-CFLAGS := -Wall -Wextra -std=c11 -O2
+CFLAGS := -Wall -Wextra -std=c11 -O2 -Iinclude
 LDFLAGS :=
 
 # Phase 2: Source Modules

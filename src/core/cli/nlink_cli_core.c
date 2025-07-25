@@ -17,8 +17,8 @@
  #include <nlink/cli/commands/version.h"
  #include <nlink/cli/commands/minimize.h"
  #include <nlink/cli/commands/pipeline.h"
- #include <nlink/core/common/nexus_core.h"
- #include <nlink/core/nlink.h"
+ #include <core/common/nexus_core.h"
+ #include <core/nlink.h"
  #include <string.h>
  #include <stdio.h>
  #include <stdlib.h>
