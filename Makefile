@@ -177,7 +177,7 @@ all: configure build
 
 # Phase 1: Constitutional Environment Preparation
 configure:
-	@echo "🏗️  OBINexus NLink: Constitutional Environment Configuration"
+	@echo "📇 OBINexus NLink: Constitutional Environment Configuration"
 	@echo "   Sinphases Compliance: $(SINPHASES_COMPLIANCE)"
 	@echo "   Build Type: $(BUILD_TYPE)"
 	@mkdir -p $(BUILD_DIR) $(OBJ_DIR) $(LIB_DIR) $(BIN_DIR)
@@ -232,6 +232,7 @@ $(CLI_BINARY): $(STATIC_LIB) $(SRC_DIR)/core/cli/main.c
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(SRC_DIR)/core/cli/main.c -L$(LIB_DIR) -lnlink -o $@
 	@echo "✅ CLI binary created with constitutional governance"
+
 
 # =============================================================================
 # Quality Assurance Protocols: Constitutional Compliance Validation
