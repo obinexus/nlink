@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <core/etps/etps_telemetry.h>
+#include <nlink/core/etps/etps_telemetry.h>
 #include <stdbool.h>
 
 static void print_version(void) {
