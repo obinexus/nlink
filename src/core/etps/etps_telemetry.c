@@ -1,4 +1,3 @@
-#include "etps/etps_telemetry.h"
 /**
  * OBINexus NexusLink ETPS - Warning-Free Implementation
  * Complete SemVerX + Telemetry integration - ZERO warnings for production safety
@@ -17,9 +16,9 @@
 #include <errno.h>
 #include <stdarg.h>
 #include <stdbool.h>             // for bool
-#include <core/semverx/nlink_semver_core.h>  // for semverx_range_state_t, semverx_component_t etc.
-#include <core/semverx/nlink_semver_compat.h> // for compatibility_result_t and related enums
-#include <core/etps/etps_telemetry.h>
+#include <nlink/core/semverx/nlink_semver_core.h>  // for semverx_range_state_t, semverx_component_t etc.
+#include <nlink/core/semverx/nlink_semver_compat.h> // for compatibility_result_t and related enums
+#include <nlink/core/etps/etps_telemetry.h>
 #include <nlink/core/etps/etps_telemetry.h>
 #include <stdio.h>
 
