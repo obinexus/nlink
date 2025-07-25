@@ -6,7 +6,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
-
+#include <stdbool.h>
 // Constitutional module initialization
 static bool g_MPS_PIPELINE_initialized = false;
 

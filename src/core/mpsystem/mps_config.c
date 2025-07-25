@@ -7,6 +7,7 @@
 #include <string.h>
 #include <stdio.h>
 
+#include <stdbool.h>
 // Constitutional module initialization
 static bool g_MPS_CONFIG_initialized = false;
 
