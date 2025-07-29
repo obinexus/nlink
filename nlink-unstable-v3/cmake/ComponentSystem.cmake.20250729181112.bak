@@ -51,7 +51,7 @@ function(nlink_init_component_system)
   message(STATUS "Registered components: ${COMP_INIT_COMPONENTS}")
 endfunction()
 
-# Function to register a component
+# Function to register a component# Recommended function signature correction
 function(nlink_register_component COMPONENT)
   # Parse additional arguments
   cmake_parse_arguments(
@@ -80,23 +80,15 @@ function(nlink_get_component_dependencies COMPONENT OUTPUT_VAR)
   set(${OUTPUT_VAR} "" PARENT_SCOPE)
 endfunction()
 
-# Function to build a component with enhanced parameter handling
+
 function(nlink_build_component)
   cmake_parse_arguments(
     BUILD_COMP
-    "SHARED;STATIC;MODULE;VERBOSE"
-    "COMPONENT;NAME;OUTPUT_NAME;VERSION;TYPE"
-    "SOURCES;HEADERS;INCLUDES;DEPENDENCIES;COMPILE_DEFINITIONS;COMPILE_OPTIONS"
+    "SHARED;STATIC;MODULE"
+    "COMPONENT;OUTPUT_NAME;VERSION"
+    "SOURCES;INCLUDES;DEPENDENCIES;COMPILE_DEFINITIONS;COMPILE_OPTIONS"
     ${ARGN}
   )
-
-  # Parameter normalization protocol: NAME → COMPONENT (backwards compatibility)
-  if(BUILD_COMP_NAME AND NOT BUILD_COMP_COMPONENT)
-    set(BUILD_COMP_COMPONENT ${BUILD_COMP_NAME})
-    if(BUILD_COMP_VERBOSE)
-      message(STATUS "Component parameter normalization: NAME → COMPONENT (${BUILD_COMP_NAME})")
-    endif()
-  endif()
 
   # Validate required arguments
   if(NOT BUILD_COMP_COMPONENT)
