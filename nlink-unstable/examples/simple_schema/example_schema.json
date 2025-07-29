@@ -1,0 +1,91 @@
+{
+    "id": "nexus_tokenizer",
+    "version": "0.2.1",
+    "description": "Tokenizer component for the NexusLink system",
+    "dependencies": [
+      {
+        "id": "nexus_core",
+        "version_req": "^0.1.0"
+      },
+      {
+        "id": "nexus_common",
+        "version_req": ">=0.1.5"
+      },
+      {
+        "id": "okpala_regex",
+        "version_req": "^1.0.0",
+        "optional": true
+      }
+    ],
+    "symbols": {
+      "exported": [
+        {
+          "name": "nexus_tokenize",
+          "version": "0.2.0",
+          "type": "function"
+        },
+        {
+          "name": "nexus_token_type",
+          "version": "0.2.0",
+          "type": "function"
+        },
+        {
+          "name": "nexus_token_value",
+          "version": "0.2.0",
+          "type": "function"
+        },
+        {
+          "name": "nexus_token_location",
+          "version": "0.1.0",
+          "type": "function"
+        },
+        {
+          "name": "NexusToken",
+          "version": "0.2.0",
+          "type": "type"
+        },
+        {
+          "name": "NexusTokenType",
+          "version": "0.2.0",
+          "type": "type"
+        },
+        {
+          "name": "NEXUS_MAX_TOKEN_LENGTH",
+          "version": "0.1.0",
+          "type": "constant"
+        }
+      ],
+      "imported": [
+        {
+          "name": "nexus_malloc",
+          "version_req": "^0.1.0",
+          "type": "function"
+        },
+        {
+          "name": "nexus_free",
+          "version_req": "^0.1.0",
+          "type": "function"
+        },
+        {
+          "name": "nexus_string_copy",
+          "version_req": "^0.1.0",
+          "type": "function"
+        },
+        {
+          "name": "okpala_regex_match",
+          "version_req": "^1.0.0",
+          "type": "function"
+        }
+      ]
+    },
+    "resources": {
+      "memory_footprint": 32768,
+      "avg_load_time_ms": 1.5,
+      "priority": 10
+    },
+    "build_info": {
+      "build_date": "2025-04-10T14:32:05Z",
+      "compiler": "gcc 12.3.0",
+      "compiler_flags": "-O2 -Wall -Wextra -fPIC"
+    }
+  }

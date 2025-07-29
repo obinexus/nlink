@@ -1,0 +1,443 @@
+.
+├── CLI_todo.md
+├── cmake
+│   ├── BuildSystem.cmake
+│   ├── ComponentSystem.cmake
+│   ├── Hooks.cmake
+│   ├── NexusLinkConfig.cmake.in
+│   ├── PackageConfig.cmake
+│   ├── TestFramework.cmake
+│   └── Utils.cmake
+├── CMakeLists.txt
+├── docs
+│   ├── build
+│   │   └── nlink_build.md
+│   ├── cli
+│   │   ├── cli_hierachy.md
+│   │   ├── cli.md
+│   │   ├── cli_minimizer.md
+│   │   ├── cli_system.md
+│   │   └── CLI_todo.md
+│   ├── command_system
+│   │   ├── command_system.md
+│   │   └── paramter_docs.md
+│   ├── cpsystem
+│   │   ├── implementaion_guide.md
+│   │   └── NexusSystem.md
+│   ├── diagrams
+│   │   └── NexusLinkCLI.md
+│   ├── guides
+│   │   └── intergtaraion_guide.md
+│   ├── migration
+│   │   └── migratation_plan.md
+│   ├── minimzer
+│   │   └── minimzer.md
+│   ├── nexus_streaming
+│   │   └── piplene.md
+│   ├── nlnk_scripting_system
+│   │   └── nlink_script.md
+│   ├── pattern
+│   │   ├── MATCHER.md
+│   │   └── Patern Matcher.md
+│   ├── pattern_matching
+│   │   ├── README.md
+│   │   ├── regex_patterns.md
+│   │   └── wildcard_patterns.md
+│   ├── pipelines
+│   │   └── pipeline_interngraion_guide.md
+│   ├── TACIT_PLAN.md
+│   ├── TESTING.md
+│   ├── token_system
+│   │   ├── README.md
+│   │   └── token_system_diagram.md
+│   ├── unif
+│   │   ├── Dependencies.md
+│   │   ├── execution_flow.md
+│   │   ├── FIXES_INTERGRATION.md
+│   │   ├── Nexus Architecture.md
+│   │   ├── NexusLink Integration Guide.md
+│   │   ├── NexusLink OVerview.md
+│   │   └── nexus_pipeline_arch.md
+│   ├── usage
+│   │   └── NLINK.md
+│   └── version
+│       └── versioning.md
+├── examples
+│   ├── cli_example.c
+│   ├── command_intergration
+│   │   ├── minimize_command_integration.c
+│   │   └── minimze_command_intergration.h
+│   ├── commands
+│   │   └── loadcomand.c
+│   ├── demo
+│   │   ├── cold
+│   │   │   ├── cold.c
+│   │   │   ├── json.c
+│   │   │   ├── lazy_main.c
+│   │   │   ├── nexus_core.c
+│   │   │   └── nexus_loader.c
+│   │   └── symbols_main.c
+│   └── pattern_matching
+│       └── example.nlink
+├── include
+│   └── nlink
+│       ├── cli
+│       │   ├── cli.h
+│       │   ├── command.h
+│       │   ├── command_params.h
+│       │   ├── command_registration.h
+│       │   ├── command_registry.h
+│       │   ├── command_router.h
+│       │   ├── commands
+│       │   │   ├── load.h
+│       │   │   ├── minimal.h
+│       │   │   ├── minimize.h
+│       │   │   ├── pipeline.h
+│       │   │   ├── version.h
+│       │   │   └── version_utils.h
+│       │   ├── parse.h
+│       │   └── regex_matcher.h
+│       └── core
+│           ├── common
+│           │   ├── command.h
+│           │   ├── json.h
+│           │   ├── lazy.h
+│           │   ├── lazy_legacy.h
+│           │   ├── lazy_versioned.h
+│           │   ├── nexus_core.h
+│           │   ├── nexus_error.h
+│           │   ├── nexus_exception.h
+│           │   ├── nexus_json.h
+│           │   ├── nexus_lazy_versioned.h
+│           │   ├── nexus_loader.h
+│           │   ├── nexus_result.h
+│           │   ├── nexus_success.h
+│           │   ├── result.h
+│           │   └── types.h
+│           ├── config
+│           │   └── config_pipeline.h
+│           ├── metadata
+│           │   ├── enhanced_metadata.h
+│           │   └── metadata.h
+│           ├── minimizer
+│           │   ├── automaton.h
+│           │   ├── nexus_automaton.h
+│           │   ├── nexus_minimizer.h
+│           │   ├── okpala_ast.h
+│           │   ├── okpala_automaton.h
+│           │   └── okpala_minimizer.h
+│           ├── mpsystem
+│           │   ├── mps_config.h
+│           │   ├── mps_dependency.h
+│           │   ├── mps_lifecycle.h
+│           │   ├── mps_pipeline.h
+│           │   └── mps_stream.h
+│           ├── pattern
+│           │   └── matcher.h
+│           ├── pattern_matching
+│           │   ├── pattern_matcher.h
+│           │   ├── regex_matcher.h
+│           │   └── wildcard_matcher.h
+│           ├── pipeline
+│           │   ├── nlink_pipeline.h
+│           │   ├── pipeline_detect.h
+│           │   ├── pipeline_pass.h
+│           │   └── pipeline_stage.h
+│           ├── schema
+│           ├── spsystem
+│           │   ├── sps_config.h
+│           │   ├── sps_dependency.h
+│           │   ├── sps_lifecycle.h
+│           │   ├── sps_pipeline.h
+│           │   └── sps_stream.h
+│           ├── symbols
+│           │   ├── nexus_symbols.h
+│           │   ├── nexus_versioned_symbols.h
+│           │   ├── registry.h
+│           │   └── symbols.h
+│           ├── system
+│           │   ├── sys_buffer.h
+│           │   ├── sys_component.h
+│           │   ├── sys_error.h
+│           │   ├── sys_metadata.h
+│           │   └── sys_registry.h
+│           ├── tatit
+│           │   ├── abstraction.h
+│           │   ├── aggregation.h
+│           │   ├── composition.h
+│           │   ├── identity.h
+│           │   ├── tactic.h
+│           │   ├── transformation.h
+│           │   └── traversal.h
+│           ├── token
+│           │   ├── nlink_token_system.h
+│           │   ├── token_structure.h
+│           │   ├── token_type.h
+│           │   ├── token_value.h
+│           │   └── type.h
+│           └── versioning
+│               ├── lazy_versioned.h
+│               ├── nexus_lazy_versioned.h
+│               ├── nexus_missing.h
+│               ├── nexus_version.h
+│               ├── nlink.h
+│               ├── semver.h
+│               └── versioned_symbols.h
+├── Makefile
+├── nlink-dir.txt
+├── plan
+│   └── CLI.md
+├── poc
+│   ├── nlink_enhanced
+│   │   ├── artifacts
+│   │   │   └── nexus_json.h.c
+│   │   ├── build
+│   │   │   ├── obj
+│   │   │   │   ├── nexus_enhanced_metadata.o
+│   │   │   │   ├── nexus_json.o
+│   │   │   │   ├── nexus_lazy_versioned.o
+│   │   │   │   ├── nexus_semver.o
+│   │   │   │   └── nexus_versioned_symbols.o
+│   │   │   └── test_versioned_integration
+│   │   ├── include
+│   │   │   ├── nexus_enhanced_metadata.h
+│   │   │   ├── nexus_json.h
+│   │   │   ├── nexus_lazy.h
+│   │   │   ├── nexus_lazy_versioned.h
+│   │   │   ├── nexus_metadata.h
+│   │   │   ├── nexus_semver.h
+│   │   │   ├── nexus_symbols.h
+│   │   │   └── nexus_versioned_symbols.h
+│   │   ├── Makefile
+│   │   ├── Makefile.old
+│   │   ├── README.md
+│   │   ├── src
+│   │   │   ├── nexus_enhanced_metadata.c
+│   │   │   ├── nexus_json.c
+│   │   │   ├── nexus_lazy_versioned.c
+│   │   │   ├── nexus_semver.c
+│   │   │   └── nexus_versioned_symbols.c
+│   │   └── test
+│   │       └── test_versioned_integration.c
+│   ├── nlink_lazy
+│   │   ├── build.sh
+│   │   ├── cold.c
+│   │   ├── docs
+│   │   │   └── NexusLink.md
+│   │   ├── libcold.so
+│   │   ├── main.c
+│   │   ├── nexus_demo
+│   │   └── nexus_lazy.h
+│   ├── nlink_symbols
+│   │   ├── build
+│   │   │   ├── cold.o
+│   │   │   ├── components
+│   │   │   │   └── libcold.so
+│   │   │   ├── main.o
+│   │   │   └── nexus_poc
+│   │   ├── build.sh
+│   │   ├── include
+│   │   │   ├── nexus_json.h
+│   │   │   ├── nexus_lazy.h
+│   │   │   ├── nexus_metadata.h
+│   │   │   └── nexus_symbols.h
+│   │   ├── README.md
+│   │   └── src
+│   │       ├── cold.c
+│   │       └── main.c
+│   └── nlnk_simpilifed
+│       ├── build
+│       │   └── test_diamond_dependency
+│       ├── include
+│       │   ├── nexus_json.h
+│       │   ├── nexus_lazy.h
+│       │   ├── nexus_metadata.h
+│       │   ├── nexus_semver.h
+│       │   ├── nexus_symbols.h
+│       │   └── nexus_versioned_symbols.h
+│       ├── Makefile
+│       ├── src
+│       │   ├── nexus_semver.c
+│       │   └── nexus_versioned_symbols.c
+│       ├── test
+│       │   └── test_diamond_dependency.c
+│       └── uml
+│           └── advanced.md
+├── README.md
+├── reports
+│   └── includes
+│       └── invalid_includes_20250420_175336.md
+├── scripts
+│   ├── compile_with_nlink.sh
+│   ├── fix_nlink_includes.sh
+│   ├── remove_invalid_includes.py
+│   └── standardize_nlink_includes.py
+├── src
+│   ├── cli
+│   │   ├── cli.c
+│   │   ├── CMakeLists.txt
+│   │   ├── command.c
+│   │   ├── command_params.c
+│   │   ├── command_registration.c
+│   │   ├── command_registry.c
+│   │   ├── command_router.c
+│   │   ├── commands
+│   │   │   ├── CMakeLists.txt
+│   │   │   ├── load.c
+│   │   │   ├── minimal.c
+│   │   │   ├── minimize.c
+│   │   │   ├── pipeline.c
+│   │   │   ├── README.md
+│   │   │   ├── version.c
+│   │   │   └── version_utils.c
+│   │   ├── main.c
+│   │   └── parse.c
+│   ├── CMakeLists.txt
+│   └── core
+│       ├── CMakeLists.txt
+│       ├── common
+│       │   ├── CMakeLists.txt
+│       │   ├── nexus_core.c
+│       │   ├── nexus_error.c
+│       │   ├── nexus_exception.c
+│       │   ├── nexus_loader.c
+│       │   ├── nexus_result.c
+│       │   ├── result.c
+│       │   └── types.c
+│       ├── config
+│       │   ├── config_pipeline.c
+│       │   └── config_validator.c
+│       ├── metadata
+│       │   ├── CMakeLists.txt
+│       │   ├── enhanced_metadata.c
+│       │   └── metadata.c
+│       ├── minimizer
+│       │   ├── CMakeLists.txt
+│       │   ├── minimizer.c
+│       │   ├── nexus_automaton.c
+│       │   ├── okpala_ast.c
+│       │   ├── okpala_automaton.c
+│       │   └── okpala_automaton_minimzer.c
+│       ├── mpsystem
+│       │   ├── CMakeLists.txt
+│       │   ├── mps_config.c
+│       │   ├── mps_dependency.c
+│       │   ├── mps_lifecycle.c
+│       │   ├── mps_pipeline.c
+│       │   └── mps_stream.c
+│       ├── nlink.c
+│       ├── parser
+│       │   ├── CMakeLists.txt
+│       │   ├── parser.c
+│       │   └── parser.h
+│       ├── pattern
+│       │   ├── CMakeLists.txt
+│       │   ├── matcher.c
+│       │   └── regex_matcher.c
+│       ├── pattern_matching
+│       │   ├── CMakeLists.txt
+│       │   ├── pattern_matcher.c
+│       │   ├── regex_matcher.c
+│       │   └── wildcard_matcher.c
+│       ├── pipeline
+│       │   ├── CMakeLists.txt
+│       │   ├── nlink_pipeline.c
+│       │   ├── pipeline_detector.c
+│       │   ├── pipeline_pass.c
+│       │   └── pipeline_stage.c
+│       ├── schema
+│       │   ├── CMakeLists.txt
+│       │   └── nlink_schema.json
+│       ├── spsystem
+│       │   ├── CMakeLists.txt
+│       │   ├── sps_config.c
+│       │   ├── sps_dependency.c
+│       │   ├── sps_lifecycle.c
+│       │   ├── sps_pipeline.c
+│       │   └── sps_stream.c
+│       ├── symbols
+│       │   ├── CMakeLists.txt
+│       │   ├── cold_symbol.c
+│       │   ├── nexus_symbols.c
+│       │   ├── symbols.c
+│       │   └── versioned_symbols.c
+│       ├── tatit
+│       │   ├── abstraction.c
+│       │   ├── aggregation.c
+│       │   ├── CMakeLists.txt
+│       │   ├── composition.c
+│       │   ├── identity.c
+│       │   ├── tactic.c
+│       │   ├── transformation.c
+│       │   └── traversal.c
+│       ├── tokenizer
+│       │   ├── CMakeLists.txt
+│       │   ├── tokenizer.c
+│       │   └── tokenizer.h
+│       ├── token_type
+│       │   ├── CMakeLists.txt
+│       │   ├── token_type.c
+│       │   └── type.c
+│       ├── token_value
+│       │   ├── CMakeLists.txt
+│       │   ├── nlink_token_system.c
+│       │   └── token_value.c
+│       └── versioning
+│           ├── CMakeLists.txt
+│           ├── lazy_versioned.c
+│           ├── missing_functions.c
+│           ├── nexus_version.c
+│           └── semver.c
+├── TACIT_PLAN.md
+├── templates
+│   ├── nlink.h.in
+│   └── nlink_version.h.in
+├── test
+│   └── pattern_matching
+│       ├── CMakeLists.txt
+│       └── test_pattern_matcher.c
+├── __tests__
+│   ├── CMakeLists.txt
+│   ├── intergrations
+│   │   ├── test_cli_intergration.c
+│   │   └── test_intergration.c
+│   └── unit
+│       ├── cli
+│       │   └── CMakeLists.txt
+│       └── core
+│           ├── CMakeLists.txt
+│           └── pattern
+│               ├── matcher_test.c
+│               └── test_param_extraction.c
+├── tests
+│   ├── framework
+│   │   └── test_stub_manager.c
+│   ├── include
+│   │   └── nlink_test.h
+│   └── unit
+│       └── core
+│           ├── common
+│           │   └── CMakeLists.txt
+│           ├── metadata
+│           │   └── CMakeLists.txt
+│           ├── minimizer
+│           │   └── CMakeLists.txt
+│           ├── mpsystem
+│           │   └── CMakeLists.txt
+│           ├── pattern
+│           │   └── CMakeLists.txt
+│           ├── pipeline
+│           │   └── CMakeLists.txt
+│           ├── spsystem
+│           │   └── CMakeLists.txt
+│           ├── symbols
+│           │   └── CMakeLists.txt
+│           ├── token
+│           │   └── test_token_system.c
+│           └── versioning
+│               └── CMakeLists.txt
+└── tools
+    └── dev
+        └── setup.sh
+
+118 directories, 323 files
