@@ -52,7 +52,48 @@ set(CMAKE_C_STANDARD_REQUIRED ON)
 
 # Add position-independent code flag for shared libraries
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+# CRITICAL: Component materialization must precede dependency establishment
+cmake_minimum_required(VERSION 3.16)
 
+project(NexusLink 
+    VERSION 1.0.0
+    DESCRIPTION "Dynamic Component Linkage System"
+    LANGUAGES C
+)
+
+# [Configuration options remain unchanged]
+
+# ════════════════════════════════════════════════════════════
+# COMPONENT MATERIALIZATION SEQUENCE - CRITICAL BOUNDARY LAYER
+# ════════════════════════════════════════════════════════════
+
+# Core component materialization - PRIMARY BOUNDARY
+add_subdirectory(src/core)
+
+# CLI component materialization - SECONDARY BOUNDARY
+add_subdirectory(src/cli)
+
+# CROSS-BOUNDARY DEPENDENCIES - only after materialization
+if(TARGET nlink_cli_components AND TARGET nlink_unified_core)
+    add_dependencies(nlink_cli_components nlink_unified_core)
+endif()
+
+if(TARGET nlink_cli_static AND TARGET nlink_core)
+    target_link_libraries(nlink_cli_static PRIVATE nlink_core)
+endif()
+
+# Explicit artifact production dependency enforcement
+if(TARGET nlink_cli_static)
+    add_custom_command(
+        OUTPUT ${CMAKE_BINARY_DIR}/lib/libnlink_cli.a
+        DEPENDS $<TARGET_FILE:nlink_cli_static>
+        COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_BINARY_DIR}/lib
+        COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:nlink_cli_static> ${CMAKE_BINARY_DIR}/lib/libnlink_cli.a
+        COMMENT "Ensuring CLI static library artifact production"
+    )
+endif()
+
+# [Remainder of configuration remains unchanged]
 # Add preprocessor definitions
 if(NEXUS_ENABLE_VERBOSE_LOGGING)
   add_definitions(-DNEXUS_VERBOSE_LOGGING=1)

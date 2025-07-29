@@ -1,5 +1,9 @@
-cmake_minimum_required(VERSION 3.13)
+cmake_minimum_required(VERSION 3.16)
 project(NexusLink VERSION 1.0.0 LANGUAGES C)
+
+# ════════════════════════════════════════════════════════════
+# COMPONENT FRAMEWORK INITIALIZATION
+# ════════════════════════════════════════════════════════════
 
 # Include core build system modules
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
@@ -10,31 +14,25 @@ include(ComponentSystem)
 include(TestFramework)
 include(PackageConfig)
 
-add_dependencies(nlink_cli_components nlink_unified_core)
-# Implement explicit CLI-to-Core dependency
-target_link_libraries(nlink_cli_static PRIVATE nlink_core)
+# ════════════════════════════════════════════════════════════
+# BUILD OUTPUT STANDARDIZATION ENFORCEMENT
+# ════════════════════════════════════════════════════════════
 
-# Create explicit file-level dependency to enforce build order
-add_custom_command(
-  OUTPUT ${CMAKE_BINARY_DIR}/lib/libnlink_cli.a
-  DEPENDS ${CMAKE_BINARY_DIR}/lib/libnlink_core.a
-  APPEND
-)
-# Define main executable with proper core library dependency
-nlink_define_main_executable(
-  NAME nlink_executable
-  SOURCES ${CMAKE_SOURCE_DIR}/src/cli/main.c
-  INCLUDES ${CMAKE_SOURCE_DIR}/src/cli
-  DEPENDENCIES nlink_cli_static nlink_core
-)
+# Include build output standardization module
+include(BuildOutputStandard)
 
-# Initialize build system with directories
+# Initialize build system with standardized directories
+# The BuildOutputStandard module automatically enforces:
+# - ${CMAKE_BINARY_DIR}/obj   : Object files
+# - ${CMAKE_BINARY_DIR}/bin   : Executables
+# - ${CMAKE_BINARY_DIR}/lib   : Libraries
+# - ${CMAKE_BINARY_DIR}/logs  : Build logs
 nlink_init_hook_system(
-  OBJ_DIR "${CMAKE_BINARY_DIR}/obj"
-  BIN_DIR "${CMAKE_BINARY_DIR}/bin"
-  LIB_DIR "${CMAKE_BINARY_DIR}/lib"
+  OBJ_DIR "${NLINK_OBJ_ROOT}"
+  BIN_DIR "${NLINK_BIN_ROOT}"
+  LIB_DIR "${NLINK_LIB_ROOT}"
   TEST_DIR "${CMAKE_BINARY_DIR}/tests"
-  LOG_DIR "${CMAKE_BINARY_DIR}/logs"
+  LOG_DIR "${NLINK_LOG_ROOT}"
   VERBOSE
 )
 
@@ -56,45 +54,70 @@ nlink_init_build_system(
 # Find dependencies
 nlink_find_dependencies()
 
-# Execute pre-build hooks
-nlink_execute_pre_build_hooks()
+# ════════════════════════════════════════════════════════════
+# COMPONENT MATERIALIZATION SEQUENCE - CRITICAL BOUNDARY LAYER
+# ════════════════════════════════════════════════════════════
 
-# Core component definitions - discover components first to ensure proper registration
-file(GLOB CORE_COMPONENTS RELATIVE "${CMAKE_CURRENT_SOURCE_DIR}/src/core" "${CMAKE_CURRENT_SOURCE_DIR}/src/core/*")
-set(VALID_CORE_COMPONENTS "")
+# PRIMARY BOUNDARY: Core component materialization
+add_subdirectory(src/core)
 
-foreach(COMPONENT ${CORE_COMPONENTS})
-  if(IS_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/src/core/${COMPONENT}")
-    list(APPEND VALID_CORE_COMPONENTS ${COMPONENT})
-    nlink_register_component(${COMPONENT})
-    # Create component object directory
-    file(MAKE_DIRECTORY "${CMAKE_BINARY_DIR}/obj/core/${COMPONENT}")
-  endif()
-endforeach()
-
-message(STATUS "Discovered core components: ${VALID_CORE_COMPONENTS}")
-
-# Add core components
-add_subdirectory("src/core")
-
-# CLI components
+# SECONDARY BOUNDARY: CLI component materialization (if enabled)
 if(NLINK_USE_CLI)
-  add_subdirectory("src/cli")
+  add_subdirectory(src/cli)
 endif()
 
-# Main executable
-nlink_define_main_executable(
-  NAME "nlink"
-  VERSION "${PROJECT_VERSION}"
-  SOURCES "${NLINK_SRC_DIR}/cli/main.c"
-  DEPENDENCIES nlink_core_static nlink_cli_static pthread dl
-)
+# ════════════════════════════════════════════════════════════
+# CROSS-BOUNDARY DEPENDENCY RESOLUTION
+# ════════════════════════════════════════════════════════════
+
+# Conditional cross-component dependencies - only after materialization
+if(TARGET nlink_cli_components AND TARGET nlink_unified_core)
+    add_dependencies(nlink_cli_components nlink_unified_core)
+endif()
+
+if(TARGET nlink_cli_static AND TARGET nlink_core)
+    target_link_libraries(nlink_cli_static PRIVATE nlink_core)
+endif()
+
+# ════════════════════════════════════════════════════════════
+# ARTIFACT PRODUCTION VALIDATION
+# ════════════════════════════════════════════════════════════
+
+# Ensure CLI artifact production (if CLI is enabled and target exists)
+if(NLINK_USE_CLI AND TARGET nlink_cli_static)
+    add_custom_command(
+        OUTPUT ${CMAKE_BINARY_DIR}/lib/libnlink_cli.a
+        DEPENDS $<TARGET_FILE:nlink_cli_static>
+        COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_BINARY_DIR}/lib
+        COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:nlink_cli_static> ${CMAKE_BINARY_DIR}/lib/libnlink_cli.a
+        COMMENT "Ensuring CLI static library artifact production"
+        VERBATIM
+    )
+    add_custom_target(ensure_cli_artifact ALL DEPENDS ${CMAKE_BINARY_DIR}/lib/libnlink_cli.a)
+endif()
+
+# ════════════════════════════════════════════════════════════
+# MAIN EXECUTABLE DEFINITION
+# ════════════════════════════════════════════════════════════
+
+# Define main executable with proper core library dependency
+if(NLINK_USE_CLI AND TARGET nlink_cli_static AND TARGET nlink_core)
+    nlink_define_main_executable(
+      NAME nlink_executable
+      SOURCES ${CMAKE_SOURCE_DIR}/src/cli/main.c
+      INCLUDES ${CMAKE_SOURCE_DIR}/src/cli
+      DEPENDENCIES nlink_cli_static nlink_core pthread dl
+    )
+endif()
+
+# ════════════════════════════════════════════════════════════
+# AUXILIARY SYSTEM CONFIGURATION
+# ════════════════════════════════════════════════════════════
 
 # Generate unified header
 nlink_generate_unified_header(
-  OUTPUT "${NLINK_BUILD_DIR}/include/nlink.h"
-  TEMPLATE "${NLINK_PROJECT_ROOT}/templates/nlink.h.in"
-  COMPONENTS ${VALID_CORE_COMPONENTS}
+  OUTPUT "${CMAKE_BINARY_DIR}/include/nlink.h"
+  COMPONENTS ${NLINK_CORE_COMPONENTS}
   VERBOSE
 )
 
@@ -108,12 +131,18 @@ nlink_init_package_config(
 # Installation setup
 nlink_install_unified_header()
 nlink_install_development_components()
-nlink_install_executable(TARGET nlink)
+if(TARGET nlink_executable)
+    nlink_install_executable(TARGET nlink_executable)
+endif()
 
 # Testing setup
 if(BUILD_TESTING)
   add_subdirectory(tests)
 endif()
+
+# ════════════════════════════════════════════════════════════
+# DEVELOPMENT TARGETS
+# ════════════════════════════════════════════════════════════
 
 # Create debug/release targets
 add_custom_target(debug
@@ -136,7 +165,7 @@ add_custom_target(validate
 
 # Fix includes target
 add_custom_target(fix-includes
-  COMMAND ${NLINK_PROJECT_ROOT}/scripts/fix_nlink_includes.sh --project-root ${NLINK_PROJECT_ROOT} --verbose
+  COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/scripts/fix_nlink_includes.sh --project-root ${CMAKE_CURRENT_SOURCE_DIR} --verbose
   COMMENT "Fixing include paths"
 )
 
@@ -146,7 +175,10 @@ add_custom_target(dev-cycle
   COMMENT "Running complete development workflow"
 )
 
-# Documentation generation (if Doxygen is available)
+# ════════════════════════════════════════════════════════════
+# DOCUMENTATION GENERATION
+# ════════════════════════════════════════════════════════════
+
 if(BUILD_DOCUMENTATION)
   find_package(Doxygen QUIET)
   if(DOXYGEN_FOUND)
@@ -165,39 +197,56 @@ if(BUILD_DOCUMENTATION)
       VERBATIM
     )
     
-    # Generate Doxyfile
-    if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/templates/Doxyfile.in")
-      configure_file(
-        ${CMAKE_CURRENT_SOURCE_DIR}/templates/Doxyfile.in
-        ${CMAKE_BINARY_DIR}/Doxyfile
-        @ONLY
-      )
-    else()
-      message(STATUS "Doxyfile template not found - using default configuration")
-      doxygen_add_docs(docs
-        ${CMAKE_SOURCE_DIR}/src
-        ${CMAKE_SOURCE_DIR}/include
-        COMMENT "Generating API documentation with Doxygen"
-      )
-    endif()
-    
     message(STATUS "Doxygen found: Documentation target available")
   else()
     add_custom_target(docs
       COMMAND ${CMAKE_COMMAND} -E echo "Doxygen not found - documentation generation disabled"
       COMMENT "Doxygen not found - documentation generation disabled"
     )
-    message(STATUS "Doxygen not found - documentation generation disabled")
   endif()
 endif()
 
-# Execute post-build hooks
-nlink_execute_post_build_hooks()
+# ════════════════════════════════════════════════════════════
+# BUILD OUTPUT VALIDATION AND ARTIFACT COLLECTION
+# ════════════════════════════════════════════════════════════
 
-# Print build system status
-message(STATUS "NexusLink build system configuration complete")
-message(STATUS "Version: ${PROJECT_VERSION}")
-message(STATUS "Build type: ${CMAKE_BUILD_TYPE}")
-message(STATUS "Testing enabled: ${BUILD_TESTING}")
-message(STATUS "CLI support: ${NLINK_USE_CLI}")
-message(STATUS "Registered components: ${VALID_CORE_COMPONENTS}")
+# Final build validation target
+add_custom_target(validate_build ALL
+    COMMAND ${CMAKE_COMMAND} -E echo "Validating build output structure..."
+    COMMAND ${CMAKE_COMMAND} 
+        -DNLINK_OUTPUT_ROOT=${CMAKE_BINARY_DIR}
+        -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}
+        -P ${CMAKE_SOURCE_DIR}/cmake/CollectArtifacts.cmake
+    DEPENDS nlink_unified_core
+    COMMENT "Validating standardized build output structure"
+    VERBATIM
+)
+
+# Add dependency on CLI if enabled
+if(NLINK_USE_CLI AND TARGET nlink_cli_components)
+    add_dependencies(validate_build nlink_cli_components)
+endif()
+
+# Add dependency on executable if built
+if(TARGET nlink_executable)
+    add_dependencies(validate_build nlink_executable)
+endif()
+
+# ════════════════════════════════════════════════════════════
+# BUILD SYSTEM STATUS REPORT
+# ════════════════════════════════════════════════════════════
+
+message(STATUS "════════════════════════════════════════════════════")
+message(STATUS "NexusLink Build System Configuration Complete")
+message(STATUS "════════════════════════════════════════════════════")
+message(STATUS "Version:           ${PROJECT_VERSION}")
+message(STATUS "Build type:        ${CMAKE_BUILD_TYPE}")
+message(STATUS "Testing enabled:   ${BUILD_TESTING}")
+message(STATUS "CLI support:       ${NLINK_USE_CLI}")
+message(STATUS "Documentation:     ${BUILD_DOCUMENTATION}")
+message(STATUS "Output structure:")
+message(STATUS "  Objects:         ${NLINK_OBJ_ROOT}")
+message(STATUS "  Binaries:        ${NLINK_BIN_ROOT}")
+message(STATUS "  Libraries:       ${NLINK_LIB_ROOT}")
+message(STATUS "  Logs:            ${NLINK_LOG_ROOT}")
+message(STATUS "════════════════════════════════════════════════════")
