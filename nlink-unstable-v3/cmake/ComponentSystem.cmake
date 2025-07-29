@@ -24,6 +24,37 @@ macro(nlink_register_component comp_name comp_version)
     
     message(STATUS "Registered component: ${_COMP_NAME} (version ${comp_version})")
 endmacro()
+
+# ComponentSystem.cmake - CORRECTED VERSION
+macro(nlink_build_component)
+    # Use CMAKE_PARSE_ARGUMENTS for robust parameter handling
+    cmake_parse_arguments(
+        COMP  # prefix
+        ""    # options
+        "NAME;VERSION;TYPE"  # one-value keywords
+        "SOURCES;DEPENDENCIES"  # multi-value keywords
+        ${ARGN}
+    )
+    
+    # Validate component name
+    if(NOT COMP_NAME OR "${COMP_NAME}" STREQUAL "NAME")
+        message(FATAL_ERROR "Component name not properly specified")
+    endif()
+    
+    # Register with correct expansion
+    nlink_register_component("${COMP_NAME}" "${COMP_VERSION}")
+    
+    # Build the component library
+    add_library(nlink_component_${COMP_NAME} ${COMP_TYPE} ${COMP_SOURCES})
+    
+    # Set component properties
+    set_target_properties(nlink_component_${COMP_NAME} PROPERTIES
+        VERSION ${COMP_VERSION}
+        OUTPUT_NAME "nlink_${COMP_NAME}"
+        ARCHIVE_OUTPUT_DIRECTORY "${NLINK_LIB_ROOT}"
+    )
+endmacro()
+
 # Function to initialize the component system
 function(nlink_init_component_system)
   cmake_parse_arguments(

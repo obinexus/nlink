@@ -5,7 +5,42 @@ if(DEFINED NLINK_EXECUTABLE_CONFIG_INCLUDED)
   return()
 endif()
 set(NLINK_EXECUTABLE_CONFIG_INCLUDED TRUE)
+# ExecutableConfig.cmake - ENHANCED VERSION
+include_guard(GLOBAL)  # Prevent multiple inclusions
 
+# Global flag to track executable creation
+set(NLINK_EXECUTABLE_CREATED FALSE CACHE INTERNAL "Track executable creation")
+
+function(nlink_define_main_executable)
+    if(NLINK_EXECUTABLE_CREATED)
+        message(STATUS "nlink_executable already defined - skipping")
+        return()
+    endif()
+    
+    # Extract main sources
+    file(GLOB NLINK_MAIN_SOURCES "${CMAKE_SOURCE_DIR}/src/main.c")
+    
+    # Create executable with proper guards
+    add_executable(nlink_executable ${NLINK_MAIN_SOURCES})
+    
+    # Link against core and CLI libraries
+    target_link_libraries(nlink_executable
+        PRIVATE
+            nlink_core
+            $<$<BOOL:${NLINK_USE_CLI}>:nlink_cli_static>
+            Threads::Threads
+    )
+    
+    # Set output properties
+    set_target_properties(nlink_executable PROPERTIES
+        OUTPUT_NAME "nlink"
+        RUNTIME_OUTPUT_DIRECTORY "${NLINK_BIN_ROOT}"
+        INSTALL_RPATH "$ORIGIN/../lib"
+    )
+    
+    # Mark as created
+    set(NLINK_EXECUTABLE_CREATED TRUE CACHE INTERNAL "Track executable creation")
+endfunction()
 include(CMakeParseArguments)
 # ExecutableConfig.cmake safety wrapper
 macro(nlink_define_main_executable)
