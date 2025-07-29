@@ -136,46 +136,28 @@ function(nlink_init_package_config)
     MESSAGE "Package configuration initialized with version ${PKG_INIT_VERSION}"
   )
 endfunction()
-
-# Register component for installation
+# cmake/PackageConfig.cmake - Corrected target resolution
 function(nlink_register_component_install COMPONENT_NAME)
-  # Ensure component is valid
-  get_target_property(COMPONENT_SOURCES "nlink_${COMPONENT_NAME}" COMPONENT_SOURCES)
-  if(NOT COMPONENT_SOURCES)
-    nlink_log(
-      WARNING
-      MESSAGE "Cannot register component ${COMPONENT_NAME} for installation: Component not found"
-    )
+  # Architectural invariant: Component targets follow nlink_component_<n> pattern
+  set(COMPONENT_TARGET "nlink_component_${COMPONENT_NAME}")
+  
+  # Defensive programming: Verify target materialization before access
+  if(NOT TARGET ${COMPONENT_TARGET})
+    message(STATUS "Component ${COMPONENT_TARGET} not materialized, deferring installation")
     return()
   endif()
   
-  # Component include directory
-  set(COMPONENT_INCLUDE_DIR "${NLINK_INCLUDE_DIR}/nlink/core/${COMPONENT_NAME}")
+  # Extract properties from correctly named target
+  get_target_property(COMPONENT_TYPE ${COMPONENT_TARGET} TYPE)
+  get_target_property(COMPONENT_SOURCES ${COMPONENT_TARGET} SOURCES)
   
-  # Install headers
+  # Installation protocol with validated target reference
   install(
-    DIRECTORY "${COMPONENT_INCLUDE_DIR}/"
-    DESTINATION "${NLINK_INSTALL_INCLUDEDIR}/core/${COMPONENT_NAME}"
-    FILES_MATCHING PATTERN "*.h"
-    COMPONENT devel
-  )
-  
-  # Install library target
-  if(TARGET nlink_${COMPONENT_NAME}_static)
-    install(
-      TARGETS nlink_${COMPONENT_NAME}_static
-      EXPORT nlink-targets
-      ARCHIVE DESTINATION "${NLINK_INSTALL_LIBDIR}"
-      LIBRARY DESTINATION "${NLINK_INSTALL_LIBDIR}"
-      RUNTIME DESTINATION "${NLINK_INSTALL_BINDIR}"
-      INCLUDES DESTINATION "${NLINK_INSTALL_INCLUDEDIR}"
-      COMPONENT devel
-    )
-  endif()
-  
-  nlink_log(
-    STATUS
-    MESSAGE "Registered component ${COMPONENT_NAME} for installation"
+    TARGETS ${COMPONENT_TARGET}
+    EXPORT nlink-targets
+    ARCHIVE DESTINATION "${NLINK_INSTALL_LIBDIR}"
+    LIBRARY DESTINATION "${NLINK_INSTALL_LIBDIR}"
+    RUNTIME DESTINATION "${NLINK_INSTALL_BINDIR}"
   )
 endfunction()
 

@@ -122,11 +122,31 @@ nlink_generate_unified_header(
 )
 
 # Package configuration
-nlink_init_package_config(
-  VERSION "${PROJECT_VERSION}"
-  DESCRIPTION "NexusLink: Dynamic Component Linkage System"
-  VENDOR "NexusLink Team"
-)
+# Register install targets for each component with existence validation
+foreach(COMPONENT ${PKG_INIT_COMPONENTS})
+  # Validate target exists before registration
+  if(TARGET nlink_component_${COMPONENT})
+    nlink_register_component_install(${COMPONENT})
+  else()
+    message(WARNING "Component target nlink_component_${COMPONENT} not found, skipping installation")
+  endif()
+endforeach()
+
+# Package configuration with error handling
+if(COMMAND nlink_init_package_config)
+  nlink_init_package_config(
+    VERSION "${PROJECT_VERSION}"
+    DESCRIPTION "NexusLink: Dynamic Component Linkage System"
+    VENDOR "NexusLink Team"
+  )
+else()
+  message(WARNING "Package configuration function not available")
+endif()
+# nlink_init_package_config(
+#   VERSION "${PROJECT_VERSION}"
+#   DESCRIPTION "NexusLink: Dynamic Component Linkage System"
+#   VENDOR "NexusLink Team"
+# )
 
 # Installation setup
 nlink_install_unified_header()
