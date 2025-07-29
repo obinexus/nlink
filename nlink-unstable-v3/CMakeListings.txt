@@ -1,0 +1,692 @@
+[4.0K]  .
+├── [4.0K]  bin
+├── [4.0K]  build
+│   └── [4.0K]  cmake
+│       └── [ 113]  docs-for-nlink.txt
+├── [7.9K]  CLI_todo.md
+├── [4.0K]  cmake
+│   ├── [6.3K]  BuildSystem.cmake
+│   ├── [5.3K]  ComponentSystem.cmake
+│   ├── [4.5K]  ComponentSystem.cmake.20250729181112.bak
+│   ├── [5.3K]  ComponentSystem.cmake.bak
+│   ├── [2.6K]  ComponentSystem.cmake.old
+│   ├── [1.5K]  ExecutableConfig.cmake
+│   ├── [2.5K]  ExecutableConfig.cmake.old
+│   ├── [ 13K]  Hooks.cmake
+│   ├── [3.1K]  NexusLinkConfig.cmake.in
+│   ├── [9.1K]  PackageConfig.cmake
+│   ├── [ 20K]  TestFramework.cmake
+│   └── [ 11K]  Utils.cmake
+├── [ 24K]  CMakeCache.txt
+├── [4.0K]  CMakeFiles
+│   ├── [4.0K]  3.25.1
+│   │   ├── [2.4K]  CMakeCCompiler.cmake
+│   │   ├── [ 16K]  CMakeDetermineCompilerABI_C.bin
+│   │   ├── [ 470]  CMakeSystem.cmake
+│   │   └── [4.0K]  CompilerIdC
+│   │       ├── [ 16K]  a.out
+│   │       ├── [ 26K]  CMakeCCompilerId.c
+│   │       └── [4.0K]  tmp
+│   ├── [  85]  cmake.check_cache
+│   ├── [ 24K]  CMakeOutput.log
+│   └── [4.0K]  pkgRedirects
+├── [   0]  CMakeListings.txt
+├── [6.3K]  CMakeLists.txt
+├── [5.7K]  CMakeLists.txt.bak
+├── [4.0K]  components
+│   └── [4.0K]  diram-build
+│       └── [4.0K]  release
+│           ├── [4.0K]  bin
+│           │   └── [ 39K]  diram
+│           ├── [4.0K]  config
+│           │   └── [1.9K]  diram.drc
+│           ├── [4.0K]  lib
+│           │   ├── [ 39K]  libdiram.a
+│           │   ├── [  13]  libdiram.so -> libdiram.so.1
+│           │   └── [ 35K]  libdiram.so.1
+│           └── [4.0K]  obj
+│               ├── [4.0K]  cli
+│               │   └── [ 36K]  main.o
+│               └── [4.0K]  core
+│                   ├── [4.0K]  config
+│                   │   └── [ 24K]  config.o
+│                   └── [4.0K]  feature-alloc
+│                       ├── [5.5K]  alloc.o
+│                       └── [8.7K]  feature_alloc.o
+├── [4.0K]  docs
+│   ├── [4.0K]  build
+│   │   └── [ 10K]  nlink_build.md
+│   ├── [4.0K]  cli
+│   │   ├── [1.7K]  cli_hierachy.md
+│   │   ├── [5.2K]  cli.md
+│   │   ├── [1.1K]  cli_minimizer.md
+│   │   ├── [1.2K]  cli_system.md
+│   │   └── [7.9K]  CLI_todo.md
+│   ├── [4.0K]  command_system
+│   │   ├── [9.7K]  command_system.md
+│   │   └── [6.6K]  paramter_docs.md
+│   ├── [4.0K]  cpsystem
+│   │   ├── [ 49K]  implementaion_guide.md
+│   │   └── [8.6K]  NexusSystem.md
+│   ├── [4.0K]  diagrams
+│   │   └── [1.8K]  NexusLinkCLI.md
+│   ├── [4.0K]  guides
+│   │   └── [ 18K]  intergtaraion_guide.md
+│   ├── [4.0K]  migration
+│   │   └── [ 16K]  migratation_plan.md
+│   ├── [4.0K]  minimzer
+│   │   └── [5.2K]  minimzer.md
+│   ├── [234K]  NexusLink CLI System_ Component Orchestration Framework.pdf
+│   ├── [4.0K]  nexus_streaming
+│   │   └── [4.3K]  piplene.md
+│   ├── [4.0K]  nlnk_scripting_system
+│   │   └── [ 10K]  nlink_script.md
+│   ├── [4.0K]  pattern
+│   │   ├── [6.6K]  MATCHER.md
+│   │   └── [9.1K]  Patern Matcher.md
+│   ├── [4.0K]  pattern_matching
+│   │   ├── [3.2K]  README.md
+│   │   ├── [4.2K]  regex_patterns.md
+│   │   └── [3.8K]  wildcard_patterns.md
+│   ├── [4.0K]  pipelines
+│   │   └── [6.9K]  pipeline_interngraion_guide.md
+│   ├── [4.4K]  TACIT_PLAN.md
+│   ├── [ 20K]  TESTING.md
+│   ├── [4.0K]  token_system
+│   │   ├── [5.5K]  README.md
+│   │   └── [2.9K]  token_system_diagram.md
+│   ├── [4.0K]  unif
+│   │   ├── [4.7K]  Dependencies.md
+│   │   ├── [2.6K]  execution_flow.md
+│   │   ├── [2.5K]  FIXES_INTERGRATION.md
+│   │   ├── [1.7K]  Nexus Architecture.md
+│   │   ├── [9.8K]  NexusLink Integration Guide.md
+│   │   ├── [7.8K]  NexusLink OVerview.md
+│   │   └── [1.8K]  nexus_pipeline_arch.md
+│   ├── [4.0K]  usage
+│   │   └── [5.6K]  NLINK.md
+│   └── [4.0K]  version
+│       └── [3.3K]  versioning.md
+├── [4.0K]  examples
+│   ├── [ 15K]  cli_example.c
+│   ├── [4.0K]  command_intergration
+│   │   ├── [ 10K]  minimize_command_integration.c
+│   │   └── [ 920]  minimze_command_intergration.h
+│   ├── [4.0K]  commands
+│   │   └── [3.7K]  loadcomand.c
+│   ├── [4.0K]  demo
+│   │   ├── [4.0K]  cold
+│   │   │   ├── [ 152]  cold.c
+│   │   │   ├── [ 22K]  json.c
+│   │   │   ├── [ 491]  lazy_main.c
+│   │   │   ├── [4.6K]  nexus_core.c
+│   │   │   └── [8.4K]  nexus_loader.c
+│   │   └── [8.5K]  symbols_main.c
+│   └── [4.0K]  pattern_matching
+│       └── [1.5K]  example.nlink
+├── [  25]  .gitignore
+├── [4.0K]  include
+│   └── [4.0K]  nlink
+│       ├── [4.0K]  cli
+│       │   ├── [3.4K]  cli.h
+│       │   ├── [4.2K]  command.h
+│       │   ├── [3.6K]  command_params.h
+│       │   ├── [2.2K]  command_registration.h
+│       │   ├── [5.3K]  command_registry.h
+│       │   ├── [3.5K]  command_router.h
+│       │   ├── [4.0K]  commands
+│       │   │   ├── [ 990]  load.h
+│       │   │   ├── [1.9K]  minimal.h
+│       │   │   ├── [ 674]  minimize.h
+│       │   │   ├── [1.3K]  pipeline.h
+│       │   │   ├── [1.2K]  version.h
+│       │   │   └── [1.5K]  version_utils.h
+│       │   ├── [   0]  .gitkeep
+│       │   ├── [4.1K]  parse.h
+│       │   └── [2.9K]  regex_matcher.h
+│       └── [4.0K]  core
+│           ├── [4.0K]  common
+│           │   ├── [5.0K]  command.h
+│           │   ├── [ 22K]  json.h
+│           │   ├── [ 851]  lazy.h
+│           │   ├── [8.4K]  lazy_legacy.h
+│           │   ├── [9.5K]  lazy_versioned.h
+│           │   ├── [2.9K]  nexus_core.h
+│           │   ├── [2.4K]  nexus_error.h
+│           │   ├── [3.5K]  nexus_exception.h
+│           │   ├── [2.9K]  nexus_json.h
+│           │   ├── [ 11K]  nexus_lazy_versioned.h
+│           │   ├── [3.6K]  nexus_loader.h
+│           │   ├── [4.1K]  nexus_result.h
+│           │   ├── [   0]  nexus_success.h
+│           │   ├── [1.5K]  result.h
+│           │   └── [5.3K]  types.h
+│           ├── [4.0K]  config
+│           │   └── [1.9K]  config_pipeline.h
+│           ├── [4.0K]  metadata
+│           │   ├── [4.5K]  enhanced_metadata.h
+│           │   └── [ 16K]  metadata.h
+│           ├── [4.0K]  minimizer
+│           │   ├── [ 456]  automaton.h
+│           │   ├── [ 609]  nexus_automaton.h
+│           │   ├── [5.7K]  nexus_minimizer.h
+│           │   ├── [ 914]  okpala_ast.h
+│           │   ├── [3.9K]  okpala_automaton.h
+│           │   └── [1.8K]  okpala_minimizer.h
+│           ├── [4.0K]  mpsystem
+│           │   ├── [4.9K]  mps_config.h
+│           │   ├── [5.1K]  mps_dependency.h
+│           │   ├── [7.7K]  mps_lifecycle.h
+│           │   ├── [8.8K]  mps_pipeline.h
+│           │   └── [8.6K]  mps_stream.h
+│           ├── [1.1K]  nlink_version.h
+│           ├── [4.0K]  pattern
+│           │   ├── [   1]  .gitkeep
+│           │   └── [6.8K]  matcher.h
+│           ├── [4.0K]  pattern_matching
+│           │   ├── [2.6K]  pattern_matcher.h
+│           │   ├── [3.0K]  regex_matcher.h
+│           │   └── [3.2K]  wildcard_matcher.h
+│           ├── [4.0K]  pipeline
+│           │   ├── [5.1K]  nlink_pipeline.h
+│           │   ├── [4.4K]  pipeline_detect.h
+│           │   ├── [4.4K]  pipeline_pass.h
+│           │   └── [2.2K]  pipeline_stage.h
+│           ├── [4.0K]  schema
+│           │   └── [   0]  .gitkeep
+│           ├── [4.0K]  spsystem
+│           │   ├── [3.1K]  sps_config.h
+│           │   ├── [3.6K]  sps_dependency.h
+│           │   ├── [3.7K]  sps_lifecycle.h
+│           │   ├── [5.2K]  sps_pipeline.h
+│           │   └── [4.2K]  sps_stream.h
+│           ├── [4.0K]  symbols
+│           │   ├── [4.3K]  nexus_symbols.h
+│           │   ├── [5.9K]  nexus_versioned_symbols.h
+│           │   ├── [5.6K]  registry.h
+│           │   └── [6.2K]  symbols.h
+│           ├── [4.0K]  system
+│           │   ├── [   0]  sys_buffer.h
+│           │   ├── [   0]  sys_component.h
+│           │   ├── [   0]  sys_error.h
+│           │   ├── [   0]  sys_metadata.h
+│           │   └── [   0]  sys_registry.h
+│           ├── [4.0K]  tatit
+│           │   ├── [5.5K]  abstraction.h
+│           │   ├── [6.0K]  aggregation.h
+│           │   ├── [3.7K]  composition.h
+│           │   ├── [3.8K]  identity.h
+│           │   ├── [2.4K]  tactic.h
+│           │   ├── [7.1K]  transformation.h
+│           │   └── [6.6K]  traversal.h
+│           ├── [4.0K]  token
+│           │   ├── [5.3K]  nlink_token_system.h
+│           │   ├── [8.6K]  token_structure.h
+│           │   ├── [5.5K]  token_type.h
+│           │   ├── [ 16K]  token_value.h
+│           │   └── [2.3K]  type.h
+│           └── [4.0K]  versioning
+│               ├── [ 729]  lazy_versioned.h
+│               ├── [1.4K]  nexus_lazy_versioned.h
+│               ├── [1.7K]  nexus_missing.h
+│               ├── [3.6K]  nexus_version.h
+│               ├── [4.3K]  nlink.h
+│               ├── [1.6K]  semver.h
+│               └── [5.8K]  versioned_symbols.h
+├── [ 856]  integration_protocol.sh
+├── [4.0K]  lib
+├── [4.0K]  logs
+├── [3.7K]  Makefile
+├── [ 18K]  nlink-dir.txt
+├── [7.5K]  nlink-unstable-v3.01.log
+├── [ 11K]  nlink-unstable-v3.log
+├── [5.7K]  obinexus_component_generator.py
+├── [4.0K]  obj
+│   ├── [4.0K]  cli
+│   │   ├── [4.0K]  cli
+│   │   ├── [4.0K]  CMakeFiles
+│   │   └── [4.0K]  commands
+│   ├── [4.0K]  consolidated
+│   └── [4.0K]  core
+│       ├── [4.0K]  CMakeFiles
+│       ├── [4.0K]  CMakeFiles_build
+│       ├── [4.0K]  CMakeFiles_build_build
+│       ├── [4.0K]  common
+│       │   └── [4.0K]  CMakeFiles
+│       ├── [4.0K]  common_build
+│       ├── [4.0K]  common_build_build
+│       ├── [4.0K]  config
+│       ├── [4.0K]  config_build
+│       ├── [4.0K]  config_build_build
+│       ├── [4.0K]  metadata
+│       ├── [4.0K]  metadata_build
+│       ├── [4.0K]  metadata_build_build
+│       ├── [4.0K]  minimizer
+│       ├── [4.0K]  minimizer_build
+│       ├── [4.0K]  minimizer_build_build
+│       ├── [4.0K]  mpsystem
+│       ├── [4.0K]  mpsystem_build
+│       ├── [4.0K]  mpsystem_build_build
+│       ├── [4.0K]  parser
+│       ├── [4.0K]  parser_build
+│       ├── [4.0K]  parser_build_build
+│       ├── [4.0K]  pattern
+│       ├── [4.0K]  pattern_build
+│       ├── [4.0K]  pattern_build_build
+│       ├── [4.0K]  pattern_matching
+│       ├── [4.0K]  pattern_matching_build
+│       ├── [4.0K]  pattern_matching_build_build
+│       ├── [4.0K]  pipeline
+│       ├── [4.0K]  pipeline_build
+│       ├── [4.0K]  pipeline_build_build
+│       ├── [4.0K]  schema
+│       ├── [4.0K]  schema_build
+│       ├── [4.0K]  schema_build_build
+│       ├── [4.0K]  spsystem
+│       ├── [4.0K]  spsystem_build
+│       ├── [4.0K]  spsystem_build_build
+│       ├── [4.0K]  symbols
+│       ├── [4.0K]  symbols_build
+│       ├── [4.0K]  symbols_build_build
+│       ├── [4.0K]  tactic
+│       ├── [4.0K]  tactic_build
+│       ├── [4.0K]  tactic_build_build
+│       ├── [4.0K]  tatit
+│       ├── [4.0K]  tatit_build
+│       ├── [4.0K]  tatit_build_build
+│       ├── [4.0K]  tokenizer
+│       ├── [4.0K]  tokenizer_build
+│       ├── [4.0K]  tokenizer_build_build
+│       ├── [4.0K]  token_type
+│       ├── [4.0K]  token_type_build
+│       ├── [4.0K]  token_type_build_build
+│       ├── [4.0K]  token_value
+│       ├── [4.0K]  token_value_build
+│       ├── [4.0K]  token_value_build_build
+│       ├── [4.0K]  type
+│       ├── [4.0K]  type_build
+│       ├── [4.0K]  type_build_build
+│       ├── [4.0K]  versioning
+│       ├── [4.0K]  versioning_build
+│       └── [4.0K]  versioning_build_build
+├── [4.0K]  plan
+│   └── [7.9K]  CLI.md
+├── [4.0K]  poc
+│   ├── [   0]  .gikeep
+│   ├── [4.0K]  nlink_enhanced
+│   │   ├── [4.0K]  artifacts
+│   │   │   └── [ 22K]  nexus_json.h.c
+│   │   ├── [4.0K]  build
+│   │   │   ├── [4.0K]  obj
+│   │   │   │   ├── [ 26K]  nexus_enhanced_metadata.o
+│   │   │   │   ├── [ 27K]  nexus_json.o
+│   │   │   │   ├── [ 32K]  nexus_lazy_versioned.o
+│   │   │   │   ├── [9.4K]  nexus_semver.o
+│   │   │   │   └── [ 23K]  nexus_versioned_symbols.o
+│   │   │   └── [101K]  test_versioned_integration
+│   │   ├── [4.0K]  include
+│   │   │   ├── [4.3K]  nexus_enhanced_metadata.h
+│   │   │   ├── [2.8K]  nexus_json.h
+│   │   │   ├── [8.4K]  nexus_lazy.h
+│   │   │   ├── [9.3K]  nexus_lazy_versioned.h
+│   │   │   ├── [ 16K]  nexus_metadata.h
+│   │   │   ├── [1.5K]  nexus_semver.h
+│   │   │   ├── [ 14K]  nexus_symbols.h
+│   │   │   └── [5.7K]  nexus_versioned_symbols.h
+│   │   ├── [1.8K]  Makefile
+│   │   ├── [1.6K]  Makefile.old
+│   │   ├── [7.1K]  README.md
+│   │   ├── [4.0K]  src
+│   │   │   ├── [ 20K]  nexus_enhanced_metadata.c
+│   │   │   ├── [ 22K]  nexus_json.c
+│   │   │   ├── [3.4K]  nexus_lazy_versioned.c
+│   │   │   ├── [5.1K]  nexus_semver.c
+│   │   │   └── [ 22K]  nexus_versioned_symbols.c
+│   │   └── [4.0K]  test
+│   │       └── [ 11K]  test_versioned_integration.c
+│   ├── [4.0K]  nlink_lazy
+│   │   ├── [ 321]  build.sh
+│   │   ├── [ 152]  cold.c
+│   │   ├── [4.0K]  docs
+│   │   │   └── [1.1K]  NexusLink.md
+│   │   ├── [ 15K]  libcold.so
+│   │   ├── [ 492]  main.c
+│   │   ├── [ 16K]  nexus_demo
+│   │   ├── [ 851]  nexus_lazy.h
+│   │   └── [4.0K]  .vscode
+│   │       └── [  94]  settings.json
+│   ├── [4.0K]  nlink_symbols
+│   │   ├── [4.0K]  build
+│   │   │   ├── [1.7K]  cold.o
+│   │   │   ├── [4.0K]  components
+│   │   │   │   └── [ 15K]  libcold.so
+│   │   │   ├── [ 60K]  main.o
+│   │   │   └── [ 44K]  nexus_poc
+│   │   ├── [ 12K]  build.sh
+│   │   ├── [4.0K]  include
+│   │   │   ├── [ 22K]  nexus_json.h
+│   │   │   ├── [8.4K]  nexus_lazy.h
+│   │   │   ├── [ 16K]  nexus_metadata.h
+│   │   │   └── [ 14K]  nexus_symbols.h
+│   │   ├── [1.1K]  README.md
+│   │   └── [4.0K]  src
+│   │       ├── [ 650]  cold.c
+│   │       └── [8.5K]  main.c
+│   └── [4.0K]  nlnk_simpilifed
+│       ├── [4.0K]  build
+│       │   └── [ 39K]  test_diamond_dependency
+│       ├── [4.0K]  include
+│       │   ├── [   0]  .gitkeep
+│       │   ├── [ 22K]  nexus_json.h
+│       │   ├── [8.4K]  nexus_lazy.h
+│       │   ├── [ 16K]  nexus_metadata.h
+│       │   ├── [1.5K]  nexus_semver.h
+│       │   ├── [ 14K]  nexus_symbols.h
+│       │   └── [5.7K]  nexus_versioned_symbols.h
+│       ├── [1.0K]  Makefile
+│       ├── [4.0K]  src
+│       │   ├── [   0]  .gitkeep
+│       │   ├── [5.1K]  nexus_semver.c
+│       │   └── [ 22K]  nexus_versioned_symbols.c
+│       ├── [4.0K]  test
+│       │   ├── [   0]  .gitkeep
+│       │   └── [5.3K]  test_diamond_dependency.c
+│       └── [4.0K]  uml
+│           └── [  12]  advanced.md
+├── [2.6K]  README.md
+├── [234K]  README.pdf
+├── [4.0K]  reports
+│   └── [4.0K]  includes
+│       └── [2.8K]  invalid_includes_20250420_175336.md
+├── [4.0K]  schema
+│   └── [7.2K]  nlink_schema.json
+├── [4.0K]  scripts
+│   ├── [4.0K]  adhoc
+│   │   ├── [1.2K]  arch_verifcation.sh
+│   │   ├── [2.1K]  component_structure_normalizer.py
+│   │   ├── [5.7K]  fix_component_system.sh
+│   │   ├── [2.9K]  generate_compent_build_files.py
+│   │   ├── [ 12K]  healing-a-generation-left-behind.sh
+│   │   ├── [ 12K]  nlink_build_system_repair.sh
+│   │   ├── [1.4K]  nlink_component_standardization.sh
+│   │   ├── [6.2K]  nlink_final_remediation.sh
+│   │   ├── [4.0K]  path_resolution_protocol.sh
+│   │   ├── [1.2K]  restorifimes.sh
+│   │   └── [2.7K]  standardize_components.sh
+│   ├── [5.5K]  compile_with_nlink.sh
+│   ├── [5.6K]  fix_nlink_includes.sh
+│   ├── [   2]  .gitkeep
+│   ├── [ 12K]  remove_invalid_includes.py
+│   └── [ 20K]  standardize_nlink_includes.py
+├── [4.0K]  src
+│   ├── [4.0K]  cli
+│   │   ├── [ 17K]  cli.c
+│   │   ├── [4.0K]  CMakeFiles
+│   │   ├── [3.5K]  CMakeLists.txt
+│   │   ├── [3.5K]  CMakeLists.txt.bak
+│   │   ├── [2.9K]  command.c
+│   │   ├── [4.7K]  command_params.c
+│   │   ├── [ 12K]  command_registration.c
+│   │   ├── [4.8K]  command_registry.c
+│   │   ├── [ 11K]  command_router.c
+│   │   ├── [4.0K]  commands
+│   │   │   ├── [4.0K]  CMakeFiles
+│   │   │   ├── [ 721]  CMakeLists.txt
+│   │   │   ├── [6.9K]  load.c
+│   │   │   ├── [7.7K]  minimal.c
+│   │   │   ├── [8.8K]  minimize.c
+│   │   │   ├── [ 12K]  pipeline.c
+│   │   │   ├── [2.8K]  README.md
+│   │   │   ├── [4.9K]  version.c
+│   │   │   └── [3.1K]  version_utils.c
+│   │   ├── [1.3K]  main.c
+│   │   └── [ 22K]  parse.c
+│   ├── [5.9K]  CMakeLists.txt
+│   └── [4.0K]  core
+│       ├── [4.0K]  CMakeFiles
+│       ├── [4.0K]  CMakeFiles_build
+│       │   └── [ 418]  CMakeLists.txt
+│       ├── [3.1K]  CMakeLists.txt
+│       ├── [6.0K]  CMakeLists.txt.bak
+│       ├── [4.0K]  common
+│       │   ├── [4.0K]  CMakeFiles
+│       │   ├── [ 895]  CMakeLists.txt
+│       │   ├── [ 497]  common.c
+│       │   ├── [ 492]  common.h
+│       │   ├── [4.0K]  nexus_core.c
+│       │   ├── [3.7K]  nexus_error.c
+│       │   ├── [6.5K]  nexus_exception.c
+│       │   ├── [8.9K]  nexus_loader.c
+│       │   ├── [2.6K]  nexus_result.c
+│       │   ├── [2.4K]  result.c
+│       │   └── [ 823]  types.c
+│       ├── [4.0K]  common_build
+│       │   └── [ 402]  CMakeLists.txt
+│       ├── [4.0K]  config
+│       │   ├── [4.0K]  CMakeFiles
+│       │   ├── [ 895]  CMakeLists.txt
+│       │   ├── [ 497]  config.c
+│       │   ├── [ 492]  config.h
+│       │   ├── [7.4K]  config_pipeline.c
+│       │   └── [5.3K]  config_validator.c
+│       ├── [4.0K]  config_build
+│       │   └── [ 402]  CMakeLists.txt
+│       ├── [4.0K]  metadata
+│       │   ├── [4.0K]  CMakeFiles
+│       │   ├── [ 897]  CMakeLists.txt
+│       │   ├── [ 20K]  enhanced_metadata.c
+│       │   ├── [ 13K]  metadata.c
+│       │   └── [ 510]  metadata.h
+│       ├── [4.0K]  metadata_build
+│       │   └── [ 410]  CMakeLists.txt
+│       ├── [4.0K]  minimizer
+│       │   ├── [4.0K]  CMakeFiles
+│       │   ├── [ 898]  CMakeLists.txt
+│       │   ├── [7.6K]  minimizer.c
+│       │   ├── [ 519]  minimizer.h
+│       │   ├── [7.7K]  nexus_automaton.c
+│       │   ├── [5.7K]  okpala_ast.c
+│       │   ├── [9.6K]  okpala_automaton.c
+│       │   └── [ 16K]  okpala_automaton_minimzer.c
+│       ├── [4.0K]  minimizer_build
+│       │   └── [ 414]  CMakeLists.txt
+│       ├── [4.0K]  mpsystem
+│       │   ├── [4.0K]  CMakeFiles
+│       │   ├── [ 897]  CMakeLists.txt
+│       │   ├── [1.6K]  mps_config.c
+│       │   ├── [2.1K]  mps_dependency.c
+│       │   ├── [3.7K]  mps_lifecycle.c
+│       │   ├── [4.0K]  mps_pipeline.c
+│       │   ├── [4.3K]  mps_stream.c
+│       │   ├── [ 511]  mpsystem.c
+│       │   └── [ 510]  mpsystem.h
+│       ├── [4.0K]  mpsystem_build
+│       │   └── [ 410]  CMakeLists.txt
+│       ├── [7.2K]  nlink.c
+│       ├── [4.0K]  parser
+│       │   ├── [4.0K]  CMakeFiles
+│       │   ├── [ 895]  CMakeLists.txt
+│       │   ├── [5.4K]  parser.c
+│       │   └── [3.3K]  parser.h
+│       ├── [4.0K]  parser_build
+│       │   └── [ 402]  CMakeLists.txt
+│       ├── [4.0K]  pattern
+│       │   ├── [4.0K]  CMakeFiles
+│       │   ├── [ 896]  CMakeLists.txt
+│       │   ├── [ 11K]  matcher.c
+│       │   ├── [ 504]  pattern.c
+│       │   ├── [ 501]  pattern.h
+│       │   └── [3.5K]  regex_matcher.c
+│       ├── [4.0K]  pattern_build
+│       │   └── [ 406]  CMakeLists.txt
+│       ├── [4.0K]  pattern_matching
+│       │   ├── [4.0K]  CMakeFiles
+│       │   ├── [ 905]  CMakeLists.txt
+│       │   ├── [4.5K]  pattern_matcher.c
+│       │   ├── [ 567]  pattern_matching.c
+│       │   ├── [ 582]  pattern_matching.h
+│       │   ├── [4.2K]  regex_matcher.c
+│       │   └── [5.8K]  wildcard_matcher.c
+│       ├── [4.0K]  pattern_matching_build
+│       │   └── [ 442]  CMakeLists.txt
+│       ├── [4.0K]  pipeline
+│       │   ├── [4.0K]  CMakeFiles
+│       │   ├── [ 897]  CMakeLists.txt
+│       │   ├── [ 11K]  nlink_pipeline.c
+│       │   ├── [ 511]  pipeline.c
+│       │   ├── [ 16K]  pipeline_detector.c
+│       │   ├── [ 510]  pipeline.h
+│       │   ├── [7.0K]  pipeline_pass.c
+│       │   └── [4.5K]  pipeline_stage.c
+│       ├── [4.0K]  pipeline_build
+│       │   └── [ 410]  CMakeLists.txt
+│       ├── [4.0K]  schema
+│       │   ├── [4.0K]  CMakeFiles
+│       │   ├── [ 895]  CMakeLists.txt
+│       │   ├── [7.2K]  nlink_schema.json
+│       │   ├── [ 497]  schema.c
+│       │   └── [ 492]  schema.h
+│       ├── [4.0K]  schema_build
+│       │   └── [ 402]  CMakeLists.txt
+│       ├── [4.0K]  spsystem
+│       │   ├── [4.0K]  CMakeFiles
+│       │   ├── [ 897]  CMakeLists.txt
+│       │   ├── [ 13K]  sps_config.c
+│       │   ├── [ 17K]  sps_dependency.c
+│       │   ├── [ 10K]  sps_lifecycle.c
+│       │   ├── [ 29K]  sps_pipeline.c
+│       │   ├── [9.8K]  sps_stream.c
+│       │   ├── [ 511]  spsystem.c
+│       │   └── [ 510]  spsystem.h
+│       ├── [4.0K]  spsystem_build
+│       │   └── [ 410]  CMakeLists.txt
+│       ├── [4.0K]  symbols
+│       │   ├── [4.0K]  CMakeFiles
+│       │   ├── [ 896]  CMakeLists.txt
+│       │   ├── [ 650]  cold_symbol.c
+│       │   ├── [7.4K]  nexus_symbols.c
+│       │   ├── [ 13K]  symbols.c
+│       │   ├── [ 501]  symbols.h
+│       │   └── [ 22K]  versioned_symbols.c
+│       ├── [4.0K]  symbols_build
+│       │   └── [ 406]  CMakeLists.txt
+│       ├── [4.0K]  tactic
+│       │   ├── [4.0K]  CMakeFiles
+│       │   ├── [ 895]  CMakeLists.txt
+│       │   ├── [ 693]  tactic.c
+│       │   └── [ 870]  tactic.h
+│       ├── [4.0K]  tactic_build
+│       │   └── [ 402]  CMakeLists.txt
+│       ├── [4.0K]  tatit
+│       │   ├── [6.2K]  abstraction.c
+│       │   ├── [ 13K]  aggregation.c
+│       │   ├── [4.0K]  CMakeFiles
+│       │   ├── [ 894]  CMakeLists.txt
+│       │   ├── [4.5K]  composition.c
+│       │   ├── [3.3K]  identity.c
+│       │   ├── [2.4K]  tactic.c
+│       │   ├── [ 490]  tatit.c
+│       │   ├── [ 483]  tatit.h
+│       │   ├── [7.3K]  transformation.c
+│       │   └── [ 26K]  traversal.c
+│       ├── [4.0K]  tatit_build
+│       │   └── [ 398]  CMakeLists.txt
+│       ├── [4.0K]  tokenizer
+│       │   ├── [4.0K]  CMakeFiles
+│       │   ├── [ 898]  CMakeLists.txt
+│       │   ├── [7.8K]  tokenizer.c
+│       │   └── [3.2K]  tokenizer.h
+│       ├── [4.0K]  tokenizer_build
+│       │   └── [ 414]  CMakeLists.txt
+│       ├── [4.0K]  token_type
+│       │   ├── [4.0K]  CMakeFiles
+│       │   ├── [ 899]  CMakeLists.txt
+│       │   ├── [ 18K]  token_type.c
+│       │   ├── [   0]  token_type.h
+│       │   └── [2.7K]  type.c
+│       ├── [4.0K]  token_type_build
+│       │   └── [ 418]  CMakeLists.txt
+│       ├── [4.0K]  token_value
+│       │   ├── [4.0K]  CMakeFiles
+│       │   ├── [ 900]  CMakeLists.txt
+│       │   ├── [ 12K]  nlink_token_system.c
+│       │   ├── [ 21K]  token_value.c
+│       │   └── [   0]  token_value.h
+│       ├── [4.0K]  token_value_build
+│       │   └── [ 422]  CMakeLists.txt
+│       ├── [4.0K]  type
+│       │   ├── [4.0K]  CMakeFiles
+│       │   ├── [ 893]  CMakeLists.txt
+│       │   ├── [   0]  CMakeList.txt
+│       │   ├── [ 677]  type.c
+│       │   └── [ 846]  type.h
+│       ├── [4.0K]  type_build
+│       │   └── [ 394]  CMakeLists.txt
+│       ├── [4.0K]  versioning
+│       │   ├── [4.0K]  CMakeFiles
+│       │   ├── [ 899]  CMakeLists.txt
+│       │   ├── [8.9K]  lazy_versioned.c
+│       │   ├── [2.4K]  missing_functions.c
+│       │   ├── [ 10K]  nexus_version.c
+│       │   ├── [5.0K]  semver.c
+│       │   ├── [ 525]  versioning.c
+│       │   └── [ 528]  versioning.h
+│       └── [4.0K]  versioning_build
+│           └── [ 418]  CMakeLists.txt
+├── [4.4K]  TACIT_PLAN.md
+├── [4.0K]  templates
+│   ├── [5.2K]  nlink.h.in
+│   └── [1.3K]  nlink_version.h.in
+├── [4.0K]  test
+│   └── [4.0K]  pattern_matching
+│       ├── [ 393]  CMakeLists.txt
+│       └── [2.5K]  test_pattern_matcher.c
+├── [4.0K]  __tests__
+│   ├── [5.7K]  CMakeLists.txt
+│   ├── [4.0K]  intergrations
+│   │   ├── [4.5K]  test_cli_intergration.c
+│   │   └── [4.9K]  test_intergration.c
+│   └── [4.0K]  unit
+│       ├── [4.0K]  cli
+│       │   └── [2.2K]  CMakeLists.txt
+│       └── [4.0K]  core
+│           ├── [1.2K]  CMakeLists.txt
+│           └── [4.0K]  pattern
+│               ├── [ 11K]  matcher_test.c
+│               └── [6.0K]  test_param_extraction.c
+├── [4.0K]  tests
+│   ├── [4.0K]  framework
+│   │   └── [1.5K]  test_stub_manager.c
+│   ├── [4.0K]  include
+│   │   └── [3.7K]  nlink_test.h
+│   ├── [4.0K]  integration
+│   └── [4.0K]  unit
+│       ├── [4.0K]  cli
+│       └── [4.0K]  core
+│           ├── [4.0K]  common
+│           │   └── [1.1K]  CMakeLists.txt
+│           ├── [4.0K]  metadata
+│           │   └── [1.1K]  CMakeLists.txt
+│           ├── [4.0K]  minimizer
+│           │   └── [1.1K]  CMakeLists.txt
+│           ├── [4.0K]  mpsystem
+│           │   └── [1.1K]  CMakeLists.txt
+│           ├── [4.0K]  pattern
+│           │   └── [1.1K]  CMakeLists.txt
+│           ├── [4.0K]  pipeline
+│           │   └── [1.1K]  CMakeLists.txt
+│           ├── [4.0K]  spsystem
+│           │   └── [1.1K]  CMakeLists.txt
+│           ├── [4.0K]  symbols
+│           │   └── [1.1K]  CMakeLists.txt
+│           ├── [4.0K]  token
+│           │   └── [8.9K]  test_token_system.c
+│           └── [4.0K]  versioning
+│               └── [1.1K]  CMakeLists.txt
+├── [4.0K]  tools
+│   └── [4.0K]  dev
+│       └── [ 23K]  setup.sh
+└── [4.0K]  .vscode
+    └── [ 413]  settings.json
+
+257 directories, 433 files

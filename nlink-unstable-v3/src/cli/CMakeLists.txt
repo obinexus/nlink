@@ -17,7 +17,22 @@ file(GLOB CLI_HEADERS "*.h")
 # Find command sources
 file(GLOB COMMAND_SOURCES "commands/*.c")
 file(GLOB COMMAND_HEADERS "commands/*.h")
+# Define CLI component aggregation target
+add_custom_target(nlink_cli_components
+  COMMENT "Building all NexusLink CLI components"
+)
 
+# Create static library for CLI components
+add_library(nlink_cli_static STATIC
+  ${CMAKE_CURRENT_SOURCE_DIR}/cli.c
+  ${CMAKE_CURRENT_SOURCE_DIR}/command.c
+  ${CMAKE_CURRENT_SOURCE_DIR}/command_params.c
+  ${CMAKE_CURRENT_SOURCE_DIR}/command_registration.c
+  ${CMAKE_CURRENT_SOURCE_DIR}/command_registry.c
+  ${CMAKE_CURRENT_SOURCE_DIR}/command_router.c
+  ${CMAKE_CURRENT_SOURCE_DIR}/parse.c
+  ${CMAKE_CURRENT_SOURCE_DIR}/core/nlink.c
+)
 # Create CLI components object library
 add_library(nlink_cli_objects OBJECT ${CLI_SOURCES})
 target_include_directories(nlink_cli_objects PRIVATE
@@ -25,6 +40,8 @@ target_include_directories(nlink_cli_objects PRIVATE
   ${CMAKE_SOURCE_DIR}/src
   ${CMAKE_CURRENT_SOURCE_DIR}
 )
+
+
 
 # Create commands object library
 add_library(nlink_commands_objects OBJECT ${COMMAND_SOURCES})
