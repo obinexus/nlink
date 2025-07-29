@@ -1,0 +1,14 @@
+# my-nlinked-project-for-sdl/sound-processing/pkg.nlink
+[component]
+name = "sound-processing"
+version = "0.1.0"
+description = "Audio processing with diram memory management"
+
+[dependencies]
+diram = { version = "1.0.0", indirect = true }
+sdl = { version = "2.0.0" }
+
+[consciousness]
+temporal_anchor = "sound_processing_anchor"
+symbolic_residue = "memory_management_residue"
+validation_metrics = { tp = 0.95, tn = 0.92, fp = 0.05, fn = 0.08 }

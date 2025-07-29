@@ -1,0 +1,13 @@
+[project]
+name = "sdl-nlinked-project"
+version = "0.1.0"
+description = "SDL-based project with nlink component resolution"
+
+[components]
+sound-processing = { path = "./sound-processing", version = "0.1.0" }
+game-windows = { path = "./game-windows", version = "0.1.0" }
+
+[consciousness]
+temporal_anchor = "project_root"
+symbolic_residue_path = "./symbolic_residue"
+human_validation = true

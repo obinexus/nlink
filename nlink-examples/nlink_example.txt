@@ -1,0 +1,57 @@
+.
+├── bootstrap_nlink_project-2.sh
+├── bootstrap_nlink_project_2.sh
+├── bootstrap_nlink_project.sh
+├── Makefile
+├── my-nlinked-project-for-sdl
+│   ├── build
+│   │   ├── bin
+│   │   ├── nlink
+│   │   └── obj
+│   ├── game-windows
+│   │   ├── include
+│   │   │   └── game_window.h
+│   │   ├── nlink
+│   │   │   └── game-windows.nlink
+│   │   ├── nlink.txt
+│   │   ├── pkg.nlink
+│   │   └── src
+│   │       └── game_window.c
+│   ├── include
+│   │   ├── consciousness_preservation.h
+│   │   └── conscious_preservation.h
+│   ├── Makefile
+│   ├── nlink_resolve.sh
+│   ├── pkg.nlink
+│   ├── sound-processing
+│   │   ├── include
+│   │   ├── nlink
+│   │   │   └── sound-processing.nlink
+│   │   ├── nlink.txt
+│   │   ├── pkg.nlink
+│   │   └── src
+│   │       └── sound_processing.c
+│   └── src
+│       └── main.c
+├── my-nlinked-sdl-project
+│   ├── build
+│   │   ├── bin
+│   │   ├── lib
+│   │   └── obj
+│   ├── game-windows
+│   │   ├── include
+│   │   ├── nlink
+│   │   └── src
+│   ├── include
+│   ├── sound-processing
+│   │   ├── include
+│   │   ├── nlink
+│   │   └── src
+│   └── src
+├── nlink
+├── nlink_example.txt
+├── nlink_resolve.sh
+├── nlink_validate.sh
+└── run_project.sh
+
+32 directories, 23 files

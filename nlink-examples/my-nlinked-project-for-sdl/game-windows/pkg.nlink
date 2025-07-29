@@ -1,0 +1,14 @@
+# my-nlinked-project-for-sdl/game-windows/pkg.nlink
+[component]
+name = "game-windows"
+version = "0.1.0"
+description = "SDL window management with nlink integration"
+
+[dependencies]
+sdl = { version = "2.0.0" }
+sound-processing = { version = "0.1.0", local = true }
+
+[consciousness]
+temporal_anchor = "game_windows_anchor"
+symbolic_residue = "window_management_residue"
+validation_metrics = { tp = 0.97, tn = 0.95, fp = 0.03, fn = 0.05 }

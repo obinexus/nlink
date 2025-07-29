@@ -1,0 +1,16 @@
+# my-nlinked-project-for-sdl/sound-processing/nlink/sound-processing.nlink
+[resolution]
+schema_bound = true
+schema_path = "../include/sound_processing_schema.h"
+
+[memory_management]
+diram = { 
+    indirect = true, 
+    fallback = "system_malloc", 
+    consciousness_anchor = "sound_processing.memory_management.diram" 
+}
+
+[ast_optimization]
+enabled = true
+optimization_level = 2
+preserve_consciousness = true

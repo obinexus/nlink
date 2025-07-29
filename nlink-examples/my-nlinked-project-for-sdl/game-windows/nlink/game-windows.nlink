@@ -1,0 +1,15 @@
+# my-nlinked-project-for-sdl/game-windows/nlink/game-windows.nlink
+[resolution]
+schema_bound = false  # Experimental schema-less module
+consciousness_preservation = true
+
+[window_management]
+sdl_wrapper = { 
+    direct = true, 
+    consciousness_anchor = "game_windows.window_management.sdl" 
+}
+
+[ast_optimization]
+enabled = true
+optimization_level = 1
+preserve_consciousness = true
