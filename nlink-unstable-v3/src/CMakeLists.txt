@@ -65,10 +65,25 @@ endif()
 if(NEXUS_ENABLE_THREAD_SAFETY)
   add_definitions(-DNEXUS_THREAD_SAFETY=1)
 endif()
+# 1. ESTABLISH CORRECT COMPONENT DEFINITION SEQUENCE
+# First ensure core components are fully defined
+add_subdirectory("src/core")
+
+# 2. ESTABLISH CLI COMPONENTS WITH PROPER BOUNDARY DEFINITION
+add_subdirectory("src/cli")
+
+# 3. ONLY THEN ESTABLISH CROSS-COMPONENT DEPENDENCIES
+add_dependencies(nlink_cli_components nlink_unified_core)
+target_link_libraries(nlink_cli_static PRIVATE nlink_core)
 
 # Include directories
 include_directories(${CMAKE_SOURCE_DIR}/include)
-
+# Create explicit file-level dependency to enforce build order
+add_custom_command(
+  OUTPUT ${CMAKE_BINARY_DIR}/lib/libnlink_cli.a
+  DEPENDS ${CMAKE_BINARY_DIR}/lib/libnlink_core.a
+  APPEND
+)
 # Setup output directories
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)

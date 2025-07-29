@@ -41,7 +41,28 @@ target_include_directories(nlink_cli_objects PRIVATE
   ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
+# src/cli/CMakeLists.txt
+# Define aggregate component target
+add_custom_target(nlink_cli_components
+  COMMENT "Building all NexusLink CLI components"
+)
 
+# Materialize static library with precise component composition
+add_library(nlink_cli_static STATIC
+  ${CMAKE_CURRENT_SOURCE_DIR}/cli.c
+  ${CMAKE_CURRENT_SOURCE_DIR}/command.c
+  ${CMAKE_CURRENT_SOURCE_DIR}/command_params.c
+  ${CMAKE_CURRENT_SOURCE_DIR}/command_registration.c
+  ${CMAKE_CURRENT_SOURCE_DIR}/command_registry.c
+  ${CMAKE_CURRENT_SOURCE_DIR}/command_router.c
+  ${CMAKE_CURRENT_SOURCE_DIR}/parse.c
+  ${CMAKE_CURRENT_SOURCE_DIR}/core/nlink.c
+)
+
+# Apply proper component interface boundaries
+target_include_directories(nlink_cli_static PUBLIC
+  ${CMAKE_SOURCE_DIR}/include
+)
 
 # Create commands object library
 add_library(nlink_commands_objects OBJECT ${COMMAND_SOURCES})
