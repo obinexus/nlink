@@ -1,2 +1,21 @@
 /build
 /reports/includes
+# CMake build artifacts - CRITICAL exclusions
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+CTestTestfile.cmake
+DartConfiguration.tcl
+Testing/
+build/
+bin/
+lib/
+obj/
+
+# IDE and system artifacts
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store

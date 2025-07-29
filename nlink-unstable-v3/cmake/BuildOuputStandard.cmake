@@ -64,6 +64,7 @@ function(nlink_validate_output_structure)
         endif()
     endforeach()
 endfunction()
+
 function(nlink_enforce_output_structure)
     # Primary directory creation with validation
     foreach(DIR IN ITEMS 

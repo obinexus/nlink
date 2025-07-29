@@ -1,11 +1,31 @@
-cmake_minimum_required(VERSION 3.16)
-project(NexusLink VERSION 1.0.0 LANGUAGES C)
 
 # ════════════════════════════════════════════════════════════
 # COMPONENT FRAMEWORK INITIALIZATION
 # ════════════════════════════════════════════════════════════
-# NexusLink Master CMakeLists.txt - Binary Directory Fix
+# Root CMakeLists.txt correction
 cmake_minimum_required(VERSION 3.16)
+project(NexusLink VERSION 1.0.0)
+
+# CRITICAL: Enforce out-of-source builds
+if(CMAKE_SOURCE_DIR STREQUAL CMAKE_BINARY_DIR)
+    message(FATAL_ERROR "In-source builds prohibited. Create a 'build' directory.")
+endif()
+
+# Component registration with explicit binary directories
+macro(nlink_add_component component_name)
+    add_subdirectory(
+        ${CMAKE_CURRENT_SOURCE_DIR}/${component_name}
+        ${CMAKE_BINARY_DIR}/components/${component_name}
+    )
+endmacro()
+# Include core build system modules
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
+include(BuildSystem)
+include(Utils)
+include(Hooks)
+include(ComponentSystem)
+include(TestFramework)
+include(PackageConfig)
 project(NexusLink VERSION 1.0.0 LANGUAGES C)
 
 # Define unique binary directories for subdirectories
@@ -27,15 +47,6 @@ if(NOT TARGET validate_build AND NEXUS_BUILD_TESTS)
     add_subdirectory(tests ${CMAKE_BINARY_DIR}/tests)
 endif()
 
-# Include core build system modules
-list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
-include(BuildSystem)
-include(Utils)
-include(Hooks)
-include(ComponentSystem)
-include(TestFramework)
-include(PackageConfig)
-project(NexusLink VERSION 1.0.0 LANGUAGES C)
 
 # CRITICAL: Include build resolution orchestrator
 include(${CMAKE_SOURCE_DIR}/cmake/NexusLinkBuildResolution.cmake)
