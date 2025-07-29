@@ -1,0 +1,83 @@
+src/main.c:17:34: error: unknown type name ‘nlink_component_t’
+   17 | bool nlink_components_isomorphic(nlink_component_t* a, nlink_component_t* b);
+      |                                  ^~~~~~~~~~~~~~~~~
+src/main.c:17:56: error: unknown type name ‘nlink_component_t’
+   17 | bool nlink_components_isomorphic(nlink_component_t* a, nlink_component_t* b);
+      |                                                        ^~~~~~~~~~~~~~~~~
+src/main.c:18:27: error: unknown type name ‘nlink_component_t’
+   18 | void nlink_merge_residues(nlink_component_t* canonical, nlink_component_t* reducible);
+      |                           ^~~~~~~~~~~~~~~~~
+src/main.c:18:57: error: unknown type name ‘nlink_component_t’
+   18 | void nlink_merge_residues(nlink_component_t* canonical, nlink_component_t* reducible);
+      |                                                         ^~~~~~~~~~~~~~~~~
+src/main.c:19:33: error: unknown type name ‘nlink_component_t’
+   19 | void nlink_create_indirect_edge(nlink_component_t* source, nlink_component_t* target, float semantic_activation);
+      |                                 ^~~~~~~~~~~~~~~~~
+src/main.c:19:60: error: unknown type name ‘nlink_component_t’
+   19 | void nlink_create_indirect_edge(nlink_component_t* source, nlink_component_t* target, float semantic_activation);
+      |                                                            ^~~~~~~~~~~~~~~~~
+src/main.c:20:40: error: unknown type name ‘nlink_component_t’
+   20 | void nlink_update_consciousness_buffer(nlink_component_t* source, nlink_component_t* target, float semantic_weight);
+      |                                        ^~~~~~~~~~~~~~~~~
+src/main.c:20:67: error: unknown type name ‘nlink_component_t’
+   20 | void nlink_update_consciousness_buffer(nlink_component_t* source, nlink_component_t* target, float semantic_weight);
+      |                                                                   ^~~~~~~~~~~~~~~~~
+src/main.c:22:32: error: unknown type name ‘nlink_symbolic_residue_t’
+   22 | bool nlink_residues_compatible(nlink_symbolic_residue_t* a, size_t a_count, nlink_symbolic_residue_t* b, size_t b_count);
+      |                                ^~~~~~~~~~~~~~~~~~~~~~~~
+src/main.c:22:77: error: unknown type name ‘nlink_symbolic_residue_t’
+   22 | bool nlink_residues_compatible(nlink_symbolic_residue_t* a, size_t a_count, nlink_symbolic_residue_t* b, size_t b_count);
+      |                                                                             ^~~~~~~~~~~~~~~~~~~~~~~~
+src/main.c: In function ‘nlink_find_canonical_form’:
+src/main.c:119:13: warning: implicit declaration of function ‘nlink_components_isomorphic’ [-Wimplicit-function-declaration]
+  119 |             nlink_components_isomorphic(comp, candidate)) {
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/main.c:122:13: warning: implicit declaration of function ‘nlink_merge_residues’ [-Wimplicit-function-declaration]
+  122 |             nlink_merge_residues(candidate, comp);
+      |             ^~~~~~~~~~~~~~~~~~~~
+src/main.c: At top level:
+src/main.c:142:6: error: conflicting types for ‘nlink_components_isomorphic’; have ‘_Bool(nlink_component_t *, nlink_component_t *)’ {aka ‘_Bool(struct nlink_component *, struct nlink_component *)’}
+  142 | bool nlink_components_isomorphic(nlink_component_t* a, nlink_component_t* b) {
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/main.c:119:13: note: previous implicit declaration of ‘nlink_components_isomorphic’ with type ‘int()’
+  119 |             nlink_components_isomorphic(comp, candidate)) {
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/main.c: In function ‘nlink_components_isomorphic’:
+src/main.c:167:12: warning: implicit declaration of function ‘nlink_residues_compatible’ [-Wimplicit-function-declaration]
+  167 |     return nlink_residues_compatible(a->residues, a->residue_count,
+      |            ^~~~~~~~~~~~~~~~~~~~~~~~~
+src/main.c: In function ‘nlink_resolve_indirect_link’:
+src/main.c:199:25: warning: implicit declaration of function ‘nlink_create_indirect_edge’; did you mean ‘nlink_resolve_indirect_link’? [-Wimplicit-function-declaration]
+  199 |                         nlink_create_indirect_edge(source, candidate, activation);
+      |                         ^~~~~~~~~~~~~~~~~~~~~~~~~~
+      |                         nlink_resolve_indirect_link
+src/main.c: At top level:
+src/main.c:223:6: warning: conflicting types for ‘nlink_create_indirect_edge’; have ‘void(nlink_component_t *, nlink_component_t *, float)’ {aka ‘void(struct nlink_component *, struct nlink_component *, float)’}
+  223 | void nlink_create_indirect_edge(nlink_component_t* source,
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~~
+src/main.c:199:25: note: previous implicit declaration of ‘nlink_create_indirect_edge’ with type ‘void(nlink_component_t *, nlink_component_t *, float)’ {aka ‘void(struct nlink_component *, struct nlink_component *, float)’}
+  199 |                         nlink_create_indirect_edge(source, candidate, activation);
+      |                         ^~~~~~~~~~~~~~~~~~~~~~~~~~
+src/main.c: In function ‘nlink_create_indirect_edge’:
+src/main.c:242:5: warning: implicit declaration of function ‘nlink_update_consciousness_buffer’ [-Wimplicit-function-declaration]
+  242 |     nlink_update_consciousness_buffer(source, target, semantic_activation);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/main.c: At top level:
+src/main.c:249:6: warning: conflicting types for ‘nlink_update_consciousness_buffer’; have ‘void(nlink_component_t *, nlink_component_t *, float)’ {aka ‘void(struct nlink_component *, struct nlink_component *, float)’}
+  249 | void nlink_update_consciousness_buffer(nlink_component_t* source,
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/main.c:242:5: note: previous implicit declaration of ‘nlink_update_consciousness_buffer’ with type ‘void(nlink_component_t *, nlink_component_t *, float)’ {aka ‘void(struct nlink_component *, struct nlink_component *, float)’}
+  242 |     nlink_update_consciousness_buffer(source, target, semantic_activation);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/main.c:277:6: warning: conflicting types for ‘nlink_merge_residues’; have ‘void(nlink_component_t *, nlink_component_t *)’ {aka ‘void(struct nlink_component *, struct nlink_component *)’}
+  277 | void nlink_merge_residues(nlink_component_t* canonical, nlink_component_t* reducible) {
+      |      ^~~~~~~~~~~~~~~~~~~~
+src/main.c:122:13: note: previous implicit declaration of ‘nlink_merge_residues’ with type ‘void(nlink_component_t *, nlink_component_t *)’ {aka ‘void(struct nlink_component *, struct nlink_component *)’}
+  122 |             nlink_merge_residues(candidate, comp);
+      |             ^~~~~~~~~~~~~~~~~~~~
+src/main.c:325:6: error: conflicting types for ‘nlink_residues_compatible’; have ‘_Bool(nlink_symbolic_residue_t *, size_t,  nlink_symbolic_residue_t *, size_t)’ {aka ‘_Bool(nlink_symbolic_residue_t *, long unsigned int,  nlink_symbolic_residue_t *, long unsigned int)’}
+  325 | bool nlink_residues_compatible(nlink_symbolic_residue_t* a, size_t a_count,
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~
+src/main.c:167:12: note: previous implicit declaration of ‘nlink_residues_compatible’ with type ‘int()’
+  167 |     return nlink_residues_compatible(a->residues, a->residue_count,
+      |            ^~~~~~~~~~~~~~~~~~~~~~~~~

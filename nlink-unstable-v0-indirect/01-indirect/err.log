@@ -1,0 +1,107 @@
+src/main.c: In function ‘nlink_component_create’:
+src/main.c:84:47: warning: implicit declaration of function ‘strdup’ [-Wimplicit-function-declaration]
+   84 |         comp->residues[0].perceptual_anchor = strdup(semantic_anchor);
+      |                                               ^~~~~~
+src/main.c:84:47: warning: incompatible implicit declaration of built-in function ‘strdup’ [-Wbuiltin-declaration-mismatch]
+src/main.c: In function ‘nlink_find_canonical_form’:
+src/main.c:108:13: warning: implicit declaration of function ‘nlink_components_isomorphic’ [-Wimplicit-function-declaration]
+  108 |             nlink_components_isomorphic(comp, candidate)) {
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/main.c:111:13: warning: implicit declaration of function ‘nlink_merge_residues’ [-Wimplicit-function-declaration]
+  111 |             nlink_merge_residues(candidate, comp);
+      |             ^~~~~~~~~~~~~~~~~~~~
+src/main.c: At top level:
+src/main.c:131:6: error: conflicting types for ‘nlink_components_isomorphic’; have ‘_Bool(nlink_component_t *, nlink_component_t *)’ {aka ‘_Bool(struct nlink_component *, struct nlink_component *)’}
+  131 | bool nlink_components_isomorphic(nlink_component_t* a, nlink_component_t* b) {
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/main.c:108:13: note: previous implicit declaration of ‘nlink_components_isomorphic’ with type ‘int()’
+  108 |             nlink_components_isomorphic(comp, candidate)) {
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/main.c: In function ‘nlink_components_isomorphic’:
+src/main.c:146:29: warning: implicit declaration of function ‘fabsf’ [-Wimplicit-function-declaration]
+  146 |         float weight_diff = fabsf(a->edges[i].semantic_weight -
+      |                             ^~~~~
+src/main.c:12:1: note: include ‘<math.h>’ or provide a declaration of ‘fabsf’
+   11 | #include <stdlib.h>
+  +++ |+#include <math.h>
+   12 | 
+src/main.c:146:29: warning: incompatible implicit declaration of built-in function ‘fabsf’ [-Wbuiltin-declaration-mismatch]
+  146 |         float weight_diff = fabsf(a->edges[i].semantic_weight -
+      |                             ^~~~~
+src/main.c:146:29: note: include ‘<math.h>’ or provide a declaration of ‘fabsf’
+src/main.c:156:12: warning: implicit declaration of function ‘nlink_residues_compatible’ [-Wimplicit-function-declaration]
+  156 |     return nlink_residues_compatible(a->residues, a->residue_count,
+      |            ^~~~~~~~~~~~~~~~~~~~~~~~~
+src/main.c: In function ‘nlink_resolve_indirect_link’:
+src/main.c:178:17: warning: implicit declaration of function ‘strcmp’ [-Wimplicit-function-declaration]
+  178 |             if (strcmp(candidate->residues[j].perceptual_anchor,
+      |                 ^~~~~~
+src/main.c:12:1: note: include ‘<string.h>’ or provide a declaration of ‘strcmp’
+   11 | #include <stdlib.h>
+  +++ |+#include <string.h>
+   12 | 
+src/main.c:188:25: warning: implicit declaration of function ‘nlink_create_indirect_edge’; did you mean ‘nlink_resolve_indirect_link’? [-Wimplicit-function-declaration]
+  188 |                         nlink_create_indirect_edge(source, candidate, activation);
+      |                         ^~~~~~~~~~~~~~~~~~~~~~~~~~
+      |                         nlink_resolve_indirect_link
+src/main.c: At top level:
+src/main.c:212:6: warning: conflicting types for ‘nlink_create_indirect_edge’; have ‘void(nlink_component_t *, nlink_component_t *, float)’ {aka ‘void(struct nlink_component *, struct nlink_component *, float)’}
+  212 | void nlink_create_indirect_edge(nlink_component_t* source,
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~~
+src/main.c:188:25: note: previous implicit declaration of ‘nlink_create_indirect_edge’ with type ‘void(nlink_component_t *, nlink_component_t *, float)’ {aka ‘void(struct nlink_component *, struct nlink_component *, float)’}
+  188 |                         nlink_create_indirect_edge(source, candidate, activation);
+      |                         ^~~~~~~~~~~~~~~~~~~~~~~~~~
+src/main.c: In function ‘nlink_create_indirect_edge’:
+src/main.c:231:5: warning: implicit declaration of function ‘nlink_update_consciousness_buffer’ [-Wimplicit-function-declaration]
+  231 |     nlink_update_consciousness_buffer(source, target, semantic_activation);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/main.c: At top level:
+src/main.c:238:6: warning: conflicting types for ‘nlink_update_consciousness_buffer’; have ‘void(nlink_component_t *, nlink_component_t *, float)’ {aka ‘void(struct nlink_component *, struct nlink_component *, float)’}
+  238 | void nlink_update_consciousness_buffer(nlink_component_t* source,
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/main.c:231:5: note: previous implicit declaration of ‘nlink_update_consciousness_buffer’ with type ‘void(nlink_component_t *, nlink_component_t *, float)’ {aka ‘void(struct nlink_component *, struct nlink_component *, float)’}
+  231 |     nlink_update_consciousness_buffer(source, target, semantic_activation);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/main.c: In function ‘nlink_update_consciousness_buffer’:
+src/main.c:255:24: warning: implicit declaration of function ‘nlink_get_temporal_coordinate’ [-Wimplicit-function-declaration]
+  255 |     event->timestamp = nlink_get_temporal_coordinate();
+      |                        ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/main.c:259:5: warning: implicit declaration of function ‘strcpy’ [-Wimplicit-function-declaration]
+  259 |     strcpy(event->event_type, "INDIRECT_LINK");
+      |     ^~~~~~
+src/main.c:259:5: note: include ‘<string.h>’ or provide a declaration of ‘strcpy’
+src/main.c:259:5: warning: incompatible implicit declaration of built-in function ‘strcpy’ [-Wbuiltin-declaration-mismatch]
+src/main.c:259:5: note: include ‘<string.h>’ or provide a declaration of ‘strcpy’
+src/main.c: At top level:
+src/main.c:266:6: warning: conflicting types for ‘nlink_merge_residues’; have ‘void(nlink_component_t *, nlink_component_t *)’ {aka ‘void(struct nlink_component *, struct nlink_component *)’}
+  266 | void nlink_merge_residues(nlink_component_t* canonical, nlink_component_t* reducible) {
+      |      ^~~~~~~~~~~~~~~~~~~~
+src/main.c:111:13: note: previous implicit declaration of ‘nlink_merge_residues’ with type ‘void(nlink_component_t *, nlink_component_t *)’ {aka ‘void(struct nlink_component *, struct nlink_component *)’}
+  111 |             nlink_merge_residues(candidate, comp);
+      |             ^~~~~~~~~~~~~~~~~~~~
+src/main.c: In function ‘nlink_merge_residues’:
+src/main.c:279:13: warning: incompatible implicit declaration of built-in function ‘strdup’ [-Wbuiltin-declaration-mismatch]
+  279 |             strdup(reducible->residues[i].perceptual_anchor);
+      |             ^~~~~~
+src/main.c: At top level:
+src/main.c:309:10: error: conflicting types for ‘nlink_get_temporal_coordinate’; have ‘uint32_t(void)’ {aka ‘unsigned int(void)’}
+  309 | uint32_t nlink_get_temporal_coordinate(void) {
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/main.c:255:24: note: previous implicit declaration of ‘nlink_get_temporal_coordinate’ with type ‘int()’
+  255 |     event->timestamp = nlink_get_temporal_coordinate();
+      |                        ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/main.c: In function ‘nlink_get_temporal_coordinate’:
+src/main.c:311:22: warning: implicit declaration of function ‘time’ [-Wimplicit-function-declaration]
+  311 |     return (uint32_t)time(NULL);
+      |                      ^~~~
+src/main.c:12:1: note: ‘time’ is defined in header ‘<time.h>’; did you forget to ‘#include <time.h>’?
+   11 | #include <stdlib.h>
+  +++ |+#include <time.h>
+   12 | 
+src/main.c: At top level:
+src/main.c:314:6: error: conflicting types for ‘nlink_residues_compatible’; have ‘_Bool(nlink_symbolic_residue_t *, size_t,  nlink_symbolic_residue_t *, size_t)’ {aka ‘_Bool(nlink_symbolic_residue_t *, long unsigned int,  nlink_symbolic_residue_t *, long unsigned int)’}
+  314 | bool nlink_residues_compatible(nlink_symbolic_residue_t* a, size_t a_count,
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~
+src/main.c:156:12: note: previous implicit declaration of ‘nlink_residues_compatible’ with type ‘int()’
+  156 |     return nlink_residues_compatible(a->residues, a->residue_count,
+      |            ^~~~~~~~~~~~~~~~~~~~~~~~~
