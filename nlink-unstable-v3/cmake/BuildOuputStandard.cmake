@@ -22,6 +22,19 @@ set(NLINK_LOG_ROOT "${NLINK_OUTPUT_ROOT}/logs" CACHE PATH "Build logs directory"
 # DIRECTORY MATERIALIZATION PROTOCOL
 # ════════════════════════════════════════════════════════════
 
+include_guard(GLOBAL)
+
+macro(nlink_setup_output_directories)
+    set(NLINK_OUTPUT_BASE "${CMAKE_BINARY_DIR}" CACHE PATH "Base output directory")
+    set(NLINK_OBJ_DIR "${NLINK_OUTPUT_BASE}/obj" CACHE PATH "Object files directory")
+    set(NLINK_BIN_DIR "${NLINK_OUTPUT_BASE}/bin" CACHE PATH "Binary output directory")
+    set(NLINK_LIB_DIR "${NLINK_OUTPUT_BASE}/lib" CACHE PATH "Library output directory")
+    
+    # Ensure directories exist
+    file(MAKE_DIRECTORY ${NLINK_OBJ_DIR})
+    file(MAKE_DIRECTORY ${NLINK_BIN_DIR})
+    file(MAKE_DIRECTORY ${NLINK_LIB_DIR})
+endmacro()
 function(nlink_enforce_output_structure)
     # Primary directory creation with validation
     foreach(DIR IN ITEMS 

@@ -20,7 +20,7 @@ BUILD_DOCUMENTATION:BOOL=OFF
 //Build shared libraries
 BUILD_SHARED_LIBS:BOOL=ON
 
-//Build tests
+//Build the testing tree.
 BUILD_TESTING:BOOL=ON
 
 //Path to a program.
@@ -142,6 +142,9 @@ CMAKE_LINKER:FILEPATH=/usr/bin/ld
 
 //Path to a program.
 CMAKE_MAKE_PROGRAM:FILEPATH=/usr/bin/gmake
+
+//No help, variable specified on the command line.
+CMAKE_MESSAGE_LOG_LEVEL:UNINITIALIZED=TRACE
 
 //Flags used by the linker during the creation of modules during
 // all build types.
@@ -267,6 +270,13 @@ CMakeFiles_build_IS_TOP_LEVEL:STATIC=OFF
 //Value Computed by CMake
 CMakeFiles_build_SOURCE_DIR:STATIC=/home/obinexus/obinexus/projects/nlink/nlink-unstable-v3/src/core/CMakeFiles_build
 
+//Path to the coverage program that CTest uses for performing coverage
+// inspection
+COVERAGE_COMMAND:FILEPATH=/usr/bin/gcov
+
+//Extra command line flags to pass to the coverage tool
+COVERAGE_EXTRA_FLAGS:STRING=-l
+
 //Enable to build Debian packages
 CPACK_BINARY_DEB:BOOL=OFF
 
@@ -315,6 +325,15 @@ CPACK_SOURCE_TZ:BOOL=ON
 //Enable to build ZIP source packages
 CPACK_SOURCE_ZIP:BOOL=OFF
 
+//How many times to retry timed-out CTest submissions.
+CTEST_SUBMIT_RETRY_COUNT:STRING=3
+
+//How long to wait between timed-out CTest submissions.
+CTEST_SUBMIT_RETRY_DELAY:STRING=5
+
+//Maximum time allowed before CTest will kill the test.
+DART_TESTING_TIMEOUT:STRING=1500
+
 //Enable code coverage
 ENABLE_COVERAGE:BOOL=OFF
 
@@ -327,17 +346,29 @@ JSONSCHEMA_VALIDATOR:FILEPATH=JSONSCHEMA_VALIDATOR-NOTFOUND
 //Path to a program.
 LCOV:FILEPATH=LCOV-NOTFOUND
 
+//Command to build the project
+MAKECOMMAND:STRING=/usr/bin/cmake --build . --config "${CTEST_CONFIGURATION_TYPE}"
+
+//Path to the memory checking command, used for memory error detection.
+MEMORYCHECK_COMMAND:FILEPATH=MEMORYCHECK_COMMAND-NOTFOUND
+
+//File that contains suppressions for the memory checker
+MEMORYCHECK_SUPPRESSIONS_FILE:FILEPATH=
+
 //Build with CLI support
 NLINK_USE_CLI:BOOL=ON
 
 //Value Computed by CMake
-NexusLink_BINARY_DIR:STATIC=/home/obinexus/obinexus/projects/nlink/nlink-unstable-v3/tests
+NexusLink_BINARY_DIR:STATIC=/home/obinexus/obinexus/projects/nlink/nlink-unstable-v3
 
 //Value Computed by CMake
-NexusLink_IS_TOP_LEVEL:STATIC=OFF
+NexusLink_IS_TOP_LEVEL:STATIC=ON
 
 //Value Computed by CMake
-NexusLink_SOURCE_DIR:STATIC=/home/obinexus/obinexus/projects/nlink/nlink-unstable-v3/tests
+NexusLink_SOURCE_DIR:STATIC=/home/obinexus/obinexus/projects/nlink/nlink-unstable-v3
+
+//Name of the computer/site where compile is being run
+SITE:STRING=OBINexusPC
 
 //Value Computed by CMake
 common_build_BINARY_DIR:STATIC=/home/obinexus/obinexus/projects/nlink/nlink-unstable-v3/src/core/common_build_build
@@ -533,6 +564,8 @@ CMAKE_COLOR_MAKEFILE-ADVANCED:INTERNAL=1
 CMAKE_COMMAND:INTERNAL=/usr/bin/cmake
 //Path to cpack program executable.
 CMAKE_CPACK_COMMAND:INTERNAL=/usr/bin/cpack
+//ADVANCED property for variable: CMAKE_CTEST_COMMAND
+CMAKE_CTEST_COMMAND-ADVANCED:INTERNAL=1
 //Path to ctest program executable.
 CMAKE_CTEST_COMMAND:INTERNAL=/usr/bin/ctest
 //ADVANCED property for variable: CMAKE_C_COMPILER
@@ -633,7 +666,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=44
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=47
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP
@@ -676,6 +709,10 @@ CMAKE_STRIP-ADVANCED:INTERNAL=1
 CMAKE_UNAME:INTERNAL=/usr/bin/uname
 //ADVANCED property for variable: CMAKE_VERBOSE_MAKEFILE
 CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: COVERAGE_COMMAND
+COVERAGE_COMMAND-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: COVERAGE_EXTRA_FLAGS
+COVERAGE_EXTRA_FLAGS-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CPACK_BINARY_DEB
 CPACK_BINARY_DEB-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CPACK_BINARY_FREEBSD
@@ -708,10 +745,24 @@ CPACK_SOURCE_TXZ-ADVANCED:INTERNAL=1
 CPACK_SOURCE_TZ-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CPACK_SOURCE_ZIP
 CPACK_SOURCE_ZIP-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CTEST_SUBMIT_RETRY_COUNT
+CTEST_SUBMIT_RETRY_COUNT-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CTEST_SUBMIT_RETRY_DELAY
+CTEST_SUBMIT_RETRY_DELAY-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: DART_TESTING_TIMEOUT
+DART_TESTING_TIMEOUT-ADVANCED:INTERNAL=1
 //Details about finding Python3
 FIND_PACKAGE_MESSAGE_DETAILS_Python3:INTERNAL=[/home/obinexus/miniconda3/bin/python3][cfound components: Interpreter ][v3.13.5()]
 //Details about finding Threads
 FIND_PACKAGE_MESSAGE_DETAILS_Threads:INTERNAL=[TRUE][v()]
+//ADVANCED property for variable: MAKECOMMAND
+MAKECOMMAND-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: MEMORYCHECK_COMMAND
+MEMORYCHECK_COMMAND-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: MEMORYCHECK_SUPPRESSIONS_FILE
+MEMORYCHECK_SUPPRESSIONS_FILE-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: SITE
+SITE-ADVANCED:INTERNAL=1
 //linker supports push/pop state
 _CMAKE_LINKER_PUSHPOP_STATE_SUPPORTED:INTERNAL=TRUE
 //CMAKE_INSTALL_PREFIX during last run

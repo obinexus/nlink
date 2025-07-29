@@ -7,6 +7,19 @@ endif()
 set(NLINK_EXECUTABLE_CONFIG_INCLUDED TRUE)
 
 include(CMakeParseArguments)
+# ExecutableConfig.cmake safety wrapper
+macro(nlink_define_main_executable)
+    # Implement existence check before creation
+    if(NOT TARGET nlink_executable)
+        add_executable(nlink_executable ${NLINK_MAIN_SOURCES})
+        set_target_properties(nlink_executable PROPERTIES
+            OUTPUT_NAME "nlink"
+            RUNTIME_OUTPUT_DIRECTORY "${NLINK_BIN_DIR}"
+        )
+    else()
+        message(WARNING "nlink_executable target already exists - skipping redefinition")
+    endif()
+endmacro()
 
 function(nlink_define_main_executable)
   cmake_parse_arguments(
