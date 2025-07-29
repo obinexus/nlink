@@ -35,6 +35,35 @@ macro(nlink_setup_output_directories)
     file(MAKE_DIRECTORY ${NLINK_BIN_DIR})
     file(MAKE_DIRECTORY ${NLINK_LIB_DIR})
 endmacro()
+
+# BuildOutputStandard.cmake
+# Standardized output directory configuration
+include_guard(GLOBAL)
+
+# Define standard output paths
+set(NLINK_OUTPUT_BASE "${CMAKE_BINARY_DIR}" CACHE PATH "Base output directory")
+set(NLINK_OBJ_DIR "${NLINK_OUTPUT_BASE}/obj" CACHE PATH "Object files directory")
+set(NLINK_BIN_DIR "${NLINK_OUTPUT_BASE}/bin" CACHE PATH "Binary output directory")
+set(NLINK_LIB_DIR "${NLINK_OUTPUT_BASE}/lib" CACHE PATH "Library output directory")
+
+# Create output directories
+file(MAKE_DIRECTORY ${NLINK_OBJ_DIR})
+file(MAKE_DIRECTORY ${NLINK_BIN_DIR})
+file(MAKE_DIRECTORY ${NLINK_LIB_DIR})
+
+# Configure output paths globally
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${NLINK_BIN_DIR} CACHE PATH "Runtime output directory")
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${NLINK_LIB_DIR} CACHE PATH "Library output directory")
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${NLINK_LIB_DIR} CACHE PATH "Archive output directory")
+
+# Validation function
+function(nlink_validate_output_structure)
+    foreach(dir IN ITEMS ${NLINK_OBJ_DIR} ${NLINK_BIN_DIR} ${NLINK_LIB_DIR})
+        if(NOT EXISTS ${dir})
+            message(FATAL_ERROR "Required output directory missing: ${dir}")
+        endif()
+    endforeach()
+endfunction()
 function(nlink_enforce_output_structure)
     # Primary directory creation with validation
     foreach(DIR IN ITEMS 

@@ -1,36 +1,35 @@
+# cmake/NexusLinkConfig.cmake.in
 @PACKAGE_INIT@
 
 include(CMakeFindDependencyMacro)
-
-# Required dependencies
 find_dependency(Threads REQUIRED)
 
-# Component availability flags
-set(NexusLink_FOUND TRUE)
-set(NexusLink_VERSION "@PROJECT_VERSION@")
-set(NexusLink_VERSION_MAJOR "@PROJECT_VERSION_MAJOR@")
-set(NexusLink_VERSION_MINOR "@PROJECT_VERSION_MINOR@")
-set(NexusLink_VERSION_PATCH "@PROJECT_VERSION_PATCH@")
+# Define component imports
+set(NLINK_LIBRARIES
+    nlink::nlink_core
+    nlink::nlink_cli_static
+)
 
-# Installation directories
-set(NexusLink_INCLUDE_DIR "@PACKAGE_NLINK_INSTALL_INCLUDEDIR@")
-set(NexusLink_LIBRARY_DIR "@PACKAGE_NLINK_INSTALL_LIBDIR@")
-set(NexusLink_BINARY_DIR "@PACKAGE_NLINK_INSTALL_BINDIR@")
-set(NexusLink_CMAKE_DIR "@PACKAGE_NLINK_INSTALL_CMAKEDIR@")
-
-# Import targets
-if(NOT TARGET nlink::nlink_core AND EXISTS "${CMAKE_CURRENT_LIST_DIR}/nlink-targets.cmake")
-    include("${CMAKE_CURRENT_LIST_DIR}/nlink-targets.cmake")
-endif()
+# Version information
+set(NLINK_VERSION "@PROJECT_VERSION@")
+set(NLINK_VERSION_MAJOR "@PROJECT_VERSION_MAJOR@")
+set(NLINK_VERSION_MINOR "@PROJECT_VERSION_MINOR@")
+set(NLINK_VERSION_PATCH "@PROJECT_VERSION_PATCH@")
 
 # Component validation
-set(_NexusLink_REQUIRED_COMPONENTS
-    nlink_core
-    nlink_common_static
-    nlink_symbols_static
-    nlink_versioning_static
-    nlink_minimizer_static
-)
+include("${CMAKE_CURRENT_LIST_DIR}/nlink-targets.cmake")
+
+# Verify core components
+foreach(_comp nlink_core nlink_cli_static)
+    if(NOT TARGET nlink::${_comp})
+        set(NLINK_FOUND FALSE)
+        set(NLINK_NOT_FOUND_MESSAGE "Required component '${_comp}' not found")
+        return()
+    endif()
+endforeach()
+
+set(NLINK_FOUND TRUE)
+
 
 set(_NexusLink_OPTIONAL_COMPONENTS
     nlink_cli_static

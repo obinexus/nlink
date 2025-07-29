@@ -4,6 +4,28 @@ project(NexusLink VERSION 1.0.0 LANGUAGES C)
 # ════════════════════════════════════════════════════════════
 # COMPONENT FRAMEWORK INITIALIZATION
 # ════════════════════════════════════════════════════════════
+# NexusLink Master CMakeLists.txt - Binary Directory Fix
+cmake_minimum_required(VERSION 3.16)
+project(NexusLink VERSION 1.0.0 LANGUAGES C)
+
+# Define unique binary directories for subdirectories
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+
+# CRITICAL: Use out-of-source build enforcement
+if(${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_BINARY_DIR})
+    message(FATAL_ERROR "In-source builds not allowed. Create a build directory.")
+endif()
+
+# Add subdirectories with explicit binary directories
+add_subdirectory(src/core ${CMAKE_BINARY_DIR}/core)
+add_subdirectory(src/cli ${CMAKE_BINARY_DIR}/cli)
+
+# Only add tests if not already processing from a parent directory
+if(NOT TARGET validate_build AND NEXUS_BUILD_TESTS)
+    add_subdirectory(tests ${CMAKE_BINARY_DIR}/tests)
+endif()
 
 # Include core build system modules
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
