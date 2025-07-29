@@ -51,37 +51,113 @@ function(nlink_init_component_system)
   message(STATUS "Registered components: ${COMP_INIT_COMPONENTS}")
 endfunction()
 
-# Function to register a component
-function(nlink_register_component COMPONENT VERSION)
-  # Set component properties
-  set_property(GLOBAL PROPERTY NLINK_COMPONENT_${COMPONENT}_VERSION ${VERSION})
-  set_property(GLOBAL PROPERTY NLINK_COMPONENT_${COMPONENT}_REGISTERED TRUE)
-  
-  # Define component include directories
-  set(COMPONENT_INCLUDE_DIR "${NLINK_INCLUDE_DIR}/nlink/core/${COMPONENT}")
-  set(COMPONENT_SRC_DIR "${NLINK_SRC_DIR}/core/${COMPONENT}")
-  
-  # Create component library targets
-  add_library(nlink_component_${COMPONENT} OBJECT
-    "${COMPONENT_SRC_DIR}/${COMPONENT}_core.c"
-    "${COMPONENT_SRC_DIR}/${COMPONENT}_context.c"
-    "${COMPONENT_SRC_DIR}/nexus_${COMPONENT}.c"
+# Function to register a component# Recommended function signature correction
+function(nlink_register_component COMPONENT)
+  # Parse additional arguments
+  cmake_parse_arguments(
+    COMP_REG
+    "REQUIRED;OPTIONAL"
+    "VERSION;DESCRIPTION;AUTHOR"
+    "DEPENDENCIES;SOURCES;INCLUDES"
+    ${ARGN}
   )
+
+  # Provide default values for optional parameters
+  if(NOT COMP_REG_VERSION)
+    set(COMP_REG_VERSION "1.0.0")
+  endif()
+
+  # Register component in global property
+  set_property(GLOBAL APPEND PROPERTY NLINK_REGISTERED_COMPONENTS ${COMPONENT})
+  set_property(GLOBAL PROPERTY NLINK_COMPONENT_${COMPONENT}_VERSION ${COMP_REG_VERSION})
   
-  # Set include directories for component
-  target_include_directories(nlink_component_${COMPONENT} PUBLIC
-    ${NLINK_INCLUDE_DIR}
-    ${NLINK_SRC_DIR}
-  )
-  
-  # Add component to core components target
-  add_dependencies(nlink_core_components nlink_component_${COMPONENT})
-  
-  message(STATUS "Registered component: ${COMPONENT} (version ${VERSION})")
+  message(STATUS "Registered component: ${COMPONENT} (version ${COMP_REG_VERSION})")
 endfunction()
 
 # Function to get component dependencies
 function(nlink_get_component_dependencies COMPONENT OUTPUT_VAR)
   # Implementation to be added based on dependency specifications
   set(${OUTPUT_VAR} "" PARENT_SCOPE)
+endfunction()
+
+
+function(nlink_build_component)
+  cmake_parse_arguments(
+    BUILD_COMP
+    "SHARED;STATIC;MODULE"
+    "COMPONENT;OUTPUT_NAME;VERSION"
+    "SOURCES;INCLUDES;DEPENDENCIES;COMPILE_DEFINITIONS;COMPILE_OPTIONS"
+    ${ARGN}
+  )
+
+  # Validate required arguments
+  if(NOT BUILD_COMP_COMPONENT)
+    message(FATAL_ERROR "COMPONENT parameter is required for nlink_build_component")
+  endif()
+
+  # Set default library type if not specified
+  set(LIB_TYPE "STATIC")
+  if(BUILD_COMP_SHARED)
+    set(LIB_TYPE "SHARED")
+  elseif(BUILD_COMP_MODULE)
+    set(LIB_TYPE "MODULE")
+  endif()
+
+  # Define component names
+  set(COMPONENT_NAME ${BUILD_COMP_COMPONENT})
+  set(COMPONENT_TARGET nlink_component_${COMPONENT_NAME})
+  
+  # Set output name if provided
+  if(BUILD_COMP_OUTPUT_NAME)
+    set(OUTPUT_NAME ${BUILD_COMP_OUTPUT_NAME})
+  else()
+    set(OUTPUT_NAME "nlink_${COMPONENT_NAME}")
+  endif()
+
+  # Set default sources if not provided
+  if(NOT BUILD_COMP_SOURCES)
+    file(GLOB BUILD_COMP_SOURCES 
+      "${CMAKE_CURRENT_SOURCE_DIR}/*.c"
+      "${CMAKE_CURRENT_SOURCE_DIR}/*.cpp"
+    )
+  endif()
+
+  # Build the component library
+  add_library(${COMPONENT_TARGET} ${LIB_TYPE} ${BUILD_COMP_SOURCES})
+  set_target_properties(${COMPONENT_TARGET} PROPERTIES
+    OUTPUT_NAME ${OUTPUT_NAME}
+    VERSION ${BUILD_COMP_VERSION}
+  )
+
+  # Add include directories
+  target_include_directories(${COMPONENT_TARGET} PUBLIC
+    ${NLINK_INCLUDE_DIR}
+    ${BUILD_COMP_INCLUDES}
+  )
+
+  # Add compile definitions
+  if(BUILD_COMP_COMPILE_DEFINITIONS)
+    target_compile_definitions(${COMPONENT_TARGET} PRIVATE
+      ${BUILD_COMP_COMPILE_DEFINITIONS}
+    )
+  endif()
+
+  # Add compile options
+  if(BUILD_COMP_COMPILE_OPTIONS)
+    target_compile_options(${COMPONENT_TARGET} PRIVATE
+      ${BUILD_COMP_COMPILE_OPTIONS}
+    )
+  endif()
+
+  # Link dependencies
+  if(BUILD_COMP_DEPENDENCIES)
+    target_link_libraries(${COMPONENT_TARGET} PRIVATE
+      ${BUILD_COMP_DEPENDENCIES}
+    )
+  endif()
+
+  # Add to components target
+  add_dependencies(nlink_core_components ${COMPONENT_TARGET})
+  
+  message(STATUS "Built component: ${COMPONENT_NAME} (${LIB_TYPE})")
 endfunction()

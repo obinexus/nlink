@@ -327,13 +327,14 @@ function(nlink_validate_includes)
   # Run validation script if it exists
   set(VALIDATION_SCRIPT "${NLINK_PROJECT_ROOT}/scripts/standardize_nlink_includes.py")
   if(EXISTS "${VALIDATION_SCRIPT}")
-    execute_process(
-      COMMAND python3 ${VALIDATION_SCRIPT} --project-root ${NLINK_PROJECT_ROOT} --validate
-      RESULT_VARIABLE RESULT
-      OUTPUT_VARIABLE OUTPUT
-      ERROR_VARIABLE ERROR
-    )
-    
+  execute_process(
+  COMMAND ${Python3_EXECUTABLE} ${NLINK_PROJECT_ROOT}/scripts/standardize_nlink_includes.py 
+    --project-root ${NLINK_PROJECT_ROOT} 
+    --dry-run
+  RESULT_VARIABLE VALIDATION_RESULT
+  OUTPUT_VARIABLE VALIDATION_OUTPUT
+  ERROR_VARIABLE VALIDATION_ERROR
+  )
     if(RESULT EQUAL 0)
       message(STATUS "Include validation passed")
     else()
