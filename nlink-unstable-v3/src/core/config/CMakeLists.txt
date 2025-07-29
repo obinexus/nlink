@@ -1,4 +1,4 @@
-# CMakeLists.txt for NexusLink parser module
+# CMakeLists.txt for NexusLink config module
 # Copyright © 2025 OBINexus Computing
 
 # Get the directory name for the current module

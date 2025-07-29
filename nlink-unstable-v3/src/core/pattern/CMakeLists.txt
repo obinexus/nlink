@@ -1,26 +1,21 @@
-# Pattern matcher implementation for NexusLink
-set(PATTERN_SOURCES
-	matcher.c
-	regex_matcher.c
+# CMakeLists.txt for NexusLink pattern module
+# Copyright © 2025 OBINexus Computing
+
+# Get the directory name for the current module
+get_filename_component(MODULE_NAME ${CMAKE_CURRENT_SOURCE_DIR} NAME)
+
+# Define source files
+file(GLOB MODULE_SOURCES "*.c")
+file(GLOB MODULE_HEADERS "*.h")
+
+# Add library target with corrected parameter structure
+nlink_build_component(
+    COMPONENT ${MODULE_NAME}
+    SOURCES ${MODULE_SOURCES}
+    HEADERS ${MODULE_HEADERS}
+    TYPE "core"
+    VERBOSE
 )
 
-# Create a library target for the pattern matcher
-add_library(nlink_pattern ${PATTERN_SOURCES})
-
-# Add include directories
-target_include_directories(nlink_pattern
-	PUBLIC
-		${CMAKE_SOURCE_DIR}/include
-)
-
-# Link with system libraries (needed for regex functions)
-target_link_libraries(nlink_pattern
-	PRIVATE
-		m  # Math library
-)
-
-# Set properties on the target library
-set_target_properties(nlink_pattern PROPERTIES
-	C_STANDARD 99
-	C_STANDARD_REQUIRED ON
-)
+# Register with core components target
+add_dependencies(nlink_core_components nlink_component_${MODULE_NAME})

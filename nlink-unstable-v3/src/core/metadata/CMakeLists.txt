@@ -1,37 +1,21 @@
-# Metadata component build configuration
+# CMakeLists.txt for NexusLink metadata module
+# Copyright © 2025 OBINexus Computing
 
-# Create library target for metadata component
-add_library(nexus_metadata
-	enhanced_metadata.c
+# Get the directory name for the current module
+get_filename_component(MODULE_NAME ${CMAKE_CURRENT_SOURCE_DIR} NAME)
+
+# Define source files
+file(GLOB MODULE_SOURCES "*.c")
+file(GLOB MODULE_HEADERS "*.h")
+
+# Add library target with corrected parameter structure
+nlink_build_component(
+    COMPONENT ${MODULE_NAME}
+    SOURCES ${MODULE_SOURCES}
+    HEADERS ${MODULE_HEADERS}
+    TYPE "core"
+    VERBOSE
 )
 
-# Set include directories
-target_include_directories(nexus_metadata
-	PUBLIC
-		${CMAKE_SOURCE_DIR}/include
-)
-
-# Link with required libraries
-target_link_libraries(nexus_metadata
-	PUBLIC
-		nexus_common
-)
-
-# Set compile definitions based on global options
-if(NEXUS_ENABLE_VERBOSE_LOGGING)
-	target_compile_definitions(nexus_metadata PRIVATE NEXUS_VERBOSE_LOGGING=1)
-endif()
-
-if(NEXUS_USE_MEMORY_POOL)
-	target_compile_definitions(nexus_metadata PRIVATE NEXUS_USE_MEMORY_POOL=1)
-endif()
-
-if(NEXUS_ENABLE_THREAD_SAFETY)
-	target_compile_definitions(nexus_metadata PRIVATE NEXUS_THREAD_SAFETY=1)
-endif()
-
-# Install the library
-install(TARGETS nexus_metadata
-	LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-	ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
-)
+# Register with core components target
+add_dependencies(nlink_core_components nlink_component_${MODULE_NAME})

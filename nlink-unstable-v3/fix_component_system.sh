@@ -1,3 +1,15 @@
+#!/bin/bash
+# fix_component_system.sh
+# Creates corrected version of ComponentSystem.cmake
+
+NLINK_ROOT="/home/obinexus/obinexus/projects/nlink/nlink-unstable-v3"
+COMPONENT_SYSTEM="${NLINK_ROOT}/cmake/ComponentSystem.cmake"
+
+# Create backup
+cp "${COMPONENT_SYSTEM}" "${COMPONENT_SYSTEM}.bak"
+
+# Write corrected version
+cat > "${COMPONENT_SYSTEM}" << 'EOF'
 # ComponentSystem.cmake
 # Core component management for NexusLink
 #
@@ -184,3 +196,6 @@ function(nlink_build_component)
   
   message(STATUS "Built component: ${COMPONENT_NAME} (${LIB_TYPE})")
 endfunction()
+EOF
+
+echo "ComponentSystem.cmake has been fixed."

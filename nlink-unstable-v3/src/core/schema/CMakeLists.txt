@@ -1,23 +1,21 @@
-# Schema component CMakeLists.txt
+# CMakeLists.txt for NexusLink schema module
+# Copyright © 2025 OBINexus Computing
 
-# Install schema files
-install(FILES nlink_schema.json
-        DESTINATION share/nlink/schema)
+# Get the directory name for the current module
+get_filename_component(MODULE_NAME ${CMAKE_CURRENT_SOURCE_DIR} NAME)
 
-# Copy schema to build directory for testing
-configure_file(nlink_schema.json
-               ${CMAKE_BINARY_DIR}/schema/nlink_schema.json
-               COPYONLY)
+# Define source files
+file(GLOB MODULE_SOURCES "*.c")
+file(GLOB MODULE_HEADERS "*.h")
 
-# Create a custom target to represent the schema
-add_custom_target(nexus_schema ALL
-    DEPENDS ${CMAKE_BINARY_DIR}/schema/nlink_schema.json
-    SOURCES nlink_schema.json)
+# Add library target with corrected parameter structure
+nlink_build_component(
+    COMPONENT ${MODULE_NAME}
+    SOURCES ${MODULE_SOURCES}
+    HEADERS ${MODULE_HEADERS}
+    TYPE "core"
+    VERBOSE
+)
 
-# Add schema validation test if JSON schema validation tool is available
-find_program(JSONSCHEMA_VALIDATOR jsonschema)
-if(JSONSCHEMA_VALIDATOR)
-    add_test(NAME validate_nlink_schema
-             COMMAND ${JSONSCHEMA_VALIDATOR} -i ${CMAKE_BINARY_DIR}/schema/nlink_schema.json
-             WORKING_DIRECTORY ${CMAKE_SOURCE_DIR})
-endif()
+# Register with core components target
+add_dependencies(nlink_core_components nlink_component_${MODULE_NAME})

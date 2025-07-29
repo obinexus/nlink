@@ -1,49 +1,21 @@
-# Minimizer module CMakeLists.txt
+# CMakeLists.txt for NexusLink minimizer module
+# Copyright © 2025 OBINexus Computing
 
-# Create nexus_minimizer library
-add_library(nexus_minimizer
-    minimizer.c
-    automaton/nexus_automaton.c
+# Get the directory name for the current module
+get_filename_component(MODULE_NAME ${CMAKE_CURRENT_SOURCE_DIR} NAME)
+
+# Define source files
+file(GLOB MODULE_SOURCES "*.c")
+file(GLOB MODULE_HEADERS "*.h")
+
+# Add library target with corrected parameter structure
+nlink_build_component(
+    COMPONENT ${MODULE_NAME}
+    SOURCES ${MODULE_SOURCES}
+    HEADERS ${MODULE_HEADERS}
+    TYPE "core"
+    VERBOSE
 )
 
-# Create okpala_minimizer library
-add_library(okpala_minimizer
-    ast/okpala_ast.c
-    automaton/okpala_automaton.c
-    automaton/okpala_automaton_minimizer.c
-)
-
-# Add dependencies
-target_link_libraries(nexus_minimizer
-    PRIVATE nexus_common
-)
-# Add another dependency to nexus_minimizer if needed
-target_link_libraries(okpala_minimizer
-    PRIVATE nexus_minimizer
-    PRIVATE nexus_common
-)
-
-# Set up include directories for these targets
-target_include_directories(nexus_minimizer
-    PUBLIC
-        ${CMAKE_SOURCE_DIR}/include
-        ${CMAKE_SOURCE_DIR}/include/nlink
-)
-
-target_include_directories(okpala_minimizer
-    PUBLIC
-        ${CMAKE_SOURCE_DIR}/include
-        ${CMAKE_SOURCE_DIR}/include/nlink
-)
-
-# Install headers
-install(DIRECTORY ${CMAKE_SOURCE_DIR}/include/nlink/core/minimizer/
-        DESTINATION include/nlink/core/minimizer
-        FILES_MATCHING PATTERN "*.h")
-
-# Install libraries
-install(TARGETS nexus_minimizer okpala_minimizer
-        EXPORT NexusLinkTargets
-        LIBRARY DESTINATION lib
-        ARCHIVE DESTINATION lib
-        RUNTIME DESTINATION bin)
+# Register with core components target
+add_dependencies(nlink_core_components nlink_component_${MODULE_NAME})

@@ -1,47 +1,21 @@
-# MPSystem - Multi-Pass System module for NexusLink
-# Provides pipeline management with feedback loops and bidirectional data flows
+# CMakeLists.txt for NexusLink mpsystem module
+# Copyright © 2025 OBINexus Computing
 
-# Source files for the mpsystem module
-set(MPS_SOURCES
-	mps_config.c
-	mps_dependency.c
-	mps_lifecycle.c
-	mps_pipeline.c
-	mps_stream.c
+# Get the directory name for the current module
+get_filename_component(MODULE_NAME ${CMAKE_CURRENT_SOURCE_DIR} NAME)
+
+# Define source files
+file(GLOB MODULE_SOURCES "*.c")
+file(GLOB MODULE_HEADERS "*.h")
+
+# Add library target with corrected parameter structure
+nlink_build_component(
+    COMPONENT ${MODULE_NAME}
+    SOURCES ${MODULE_SOURCES}
+    HEADERS ${MODULE_HEADERS}
+    TYPE "core"
+    VERBOSE
 )
 
-# Header files (for IDE integration)
-set(MPS_HEADERS
-	${CMAKE_SOURCE_DIR}/include/nlink/core/mpsystem/mps_config.h
-	${CMAKE_SOURCE_DIR}/include/nlink/core/mpsystem/mps_dependency.h
-	${CMAKE_SOURCE_DIR}/include/nlink/core/mpsystem/mps_lifecycle.h
-	${CMAKE_SOURCE_DIR}/include/nlink/core/mpsystem/mps_pipeline.h
-	${CMAKE_SOURCE_DIR}/include/nlink/core/mpsystem/mps_stream.h
-)
-
-# Create the mpsystem library
-add_library(nlink_mpsystem ${MPS_SOURCES})
-
-# Setup include directories
-target_include_directories(nlink_mpsystem
-	PUBLIC
-		${CMAKE_SOURCE_DIR}/include
-	PRIVATE
-		${CMAKE_SOURCE_DIR}/src
-)
-
-# Link dependencies
-target_link_libraries(nlink_mpsystem
-	PUBLIC
-		nlink_core_common
-)
-
-# Installation rules
-install(TARGETS nlink_mpsystem
-	ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
-	LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-)
-
-install(FILES ${MPS_HEADERS}
-	DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/nlink/core/mpsystem
-)
+# Register with core components target
+add_dependencies(nlink_core_components nlink_component_${MODULE_NAME})

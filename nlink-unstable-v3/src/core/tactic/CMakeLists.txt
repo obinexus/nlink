@@ -8,7 +8,7 @@ get_filename_component(MODULE_NAME ${CMAKE_CURRENT_SOURCE_DIR} NAME)
 file(GLOB MODULE_SOURCES "*.c")
 file(GLOB MODULE_HEADERS "*.h")
 
-# Add library target with corrected parameter signature
+# Add library target with corrected parameter structure
 nlink_build_component(
     COMPONENT ${MODULE_NAME}
     SOURCES ${MODULE_SOURCES}
@@ -17,5 +17,5 @@ nlink_build_component(
     VERBOSE
 )
 
-# Register the component with NexusLink
-add_dependencies(nlink_core_components nlink_${MODULE_NAME})
+# Register with core components target
+add_dependencies(nlink_core_components nlink_component_${MODULE_NAME})

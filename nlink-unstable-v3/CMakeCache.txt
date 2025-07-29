@@ -31,7 +31,7 @@ CMAKE_AR:FILEPATH=/usr/bin/ar
 
 //Choose the type of build, options are: None Debug Release RelWithDebInfo
 // MinSizeRel ...
-CMAKE_BUILD_TYPE:STRING=
+CMAKE_BUILD_TYPE:STRING=Debug
 
 //Enable/Disable color output during build.
 CMAKE_COLOR_MAKEFILE:BOOL=ON
@@ -265,6 +265,9 @@ ENABLE_COVERAGE:BOOL=OFF
 GENHTML:FILEPATH=GENHTML-NOTFOUND
 
 //Path to a program.
+JSONSCHEMA_VALIDATOR:FILEPATH=JSONSCHEMA_VALIDATOR-NOTFOUND
+
+//Path to a program.
 LCOV:FILEPATH=LCOV-NOTFOUND
 
 //Build with CLI support
@@ -402,7 +405,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=3
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=5
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP
@@ -462,6 +465,8 @@ _Python3_EXECUTABLE:INTERNAL=/home/obinexus/miniconda3/bin/python3
 //Python3 Properties
 _Python3_INTERPRETER_PROPERTIES:INTERNAL=Python;3;13;5;64;;cpython-313-x86_64-linux-gnu;/home/obinexus/miniconda3/lib/python3.13;/home/obinexus/miniconda3/lib/python3.13;/home/obinexus/miniconda3/lib/python3.13/site-packages;/home/obinexus/miniconda3/lib/python3.13/site-packages
 _Python3_INTERPRETER_SIGNATURE:INTERNAL=9bb650a83300d9cc6d62549a12965a8f
+//Interpreter reason failure
+_Python3_Interpreter_REASON_FAILURE:INTERNAL=
 //NumPy reason failure
 _Python3_NumPy_REASON_FAILURE:INTERNAL=
 

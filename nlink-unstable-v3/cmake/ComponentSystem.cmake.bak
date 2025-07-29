@@ -82,6 +82,7 @@ endfunction()
 
 # Function to build a component with enhanced parameter handling
 function(nlink_build_component)
+  # Extract component name for unique binary directory formation
   cmake_parse_arguments(
     BUILD_COMP
     "SHARED;STATIC;MODULE;VERBOSE"
@@ -90,12 +91,21 @@ function(nlink_build_component)
     ${ARGN}
   )
 
-  # Parameter normalization protocol: NAME → COMPONENT (backwards compatibility)
-  if(BUILD_COMP_NAME AND NOT BUILD_COMP_COMPONENT)
-    set(BUILD_COMP_COMPONENT ${BUILD_COMP_NAME})
-    if(BUILD_COMP_VERBOSE)
-      message(STATUS "Component parameter normalization: NAME → COMPONENT (${BUILD_COMP_NAME})")
-    endif()
+  # Determine component identifier with fallback
+  if(BUILD_COMP_COMPONENT)
+    set(COMPONENT_ID ${BUILD_COMP_COMPONENT})
+  elseif(BUILD_COMP_NAME)
+    set(COMPONENT_ID ${BUILD_COMP_NAME})
+  else()
+    get_filename_component(COMPONENT_ID ${CMAKE_CURRENT_SOURCE_DIR} NAME)
+  endif()
+  
+  # Configure unique binary directory path to prevent collisions
+  set(UNIQUE_BINARY_DIR "${CMAKE_CURRENT_BINARY_DIR}/${COMPONENT_ID}_build")
+  
+  # Log configuration for debugging
+  if(BUILD_COMP_VERBOSE)
+    message(STATUS "Component ${COMPONENT_ID}: Using binary directory ${UNIQUE_BINARY_DIR}")
   endif()
 
   # Validate required arguments
@@ -103,11 +113,6 @@ function(nlink_build_component)
     message(FATAL_ERROR "COMPONENT parameter is required for nlink_build_component")
   endif()
 
-  # Configure unique binary directory to prevent collisions
-  set(COMPONENT_NAME ${BUILD_COMP_COMPONENT})
-  set(COMPONENT_TARGET nlink_component_${COMPONENT_NAME})
-  set(UNIQUE_BINARY_DIR "${CMAKE_CURRENT_BINARY_DIR}/${COMPONENT_NAME}_build")
-  
   # Set default library type if not specified
   set(LIB_TYPE "STATIC")
   if(BUILD_COMP_SHARED)
@@ -115,6 +120,10 @@ function(nlink_build_component)
   elseif(BUILD_COMP_MODULE)
     set(LIB_TYPE "MODULE")
   endif()
+
+  # Define component names
+  set(COMPONENT_NAME ${BUILD_COMP_COMPONENT})
+  set(COMPONENT_TARGET nlink_component_${COMPONENT_NAME})
   
   # Set output name if provided
   if(BUILD_COMP_OUTPUT_NAME)
@@ -133,30 +142,16 @@ function(nlink_build_component)
 
   # Build the component library
   add_library(${COMPONENT_TARGET} ${LIB_TYPE} ${BUILD_COMP_SOURCES})
-  
-  # Set target properties with proper argument validation
-  if(BUILD_COMP_VERSION)
-    set_target_properties(${COMPONENT_TARGET} PROPERTIES
-      OUTPUT_NAME ${OUTPUT_NAME}
-      VERSION ${BUILD_COMP_VERSION}
-    )
-  else()
-    set_target_properties(${COMPONENT_TARGET} PROPERTIES
-      OUTPUT_NAME ${OUTPUT_NAME}
-    )
-  endif()
+  set_target_properties(${COMPONENT_TARGET} PROPERTIES
+    OUTPUT_NAME ${OUTPUT_NAME}
+    VERSION ${BUILD_COMP_VERSION}
+  )
 
   # Add include directories
-  if(BUILD_COMP_INCLUDES)
-    target_include_directories(${COMPONENT_TARGET} PUBLIC
-      ${NLINK_INCLUDE_DIR}
-      ${BUILD_COMP_INCLUDES}
-    )
-  else()
-    target_include_directories(${COMPONENT_TARGET} PUBLIC
-      ${NLINK_INCLUDE_DIR}
-    )
-  endif()
+  target_include_directories(${COMPONENT_TARGET} PUBLIC
+    ${NLINK_INCLUDE_DIR}
+    ${BUILD_COMP_INCLUDES}
+  )
 
   # Add compile definitions
   if(BUILD_COMP_COMPILE_DEFINITIONS)
