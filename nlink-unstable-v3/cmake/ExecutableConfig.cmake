@@ -1,5 +1,8 @@
 # ExecutableConfig.cmake
 # Main executable configuration for NexusLink
+#
+# This module provides functionality for defining and configuring the main
+# NexusLink executable with proper component dependencies.
 
 # Include guard
 if(DEFINED NLINK_EXECUTABLE_CONFIG_CMAKE_INCLUDED)
@@ -9,6 +12,7 @@ set(NLINK_EXECUTABLE_CONFIG_CMAKE_INCLUDED TRUE)
 
 include(CMakeParseArguments)
 
+# Function to define the main executable with component dependencies
 function(nlink_define_main_executable)
   cmake_parse_arguments(
     EXEC
@@ -83,6 +87,14 @@ function(nlink_define_main_executable)
     install(TARGETS ${EXEC_NAME}
       RUNTIME DESTINATION bin
     )
+    
+    # Create versioned symlink if requested
+    if(EXEC_VERSIONED)
+      install(CODE "execute_process(COMMAND ${CMAKE_COMMAND} -E create_symlink 
+        ${CMAKE_INSTALL_PREFIX}/bin/${EXEC_OUTPUT_NAME}
+        ${CMAKE_INSTALL_PREFIX}/bin/${EXEC_OUTPUT_NAME}-${EXEC_VERSION}
+      )")
+    endif()
   endif()
   
   # Register executable globally
