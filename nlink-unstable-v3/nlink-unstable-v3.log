@@ -1,1 +1,253 @@
-make: *** No rule to make target '2'.  Stop.
+mkdir -p /home/obinexus/obinexus/projects/nlink/nlink-unstable-v3/build
+mkdir -p /home/obinexus/obinexus/projects/nlink/nlink-unstable-v3/build/cmake
+cd /home/obinexus/obinexus/projects/nlink/nlink-unstable-v3/build/cmake && cmake -DCMAKE_BUILD_TYPE=Debug -DBUILD_TESTING=ON /home/obinexus/obinexus/projects/nlink/nlink-unstable-v3
+-- Hook system initialized with directories:
+--   OBJ_DIR: /home/obinexus/obinexus/projects/nlink/nlink-unstable-v3/obj
+--   BIN_DIR: /home/obinexus/obinexus/projects/nlink/nlink-unstable-v3/bin
+--   LIB_DIR: /home/obinexus/obinexus/projects/nlink/nlink-unstable-v3/lib
+--   TEST_DIR: /home/obinexus/obinexus/projects/nlink/nlink-unstable-v3/tests
+--   LOG_DIR: /home/obinexus/obinexus/projects/nlink/nlink-unstable-v3/logs
+CMake Warning at cmake/TestFramework.cmake:613 (message):
+  Could not find lcov or genhtml.  Coverage reporting disabled.
+Call Stack (most recent call first):
+  cmake/TestFramework.cmake:256 (nlink_setup_coverage)
+  cmake/BuildSystem.cmake:110 (nlink_init_test_system)
+  CMakeLists.txt:31 (nlink_init_build_system)
+
+
+-- Test system initialized
+--   Test framework in: /home/obinexus/obinexus/projects/nlink/nlink-unstable-v3/tests/framework
+--   Test includes in: /home/obinexus/obinexus/projects/nlink/nlink-unstable-v3/tests/include
+-- Registered component: common (version 1.0.0)
+-- Registered component: minimizer (version 1.0.0)
+-- Registered component: symbols (version 1.0.0)
+-- Registered component: versioning (version 1.0.0)
+-- Registered component: pipeline (version 1.0.0)
+-- Registered component: pattern (version 1.0.0)
+-- Registered component: mpsystem (version 1.0.0)
+-- Registered component: spsystem (version 1.0.0)
+-- Registered component: metadata (version 1.0.0)
+-- Component system initialized with 1.0.0
+-- Registered components: common;minimizer;symbols;versioning;pipeline;pattern;mpsystem;spsystem;metadata
+-- NexusLink build system initialized (version 1.0.0)
+-- Testing enabled: TRUE
+-- Coverage enabled: TRUE
+-- Release build: TRUE
+-- [NexusLink] Found Python3: /home/obinexus/miniconda3/bin/python3 (version 3.13.5)
+-- [NexusLink] Found Threads: 
+-- Executing pre-build hook: nlink_create_component_directories
+-- Executing pre-build hook: nlink_validate_includes
+-- Validating includes (placeholder)
+CMake Warning at cmake/Hooks.cmake:341 (message):
+  Include validation found issues:
+
+  
+
+Call Stack (most recent call first):
+  cmake/Hooks.cmake:148 (nlink_validate_includes)
+  cmake/Hooks.cmake:148 (cmake_language)
+  CMakeLists.txt:42 (nlink_execute_pre_build_hooks)
+
+
+-- Registered component: CMakeFiles (version 1.0.0)
+-- Registered component: common (version 1.0.0)
+-- Registered component: common_build (version 1.0.0)
+-- Registered component: config (version 1.0.0)
+-- Registered component: config_build (version 1.0.0)
+-- Registered component: metadata (version 1.0.0)
+-- Registered component: metadata_build (version 1.0.0)
+-- Registered component: minimizer (version 1.0.0)
+-- Registered component: minimizer_build (version 1.0.0)
+-- Registered component: mpsystem (version 1.0.0)
+-- Registered component: mpsystem_build (version 1.0.0)
+-- Registered component: parser (version 1.0.0)
+-- Registered component: parser_build (version 1.0.0)
+-- Registered component: pattern (version 1.0.0)
+-- Registered component: pattern_build (version 1.0.0)
+-- Registered component: pattern_matching (version 1.0.0)
+-- Registered component: pattern_matching_build (version 1.0.0)
+-- Registered component: pipeline (version 1.0.0)
+-- Registered component: pipeline_build (version 1.0.0)
+-- Registered component: schema (version 1.0.0)
+-- Registered component: schema_build (version 1.0.0)
+-- Registered component: spsystem (version 1.0.0)
+-- Registered component: spsystem_build (version 1.0.0)
+-- Registered component: symbols (version 1.0.0)
+-- Registered component: symbols_build (version 1.0.0)
+-- Registered component: tactic (version 1.0.0)
+-- Registered component: tactic_build (version 1.0.0)
+-- Registered component: tatit (version 1.0.0)
+-- Registered component: tatit_build (version 1.0.0)
+-- Registered component: token_type (version 1.0.0)
+-- Registered component: token_type_build (version 1.0.0)
+-- Registered component: token_value (version 1.0.0)
+-- Registered component: token_value_build (version 1.0.0)
+-- Registered component: tokenizer (version 1.0.0)
+-- Registered component: tokenizer_build (version 1.0.0)
+-- Registered component: type (version 1.0.0)
+-- Registered component: type_build (version 1.0.0)
+-- Registered component: versioning (version 1.0.0)
+-- Registered component: versioning_build (version 1.0.0)
+-- Discovered core components: CMakeFiles;common;common_build;config;config_build;metadata;metadata_build;minimizer;minimizer_build;mpsystem;mpsystem_build;parser;parser_build;pattern;pattern_build;pattern_matching;pattern_matching_build;pipeline;pipeline_build;schema;schema_build;spsystem;spsystem_build;symbols;symbols_build;tactic;tactic_build;tatit;tatit_build;token_type;token_type_build;token_value;token_value_build;tokenizer;tokenizer_build;type;type_build;versioning;versioning_build
+-- Executing pre-build hook: nlink_create_component_directories
+-- Executing pre-build hook: nlink_validate_includes
+-- Validating includes (placeholder)
+CMake Warning at cmake/Hooks.cmake:341 (message):
+  Include validation found issues:
+
+  
+
+Call Stack (most recent call first):
+  cmake/Hooks.cmake:148 (nlink_validate_includes)
+  cmake/Hooks.cmake:148 (cmake_language)
+  src/core/CMakeLists.txt:5 (nlink_execute_pre_build_hooks)
+
+
+-- Found core component: common
+-- Found core component: common_build
+-- Found core component: config
+-- Found core component: config_build
+-- Found core component: metadata
+-- Found core component: metadata_build
+-- Found core component: minimizer
+-- Found core component: minimizer_build
+-- Found core component: mpsystem
+-- Found core component: mpsystem_build
+-- Found core component: parser
+-- Found core component: parser_build
+-- Found core component: pattern
+-- Found core component: pattern_build
+-- Found core component: pattern_matching
+-- Found core component: pattern_matching_build
+-- Found core component: pipeline
+-- Found core component: pipeline_build
+-- Found core component: schema
+-- Found core component: schema_build
+-- Found core component: spsystem
+-- Found core component: spsystem_build
+-- Found core component: symbols
+-- Found core component: symbols_build
+-- Found core component: tactic
+-- Found core component: tactic_build
+-- Found core component: tatit
+-- Found core component: tatit_build
+-- Found core component: token_type
+-- Found core component: token_type_build
+-- Found core component: token_value
+-- Found core component: token_value_build
+-- Found core component: tokenizer
+-- Found core component: tokenizer_build
+-- Found core component: type
+-- Found core component: type_build
+-- Found core component: versioning
+-- Found core component: versioning_build
+-- Built component: common (STATIC)
+CMake Warning at src/core/CMakeLists.txt:33 (message):
+  Component directory common_build missing CMakeLists.txt
+
+
+-- Built component: config (STATIC)
+CMake Warning at src/core/CMakeLists.txt:33 (message):
+  Component directory config_build missing CMakeLists.txt
+
+
+-- Built component: metadata (STATIC)
+CMake Warning at src/core/CMakeLists.txt:33 (message):
+  Component directory metadata_build missing CMakeLists.txt
+
+
+-- Built component: minimizer (STATIC)
+CMake Warning at src/core/CMakeLists.txt:33 (message):
+  Component directory minimizer_build missing CMakeLists.txt
+
+
+-- Built component: mpsystem (STATIC)
+CMake Warning at src/core/CMakeLists.txt:33 (message):
+  Component directory mpsystem_build missing CMakeLists.txt
+
+
+-- Built component: parser (STATIC)
+CMake Warning at src/core/CMakeLists.txt:33 (message):
+  Component directory parser_build missing CMakeLists.txt
+
+
+-- Built component: pattern (STATIC)
+CMake Warning at src/core/CMakeLists.txt:33 (message):
+  Component directory pattern_build missing CMakeLists.txt
+
+
+-- Built component: pattern_matching (STATIC)
+CMake Warning at src/core/CMakeLists.txt:33 (message):
+  Component directory pattern_matching_build missing CMakeLists.txt
+
+
+-- Built component: pipeline (STATIC)
+CMake Warning at src/core/CMakeLists.txt:33 (message):
+  Component directory pipeline_build missing CMakeLists.txt
+
+
+-- Built component: schema (STATIC)
+CMake Warning at src/core/CMakeLists.txt:33 (message):
+  Component directory schema_build missing CMakeLists.txt
+
+
+-- Built component: spsystem (STATIC)
+CMake Warning at src/core/CMakeLists.txt:33 (message):
+  Component directory spsystem_build missing CMakeLists.txt
+
+
+-- Built component: symbols (STATIC)
+CMake Warning at src/core/CMakeLists.txt:33 (message):
+  Component directory symbols_build missing CMakeLists.txt
+
+
+-- Built component: tactic (STATIC)
+CMake Warning at src/core/CMakeLists.txt:33 (message):
+  Component directory tactic_build missing CMakeLists.txt
+
+
+-- Built component: tatit (STATIC)
+CMake Warning at src/core/CMakeLists.txt:33 (message):
+  Component directory tatit_build missing CMakeLists.txt
+
+
+-- Built component: token_type (STATIC)
+CMake Warning at src/core/CMakeLists.txt:33 (message):
+  Component directory token_type_build missing CMakeLists.txt
+
+
+-- Built component: token_value (STATIC)
+CMake Warning at src/core/CMakeLists.txt:33 (message):
+  Component directory token_value_build missing CMakeLists.txt
+
+
+-- Built component: tokenizer (STATIC)
+CMake Warning at src/core/CMakeLists.txt:33 (message):
+  Component directory tokenizer_build missing CMakeLists.txt
+
+
+-- Built component: type (STATIC)
+CMake Warning at src/core/CMakeLists.txt:33 (message):
+  Component directory type_build missing CMakeLists.txt
+
+
+-- Built component: versioning (STATIC)
+CMake Warning at src/core/CMakeLists.txt:33 (message):
+  Component directory versioning_build missing CMakeLists.txt
+
+
+-- Executing post-build hook: nlink_consolidate_object_files
+-- Consolidated object files to /home/obinexus/obinexus/projects/nlink/nlink-unstable-v3/obj/consolidated
+-- === NexusLink Core Build Summary ===
+-- Components: common;common_build;config;config_build;metadata;metadata_build;minimizer;minimizer_build;mpsystem;mpsystem_build;parser;parser_build;pattern;pattern_build;pattern_matching;pattern_matching_build;pipeline;pipeline_build;schema;schema_build;spsystem;spsystem_build;symbols;symbols_build;tactic;tactic_build;tatit;tatit_build;token_type;token_type_build;token_value;token_value_build;tokenizer;tokenizer_build;type;type_build;versioning;versioning_build
+-- Static libraries: 
+-- Shared libraries: 
+-- ======================================
+-- CLI components configured
+CMake Error at CMakeLists.txt:68 (nlink_define_main_executable):
+  Unknown CMake command "nlink_define_main_executable".
+
+
+-- Configuring incomplete, errors occurred!
+See also "/home/obinexus/obinexus/projects/nlink/nlink-unstable-v3/CMakeFiles/CMakeOutput.log".
+make: *** [Makefile:28: configure] Error 1
