@@ -13,6 +13,10 @@ include(Hooks)
 include(ComponentSystem)
 include(TestFramework)
 include(PackageConfig)
+project(NexusLink VERSION 1.0.0 LANGUAGES C)
+
+# CRITICAL: Include build resolution orchestrator
+include(${CMAKE_SOURCE_DIR}/cmake/NexusLinkBuildResolution.cmake)
 
 # ════════════════════════════════════════════════════════════
 # BUILD OUTPUT STANDARDIZATION ENFORCEMENT
