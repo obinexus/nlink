@@ -1,66 +1,87 @@
-# ComponentSystem.cmake patch for NexusLink
-# Resolves target registration conflicts by checking if components are already registered
-# Copyright © 2025 OBINexus Computing
+# ComponentSystem.cmake
+# Core component management for NexusLink
+#
+# This module provides component initialization, registration, and dependency
+# management functionality for the NexusLink system.
 
-# This function should replace the original nlink_register_component function
-function(nlink_register_component COMPONENT_NAME)
-  # Ensure the component name is valid
-  if(NOT COMPONENT_NAME MATCHES "^[a-z][a-z0-9_]*$")
-    message(FATAL_ERROR "Invalid component name: ${COMPONENT_NAME}")
+# Include guard
+if(DEFINED NLINK_COMPONENT_SYSTEM_CMAKE_INCLUDED)
+  return()
+endif()
+set(NLINK_COMPONENT_SYSTEM_CMAKE_INCLUDED TRUE)
+
+include(CMakeParseArguments)
+
+# Function to initialize the component system
+function(nlink_init_component_system)
+  cmake_parse_arguments(
+    COMP_INIT
+    ""
+    "VERSION"
+    "COMPONENTS"
+    ${ARGN}
+  )
+
+  # Validate required arguments
+  if(NOT COMP_INIT_COMPONENTS)
+    message(WARNING "No components specified for nlink_init_component_system")
   endif()
-  
-  # Check if the component is already registered to prevent duplication
-  get_property(REGISTERED_COMPONENTS GLOBAL PROPERTY NLINK_REGISTERED_COMPONENTS)
-  if(REGISTERED_COMPONENTS)
-    list(FIND REGISTERED_COMPONENTS ${COMPONENT_NAME} COMPONENT_INDEX)
-    if(NOT COMPONENT_INDEX EQUAL -1)
-      message(STATUS "Component ${COMPONENT_NAME} already registered, skipping.")
-      return()
-    endif()
+
+  # Set default version if not provided
+  if(NOT COMP_INIT_VERSION)
+    set(COMP_INIT_VERSION "1.0.0")
   endif()
+
+  # Register components
+  foreach(COMPONENT ${COMP_INIT_COMPONENTS})
+    # Create component directory if it doesn't exist
+    nlink_ensure_directory("${NLINK_SRC_DIR}/core/${COMPONENT}")
+    nlink_ensure_directory("${NLINK_INCLUDE_DIR}/nlink/core/${COMPONENT}")
+    
+    # Register component
+    nlink_register_component(${COMPONENT} ${COMP_INIT_VERSION})
+  endforeach()
+
+  # Define component targets
+  add_custom_target(nlink_core_components
+    COMMENT "Building all NexusLink core components"
+  )
+
+  message(STATUS "Component system initialized with ${COMP_INIT_VERSION}")
+  message(STATUS "Registered components: ${COMP_INIT_COMPONENTS}")
+endfunction()
+
+# Function to register a component
+function(nlink_register_component COMPONENT VERSION)
+  # Set component properties
+  set_property(GLOBAL PROPERTY NLINK_COMPONENT_${COMPONENT}_VERSION ${VERSION})
+  set_property(GLOBAL PROPERTY NLINK_COMPONENT_${COMPONENT}_REGISTERED TRUE)
   
-  # Ensure component source directory exists
-  set(COMPONENT_SRC_DIR "${NLINK_SRC_DIR}/core/${COMPONENT_NAME}")
-  if(NOT EXISTS "${COMPONENT_SRC_DIR}")
-    message(WARNING "Component source directory not found: ${COMPONENT_SRC_DIR}")
-    return()
-  endif()
+  # Define component include directories
+  set(COMPONENT_INCLUDE_DIR "${NLINK_INCLUDE_DIR}/nlink/core/${COMPONENT}")
+  set(COMPONENT_SRC_DIR "${NLINK_SRC_DIR}/core/${COMPONENT}")
   
-  # Create component target
-  string(TOUPPER "${COMPONENT_NAME}" COMPONENT_NAME_UPPER)
-  set(TARGET_NAME "nlink_${COMPONENT_NAME}")
-  
-  # Add component to global registry
-  set_property(GLOBAL APPEND PROPERTY NLINK_REGISTERED_COMPONENTS ${COMPONENT_NAME})
-  
-  # Check if target already exists (redundant with above check, but added for safety)
-  if(TARGET ${TARGET_NAME})
-    message(STATUS "Target ${TARGET_NAME} already exists, skipping creation.")
-    return()
-  endif()
-  
-  # Define component build target
-  add_custom_target(${TARGET_NAME}
-    COMMENT "Building ${COMPONENT_NAME} component"
+  # Create component library targets
+  add_library(nlink_component_${COMPONENT} OBJECT
+    "${COMPONENT_SRC_DIR}/${COMPONENT}_core.c"
+    "${COMPONENT_SRC_DIR}/${COMPONENT}_context.c"
+    "${COMPONENT_SRC_DIR}/nexus_${COMPONENT}.c"
   )
   
-  # Make core_components depend on this component
-  add_dependencies(nlink_core_components ${TARGET_NAME})
+  # Set include directories for component
+  target_include_directories(nlink_component_${COMPONENT} PUBLIC
+    ${NLINK_INCLUDE_DIR}
+    ${NLINK_SRC_DIR}
+  )
   
-  # Find all source files for this component
-  file(GLOB COMPONENT_SOURCES "${COMPONENT_SRC_DIR}/*.c")
+  # Add component to core components target
+  add_dependencies(nlink_core_components nlink_component_${COMPONENT})
   
-  # Inform about the component
-  message(STATUS "Registered component: ${COMPONENT_NAME} (${TARGET_NAME})")
-  message(STATUS "  Source files: ${COMPONENT_SOURCES}")
-  
-  # Set component properties
-  set_property(TARGET ${TARGET_NAME} PROPERTY COMPONENT_NAME ${COMPONENT_NAME})
-  set_property(TARGET ${TARGET_NAME} PROPERTY COMPONENT_SOURCES ${COMPONENT_SOURCES})
-  set_property(TARGET ${TARGET_NAME} PROPERTY COMPONENT_INCLUDE_DIR "${NLINK_INCLUDE_DIR}/nlink/core/${COMPONENT_NAME}")
-  
-  # Execute post-registration hooks if defined
-  if(COMMAND nlink_post_register_component_hook)
-    nlink_post_register_component_hook(${COMPONENT_NAME})
-  endif()
+  message(STATUS "Registered component: ${COMPONENT} (version ${VERSION})")
+endfunction()
+
+# Function to get component dependencies
+function(nlink_get_component_dependencies COMPONENT OUTPUT_VAR)
+  # Implementation to be added based on dependency specifications
+  set(${OUTPUT_VAR} "" PARENT_SCOPE)
 endfunction()
