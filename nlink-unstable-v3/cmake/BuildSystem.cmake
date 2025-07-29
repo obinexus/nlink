@@ -15,6 +15,7 @@ include(${CMAKE_CURRENT_LIST_DIR}/Utils.cmake)
 include(${CMAKE_CURRENT_LIST_DIR}/ComponentSystem.cmake)
 include(${CMAKE_CURRENT_LIST_DIR}/TestFramework.cmake)
 include(${CMAKE_CURRENT_LIST_DIR}/PackageConfig.cmake)
+include(${CMAKE_CURRENT_LIST_DIR}/cmake/ExecutableConfig.cmake)
 
 # Define core project directories
 set(NLINK_PROJECT_ROOT "${CMAKE_SOURCE_DIR}")
@@ -208,4 +209,5 @@ function(nlink_define_global_targets)
 endfunction()
 
 # Set timestamp for log files
+
 string(TIMESTAMP NLINK_TIMESTAMP "%Y%m%d_%H%M%S")

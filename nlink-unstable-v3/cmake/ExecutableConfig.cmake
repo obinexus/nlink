@@ -1,8 +1,5 @@
 # ExecutableConfig.cmake
 # Main executable configuration for NexusLink
-#
-# This module provides functionality for defining and configuring the main
-# NexusLink executable with proper component dependencies.
 
 # Include guard
 if(DEFINED NLINK_EXECUTABLE_CONFIG_CMAKE_INCLUDED)
@@ -12,7 +9,6 @@ set(NLINK_EXECUTABLE_CONFIG_CMAKE_INCLUDED TRUE)
 
 include(CMakeParseArguments)
 
-# Function to define the main executable with component dependencies
 function(nlink_define_main_executable)
   cmake_parse_arguments(
     EXEC
@@ -31,8 +27,8 @@ function(nlink_define_main_executable)
     set(EXEC_OUTPUT_NAME "${EXEC_NAME}")
   endif()
 
+  # Get global version if not specified
   if(NOT EXEC_VERSION)
-    # Get version from global property
     get_property(NLINK_VERSION GLOBAL PROPERTY NLINK_VERSION)
     if(NLINK_VERSION)
       set(EXEC_VERSION "${NLINK_VERSION}")
@@ -41,10 +37,9 @@ function(nlink_define_main_executable)
     endif()
   endif()
 
-  # Define main executable target
+  # Define executable target
   add_executable(${EXEC_NAME} ${EXEC_SOURCES})
   
-  # Set properties
   set_target_properties(${EXEC_NAME} PROPERTIES
     OUTPUT_NAME ${EXEC_OUTPUT_NAME}
     VERSION ${EXEC_VERSION}
@@ -70,34 +65,27 @@ function(nlink_define_main_executable)
     )
   endif()
 
-  # Link with all components
-  get_property(NLINK_CORE_COMPONENTS GLOBAL PROPERTY NLINK_CORE_COMPONENTS)
-  
-  foreach(COMPONENT ${NLINK_CORE_COMPONENTS})
-    target_link_libraries(${EXEC_NAME} PRIVATE nlink_component_${COMPONENT})
-  endforeach()
+  # Link with core components
+  target_link_libraries(${EXEC_NAME} PRIVATE
+    nlink_core_static
+    nlink_cli_static
+  )
   
   # Link with additional dependencies
   if(EXEC_DEPENDENCIES)
-    target_link_libraries(${EXEC_NAME} PRIVATE ${EXEC_DEPENDENCIES})
+    target_link_libraries(${EXEC_NAME} PRIVATE
+      ${EXEC_DEPENDENCIES}
+    )
   endif()
   
-  # Install if requested
+  # Install executable if requested
   if(EXEC_INSTALL)
     install(TARGETS ${EXEC_NAME}
       RUNTIME DESTINATION bin
     )
   endif()
   
-  # Create versioned symlink if requested
-  if(EXEC_INSTALL AND EXEC_VERSIONED)
-    install(CODE "execute_process(COMMAND ${CMAKE_COMMAND} -E create_symlink 
-      ${CMAKE_INSTALL_PREFIX}/bin/${EXEC_OUTPUT_NAME}
-      ${CMAKE_INSTALL_PREFIX}/bin/${EXEC_OUTPUT_NAME}-${EXEC_VERSION}
-    )")
-  endif()
-  
-  # Set global property
+  # Register executable globally
   set_property(GLOBAL PROPERTY NLINK_MAIN_EXECUTABLE ${EXEC_NAME})
   
   message(STATUS "Defined main executable: ${EXEC_NAME} (version ${EXEC_VERSION})")
