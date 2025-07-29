@@ -35,7 +35,7 @@ foreach(COMPONENT ${NLINK_CORE_COMPONENTS})
 endforeach()
 
 
-# Create unified core library
+# Execute post-build hooks
 add_custom_target(nlink_unified_core ALL
   COMMENT "Building unified core library"
 )
@@ -72,7 +72,7 @@ endif()
 set_property(GLOBAL PROPERTY NLINK_CORE_COMPONENTS ${NLINK_CORE_COMPONENTS})
 
 
-# Create unified core library
+# Execute post-build hooks
 # Execute post-build hooks
 nlink_execute_post_build_hooks()
 

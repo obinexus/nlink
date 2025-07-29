@@ -10,6 +10,24 @@ include(ComponentSystem)
 include(TestFramework)
 include(PackageConfig)
 
+add_dependencies(nlink_cli_components nlink_unified_core)
+# Implement explicit CLI-to-Core dependency
+target_link_libraries(nlink_cli_static PRIVATE nlink_core)
+
+# Create explicit file-level dependency to enforce build order
+add_custom_command(
+  OUTPUT ${CMAKE_BINARY_DIR}/lib/libnlink_cli.a
+  DEPENDS ${CMAKE_BINARY_DIR}/lib/libnlink_core.a
+  APPEND
+)
+# Define main executable with proper core library dependency
+nlink_define_main_executable(
+  NAME nlink_executable
+  SOURCES ${CMAKE_SOURCE_DIR}/src/cli/main.c
+  INCLUDES ${CMAKE_SOURCE_DIR}/src/cli
+  DEPENDENCIES nlink_cli_static nlink_core
+)
+
 # Initialize build system with directories
 nlink_init_hook_system(
   OBJ_DIR "${CMAKE_BINARY_DIR}/obj"
