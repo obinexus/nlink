@@ -11,9 +11,6 @@ include_guard(GLOBAL)
 # Global state tracking for executable materialization
 set_property(GLOBAL PROPERTY NLINK_EXECUTABLE_DEFINED FALSE)
 
-
-/
-
 # ════════════════════════════════════════════════════════════
 # PRIMARY EXECUTABLE DEFINITION
 # ════════════════════════════════════════════════════════════
