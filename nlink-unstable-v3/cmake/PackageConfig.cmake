@@ -294,7 +294,7 @@ function(nlink_install_development_components)
   )
 endfunction()
 
-# Install executable
+# Install executable with proper target resolution
 function(nlink_install_executable)
   cmake_parse_arguments(
     EXEC
@@ -304,9 +304,36 @@ function(nlink_install_executable)
     ${ARGN}
   )
   
-  # Set default target if not provided
+  # If no target specified, query the global executable
   if(NOT EXEC_TARGET)
-    set(EXEC_TARGET "nlink")
+    # Use the new query function from ExecutableConfig.cmake
+    if(COMMAND nlink_get_executable_target)
+      nlink_get_executable_target(EXEC_TARGET)
+    endif()
+    
+    # If still no target, try default name
+    if(NOT EXEC_TARGET)
+      if(TARGET nlink)
+        set(EXEC_TARGET "nlink")
+      elseif(TARGET nlink_cli)
+        set(EXEC_TARGET "nlink_cli")
+      else()
+        message(WARNING "No executable target found for installation")
+        return()
+      endif()
+    endif()
+  endif()
+  
+  # Verify target exists and is an executable
+  if(NOT TARGET ${EXEC_TARGET})
+    message(WARNING "Target '${EXEC_TARGET}' does not exist")
+    return()
+  endif()
+  
+  get_target_property(TARGET_TYPE ${EXEC_TARGET} TYPE)
+  if(NOT TARGET_TYPE STREQUAL "EXECUTABLE")
+    message(WARNING "Target '${EXEC_TARGET}' is not an executable (type: ${TARGET_TYPE})")
+    return()
   endif()
   
   # Install executable
