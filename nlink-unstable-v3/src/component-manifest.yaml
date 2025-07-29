@@ -1,0 +1,15 @@
+# components.manifest.yaml
+components:
+  - name: common
+    version: 1.0.0
+    type: static
+    sources:
+      - pattern: "src/core/common/*.c"
+    dependencies: []
+    
+  - name: symbols
+    version: 1.0.0
+    type: static
+    sources:
+      - pattern: "src/core/symbols/*.c"
+    dependencies: [common]
