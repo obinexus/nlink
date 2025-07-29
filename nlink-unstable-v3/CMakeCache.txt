@@ -258,6 +258,15 @@ CMAKE_STRIP:FILEPATH=/usr/bin/strip
 // Studio IDE projects all commands are done without /nologo.
 CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 
+//Value Computed by CMake
+CMakeFiles_build_BINARY_DIR:STATIC=/home/obinexus/obinexus/projects/nlink/nlink-unstable-v3/src/core/CMakeFiles_build_build
+
+//Value Computed by CMake
+CMakeFiles_build_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+CMakeFiles_build_SOURCE_DIR:STATIC=/home/obinexus/obinexus/projects/nlink/nlink-unstable-v3/src/core/CMakeFiles_build
+
 //Enable code coverage
 ENABLE_COVERAGE:BOOL=OFF
 
@@ -281,6 +290,177 @@ NexusLink_IS_TOP_LEVEL:STATIC=ON
 
 //Value Computed by CMake
 NexusLink_SOURCE_DIR:STATIC=/home/obinexus/obinexus/projects/nlink/nlink-unstable-v3
+
+//Value Computed by CMake
+common_build_BINARY_DIR:STATIC=/home/obinexus/obinexus/projects/nlink/nlink-unstable-v3/src/core/common_build_build
+
+//Value Computed by CMake
+common_build_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+common_build_SOURCE_DIR:STATIC=/home/obinexus/obinexus/projects/nlink/nlink-unstable-v3/src/core/common_build
+
+//Value Computed by CMake
+config_build_BINARY_DIR:STATIC=/home/obinexus/obinexus/projects/nlink/nlink-unstable-v3/src/core/config_build_build
+
+//Value Computed by CMake
+config_build_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+config_build_SOURCE_DIR:STATIC=/home/obinexus/obinexus/projects/nlink/nlink-unstable-v3/src/core/config_build
+
+//Value Computed by CMake
+metadata_build_BINARY_DIR:STATIC=/home/obinexus/obinexus/projects/nlink/nlink-unstable-v3/src/core/metadata_build_build
+
+//Value Computed by CMake
+metadata_build_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+metadata_build_SOURCE_DIR:STATIC=/home/obinexus/obinexus/projects/nlink/nlink-unstable-v3/src/core/metadata_build
+
+//Value Computed by CMake
+minimizer_build_BINARY_DIR:STATIC=/home/obinexus/obinexus/projects/nlink/nlink-unstable-v3/src/core/minimizer_build_build
+
+//Value Computed by CMake
+minimizer_build_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+minimizer_build_SOURCE_DIR:STATIC=/home/obinexus/obinexus/projects/nlink/nlink-unstable-v3/src/core/minimizer_build
+
+//Value Computed by CMake
+mpsystem_build_BINARY_DIR:STATIC=/home/obinexus/obinexus/projects/nlink/nlink-unstable-v3/src/core/mpsystem_build_build
+
+//Value Computed by CMake
+mpsystem_build_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+mpsystem_build_SOURCE_DIR:STATIC=/home/obinexus/obinexus/projects/nlink/nlink-unstable-v3/src/core/mpsystem_build
+
+//Value Computed by CMake
+parser_build_BINARY_DIR:STATIC=/home/obinexus/obinexus/projects/nlink/nlink-unstable-v3/src/core/parser_build_build
+
+//Value Computed by CMake
+parser_build_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+parser_build_SOURCE_DIR:STATIC=/home/obinexus/obinexus/projects/nlink/nlink-unstable-v3/src/core/parser_build
+
+//Value Computed by CMake
+pattern_build_BINARY_DIR:STATIC=/home/obinexus/obinexus/projects/nlink/nlink-unstable-v3/src/core/pattern_build_build
+
+//Value Computed by CMake
+pattern_build_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+pattern_build_SOURCE_DIR:STATIC=/home/obinexus/obinexus/projects/nlink/nlink-unstable-v3/src/core/pattern_build
+
+//Value Computed by CMake
+pattern_matching_build_BINARY_DIR:STATIC=/home/obinexus/obinexus/projects/nlink/nlink-unstable-v3/src/core/pattern_matching_build_build
+
+//Value Computed by CMake
+pattern_matching_build_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+pattern_matching_build_SOURCE_DIR:STATIC=/home/obinexus/obinexus/projects/nlink/nlink-unstable-v3/src/core/pattern_matching_build
+
+//Value Computed by CMake
+pipeline_build_BINARY_DIR:STATIC=/home/obinexus/obinexus/projects/nlink/nlink-unstable-v3/src/core/pipeline_build_build
+
+//Value Computed by CMake
+pipeline_build_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+pipeline_build_SOURCE_DIR:STATIC=/home/obinexus/obinexus/projects/nlink/nlink-unstable-v3/src/core/pipeline_build
+
+//Value Computed by CMake
+schema_build_BINARY_DIR:STATIC=/home/obinexus/obinexus/projects/nlink/nlink-unstable-v3/src/core/schema_build_build
+
+//Value Computed by CMake
+schema_build_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+schema_build_SOURCE_DIR:STATIC=/home/obinexus/obinexus/projects/nlink/nlink-unstable-v3/src/core/schema_build
+
+//Value Computed by CMake
+spsystem_build_BINARY_DIR:STATIC=/home/obinexus/obinexus/projects/nlink/nlink-unstable-v3/src/core/spsystem_build_build
+
+//Value Computed by CMake
+spsystem_build_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+spsystem_build_SOURCE_DIR:STATIC=/home/obinexus/obinexus/projects/nlink/nlink-unstable-v3/src/core/spsystem_build
+
+//Value Computed by CMake
+symbols_build_BINARY_DIR:STATIC=/home/obinexus/obinexus/projects/nlink/nlink-unstable-v3/src/core/symbols_build_build
+
+//Value Computed by CMake
+symbols_build_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+symbols_build_SOURCE_DIR:STATIC=/home/obinexus/obinexus/projects/nlink/nlink-unstable-v3/src/core/symbols_build
+
+//Value Computed by CMake
+tactic_build_BINARY_DIR:STATIC=/home/obinexus/obinexus/projects/nlink/nlink-unstable-v3/src/core/tactic_build_build
+
+//Value Computed by CMake
+tactic_build_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+tactic_build_SOURCE_DIR:STATIC=/home/obinexus/obinexus/projects/nlink/nlink-unstable-v3/src/core/tactic_build
+
+//Value Computed by CMake
+tatit_build_BINARY_DIR:STATIC=/home/obinexus/obinexus/projects/nlink/nlink-unstable-v3/src/core/tatit_build_build
+
+//Value Computed by CMake
+tatit_build_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+tatit_build_SOURCE_DIR:STATIC=/home/obinexus/obinexus/projects/nlink/nlink-unstable-v3/src/core/tatit_build
+
+//Value Computed by CMake
+token_type_build_BINARY_DIR:STATIC=/home/obinexus/obinexus/projects/nlink/nlink-unstable-v3/src/core/token_type_build_build
+
+//Value Computed by CMake
+token_type_build_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+token_type_build_SOURCE_DIR:STATIC=/home/obinexus/obinexus/projects/nlink/nlink-unstable-v3/src/core/token_type_build
+
+//Value Computed by CMake
+token_value_build_BINARY_DIR:STATIC=/home/obinexus/obinexus/projects/nlink/nlink-unstable-v3/src/core/token_value_build_build
+
+//Value Computed by CMake
+token_value_build_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+token_value_build_SOURCE_DIR:STATIC=/home/obinexus/obinexus/projects/nlink/nlink-unstable-v3/src/core/token_value_build
+
+//Value Computed by CMake
+tokenizer_build_BINARY_DIR:STATIC=/home/obinexus/obinexus/projects/nlink/nlink-unstable-v3/src/core/tokenizer_build_build
+
+//Value Computed by CMake
+tokenizer_build_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+tokenizer_build_SOURCE_DIR:STATIC=/home/obinexus/obinexus/projects/nlink/nlink-unstable-v3/src/core/tokenizer_build
+
+//Value Computed by CMake
+type_build_BINARY_DIR:STATIC=/home/obinexus/obinexus/projects/nlink/nlink-unstable-v3/src/core/type_build_build
+
+//Value Computed by CMake
+type_build_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+type_build_SOURCE_DIR:STATIC=/home/obinexus/obinexus/projects/nlink/nlink-unstable-v3/src/core/type_build
+
+//Value Computed by CMake
+versioning_build_BINARY_DIR:STATIC=/home/obinexus/obinexus/projects/nlink/nlink-unstable-v3/src/core/versioning_build_build
+
+//Value Computed by CMake
+versioning_build_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+versioning_build_SOURCE_DIR:STATIC=/home/obinexus/obinexus/projects/nlink/nlink-unstable-v3/src/core/versioning_build
 
 
 ########################
@@ -405,7 +585,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=23
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=43
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP

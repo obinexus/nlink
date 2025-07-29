@@ -73,37 +73,6 @@ set_property(GLOBAL PROPERTY NLINK_CORE_COMPONENTS ${NLINK_CORE_COMPONENTS})
 
 
 # Create unified core library
-add_custom_target(nlink_unified_core ALL
-  COMMENT "Building unified core library"
-)
-
-# Create static unified library
-get_property(STATIC_LIBS GLOBAL PROPERTY NLINK_STATIC_LIBRARIES)
-if(STATIC_LIBS)
-  add_library(nlink_core STATIC IMPORTED GLOBAL)
-  set_property(TARGET nlink_core PROPERTY
-    IMPORTED_LOCATION "${CMAKE_BINARY_DIR}/lib/libnlink_core.a"
-  )
-  
-  # Command to create the static unified library
-  add_custom_command(
-    OUTPUT "${CMAKE_BINARY_DIR}/lib/libnlink_core.a"
-    COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_BINARY_DIR}/lib
-    COMMAND ${CMAKE_AR} crs "${CMAKE_BINARY_DIR}/lib/libnlink_core.a"
-            $<TARGET_OBJECTS:nlink_common_objects>
-            $<$<TARGET_EXISTS:nlink_symbols_objects>:$<TARGET_OBJECTS:nlink_symbols_objects>>
-            $<$<TARGET_EXISTS:nlink_versioning_objects>:$<TARGET_OBJECTS:nlink_versioning_objects>>
-            # Additional component object references
-    DEPENDS ${STATIC_LIBS}
-    COMMENT "Creating unified static library"
-  )
-  
-  add_custom_target(nlink_unified_static
-    DEPENDS "${CMAKE_BINARY_DIR}/lib/libnlink_core.a"
-  )
-  
-  add_dependencies(nlink_unified_core nlink_unified_static)
-endif()
 # Execute post-build hooks
 nlink_execute_post_build_hooks()
 
