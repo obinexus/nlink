@@ -15,7 +15,7 @@ include(${CMAKE_CURRENT_LIST_DIR}/Utils.cmake)
 include(${CMAKE_CURRENT_LIST_DIR}/ComponentSystem.cmake)
 include(${CMAKE_CURRENT_LIST_DIR}/TestFramework.cmake)
 include(${CMAKE_CURRENT_LIST_DIR}/PackageConfig.cmake)
-include(${CMAKE_CURRENT_LIST_DIR}/cmake/ExecutableConfig.cmake)
+include(${CMAKE_CURRENT_LIST_DIR}/ExecutableConfig.cmake)
 
 # Define core project directories
 set(NLINK_PROJECT_ROOT "${CMAKE_SOURCE_DIR}")
